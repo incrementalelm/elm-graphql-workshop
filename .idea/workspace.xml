@@ -2,62 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b9a6d44-d24f-4f9c-915f-e903d01f3219" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/elm.json" afterPath="$PROJECT_DIR$/elm.json" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/src/ErrorHandling.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example00SingleFieldQuery.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example01BasicQuery.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example02PipelineSyntax.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example03Variables.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example04ErrorDestructuring.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example05InterfacesAndUnions.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example06Typename.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Example07CustomDecoders.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/ExampleFromReadme.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Github.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/GithubPagination.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/PrintAny.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/SimpleMutation.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Starwars.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Enum/Episode.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Enum/Language.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Enum/Phrase.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/InputObject.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Interface.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Interface/Character.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Mutation.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Object.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Object/ChatMessage.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Object/Droid.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Object/Human.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Query.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Scalar.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/ScalarDecoders.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Subscription.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Union.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/Union/CharacterUnion.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Swapi/VerifyScalarDecoders.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/complex/ElmPackage.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/complex/ElmReposRequest.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/complex/Main.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/complex/RepoWithOwner.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/complex/View/Result.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/license-explorer/ElmPackage.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/license-explorer/ElmReposRequest.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/license-explorer/Main.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/license-explorer/RepoWithOwner.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/license-explorer/View/Result.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/subscription/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/subscription/Main.elm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/subscription/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/subscription/index.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/subscription/package-lock.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/subscription/package.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/subscription/webpack.config.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/workshop/ElmPackage.elm" afterPath="$PROJECT_DIR$/src/workshop/ElmPackage.elm" />
-      <change beforePath="$PROJECT_DIR$/src/workshop/Main.elm" afterPath="$PROJECT_DIR$/src/workshop/Main.elm" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/workshop/ElmReposRequest.elm" afterPath="$PROJECT_DIR$/src/workshop/ElmReposRequest.elm" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -77,13 +23,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.elm" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.elm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/workshop/Main.elm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="409">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#29#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ElmReposRequest.elm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/workshop/ElmReposRequest.elm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Github.elm" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Github.elm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="530">
+              <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+              <folding>
+                <element signature="e#31#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,6 +113,8 @@
         <option value="$PROJECT_DIR$/search2.json" />
         <option value="$PROJECT_DIR$/src/workshop/ElmPackage.elm" />
         <option value="$PROJECT_DIR$/src/workshop/Main.elm" />
+        <option value="$PROJECT_DIR$/src/workshop/ElmReposRequest.elm" />
+        <option value="$PROJECT_DIR$/src/Github.elm" />
       </list>
     </option>
   </component>
@@ -319,7 +289,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Elm" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Elm" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -409,10 +379,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/workshop/Main.elm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="409">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="e#29#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/workshop/ElmReposRequest.elm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Github.elm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+          <folding>
+            <element signature="e#31#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
