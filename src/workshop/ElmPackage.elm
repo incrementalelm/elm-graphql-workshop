@@ -7,8 +7,9 @@ import Json.Decode as Decode
 request =
     Http.get
         { url = "/search.json"
---        { url = "https://package.elm-lang.org/search.json"
---        { url = "/elmpackage/search.json"
+
+        --        { url = "https://package.elm-lang.org/search.json"
+        --        { url = "/elmpackage/search.json"
         , expect = Http.expectJson identity decoder
         }
 

@@ -38,7 +38,6 @@ type SortOrder
     | Stars
     | Updated
 
-
 query : SortOrder -> SelectionSet (List Repo) RootQuery
 query sortOrder =
     Query.search (\optionals -> { optionals | first = Present 100 })
