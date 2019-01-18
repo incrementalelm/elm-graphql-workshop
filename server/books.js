@@ -29,6 +29,7 @@ const typeDefs = gql`
   # (A "Mutation" type will be covered later on.)
   type Query {
     books: [Book!]!
+    version: String!
   }
 `;
 
@@ -36,7 +37,8 @@ const typeDefs = gql`
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
   Query: {
-    books: () => books
+    books: () => books,
+    version: () => "1.2.3"
   }
 };
 

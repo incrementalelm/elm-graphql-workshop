@@ -14,10 +14,12 @@
   "devDependencies": {
     "@dillonkearns/elm-graphql": "^3.1.0",
     "apollo-server": "^2.0.5",
+    "concurrently": "^4.1.0",
     "elm": "^0.19.0-bugfix2",
     "elm-live": "^3.4.0",
     "gql": "^1.1.2",
     "graphiql": "^0.12.0",
-    "graphql": "^0.13.2"
+    "graphql": "^0.13.2",
+    "nodemon": "^1.18.9"
   }
 }
