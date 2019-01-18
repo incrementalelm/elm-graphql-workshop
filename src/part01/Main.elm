@@ -1,4 +1,4 @@
-module Example00SingleFieldQuery exposing (main)
+module Main exposing (main)
 
 import Books.Object.Book
 import Books.Query as Query

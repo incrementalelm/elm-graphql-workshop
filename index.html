@@ -105,7 +105,7 @@
     </script>
     <script src="/elm.js"></script>
     <script>
-      const app = Elm.Example00SingleFieldQuery.init({node: document.getElementById('elm')})
+      const app = Elm.Main.init({node: document.getElementById('elm')})
       app.ports.setQuery.subscribe(newQuery => {
         renderGraphiql(newQuery)
       })

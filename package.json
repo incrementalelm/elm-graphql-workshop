@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "elm-live src/workshop/Main.elm --open",
-    "start2": "elm-live src/Example00SingleFieldQuery.elm --proxyPrefix /api --proxyHost http://localhost:4000 --open -- --output elm.js",
+    "start2": "elm-live src/part01/Main.elm --proxyPrefix /api --proxyHost http://localhost:4000 --open -- --output elm.js",
     "books": "node server/books.js"
   },
   "keywords": [],
