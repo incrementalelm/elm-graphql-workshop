@@ -1,5 +1,7 @@
 module Example00SingleFieldQuery exposing (main)
 
+import Books.Object.Book
+import Books.Query as Query
 import Browser
 import Graphql.Document as Document
 import Graphql.Http
@@ -8,13 +10,6 @@ import Graphql.OptionalArgument exposing (OptionalArgument(..))
 import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, with)
 import Helpers.Main
 import RemoteData exposing (RemoteData)
-import Swapi.Enum.Language as Language
-import Swapi.InputObject
-import Swapi.Interface
-import Swapi.Interface.Character as Character
-import Swapi.Object
-import Swapi.Query as Query
-import Swapi.Scalar
 import Time
 
 
@@ -35,23 +30,18 @@ import Time
 
 
 type alias Response =
-    ()
+    List String
 
 
 query : SelectionSet Response RootQuery
 query =
-    Query.hero identity SelectionSet.empty
-
-
-characterSelection : SelectionSet String Swapi.Interface.Character
-characterSelection =
-    Character.name
+    Query.books Books.Object.Book.author
 
 
 makeRequest : Cmd Msg
 makeRequest =
     query
-        |> Graphql.Http.queryRequest "https://elm-graphql.herokuapp.com"
+        |> Graphql.Http.queryRequest "/api"
         |> Graphql.Http.send (RemoteData.fromResult >> GotResponse)
 
 
