@@ -41,7 +41,8 @@
     <script src="./node_modules/graphiql/graphiql.js" charset="utf-8"></script>
   </head>
   <body>
-    <div id="graphiql">Loading...</div>
+    <div id="graphiql" style="max-height: 400px">Loading...</div>
+    <div id="elm">Loading...</div>
     <script>
       /**
        * This GraphiQL example illustrates how to use some of GraphiQL's props
@@ -159,6 +160,10 @@
         }),
         document.getElementById("graphiql")
       );
+    </script>
+    <script src="/elm.js"></script>
+    <script>
+      const app = Elm.Example00SingleFieldQuery.init({node: document.getElementById('elm')})
     </script>
   </body>
 </html>

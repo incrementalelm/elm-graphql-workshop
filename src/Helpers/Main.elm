@@ -2,7 +2,7 @@ module Helpers.Main exposing (Program, document)
 
 import Browser
 import DateFormat exposing (text)
-import Html exposing (a, div, h1, input, label, p, pre, text)
+import Html exposing (Html, a, div, h1, input, label, p, pre, text)
 import Html.Attributes exposing (href, type_)
 import Html.Events exposing (onClick)
 import PrintAny
@@ -31,7 +31,7 @@ document :
     }
     -> Program flags subModel subMsg
 document { init, update, queryString } =
-    Browser.document
+    Browser.element
         { init = mapInit init
         , update = mapUpdate update
         , subscriptions = \_ -> Sub.none
@@ -60,34 +60,31 @@ mapUpdate subUpdate msg model =
             ( { model | subModel = a }, b |> Cmd.map SubMsg )
 
 
-view : String -> Model a -> Browser.Document (Msg subMsg)
+view : String -> Model a -> Html (Msg subMsg)
 view query model =
-    { title = "Query Explorer"
-    , body =
+    div []
         [ div []
-            [ div []
-                [ h1 [] [ text "Generated Query" ]
-                , p [] [ toggleAliasesCheckbox ]
-                , pre []
-                    [ (if model.hideAliases then
-                        query
-                            |> stripAliases
+            [ h1 [] [ text "Generated Query" ]
+            , p [] [ toggleAliasesCheckbox ]
+            , pre []
+                [ (if model.hideAliases then
+                    query
+                        |> stripAliases
 
-                       else
-                        query
-                      )
-                        |> text
-                    ]
-                ]
-            , div []
-                [ h1 [] [ text "Response" ]
-                , model.subModel |> PrintAny.view
+                   else
+                    query
+                  )
+                    |> text
                 ]
             ]
+        , div []
+            [ h1 [] [ text "Response" ]
+            , model.subModel |> PrintAny.view
+            ]
         ]
-    }
 
 
+toggleAliasesCheckbox : Html (Msg subMsg)
 toggleAliasesCheckbox =
     label []
         [ input [ type_ "checkbox", onClick ToggleAliases ] []
@@ -98,6 +95,7 @@ toggleAliasesCheckbox =
         ]
 
 
+stripAliases : String -> String
 stripAliases query =
     query
         |> Regex.replace
