@@ -30,12 +30,12 @@ import Time
 
 
 type alias Response =
-    List String
+    String
 
 
 query : SelectionSet Response RootQuery
 query =
-    Query.books Books.Object.Book.author
+    Query.version
 
 
 makeRequest : Cmd Msg
