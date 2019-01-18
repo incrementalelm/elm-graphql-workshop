@@ -82,15 +82,9 @@ mapUpdate rawQuery subUpdate msg model =
 view : String -> Model a -> Html (Msg subMsg)
 view query model =
     div []
-        [ div []
-            [ h1 [] [ text "Generated Query" ]
-            , p [] [ toggleAliasesCheckbox ]
-            , pre []
-                [ queryValue query model.hideAliases |> text
-                ]
-            ]
+        [ p [] [ toggleAliasesCheckbox ]
         , div []
-            [ h1 [] [ text "Response" ]
+            [ h1 [] [ text "Elm Response" ]
             , model.subModel |> PrintAny.view
             ]
         ]
