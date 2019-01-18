@@ -74,6 +74,16 @@
             });
         }
 
+        const logo =
+        React.createElement(
+          GraphiQL.Logo,
+          null,
+          React.createElement('img', {
+           src: "https://cdn.jsdelivr.net/gh/martimatix/logo-graphqelm/logo.svg",
+           alt: "dillonearns/elm-graphql logo",
+           height: '35px'
+          }) )
+
         // Render <GraphiQL /> into the body.
         // See the README in the top level of this module to learn more about
         // how you can customize GraphiQL by providing different values or
@@ -87,7 +97,8 @@
             onEditQuery: onEditQuery,
             onEditVariables: null,
             onEditOperationName: null
-          }),
+          }          , logo
+),
           document.getElementById("graphiql")
         );
       }
