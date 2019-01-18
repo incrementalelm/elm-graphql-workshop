@@ -36,7 +36,7 @@ document :
 document { init, update, queryString } =
     Browser.element
         { init = mapInit queryString init
-        , update = mapUpdate update
+        , update = mapUpdate queryString update
         , subscriptions = \_ -> Sub.none
         , view = view queryString
         }
@@ -61,11 +61,15 @@ mapInit queryString subInit flags =
 -- |> Tuple.mapSecond (Cmd.map (\current -> Cmd.batch [ current ]))
 
 
-mapUpdate : (subMsg -> subModel -> ( subModel, Cmd subMsg )) -> Msg subMsg -> Model subModel -> ( Model subModel, Cmd (Msg subMsg) )
-mapUpdate subUpdate msg model =
+mapUpdate : String -> (subMsg -> subModel -> ( subModel, Cmd subMsg )) -> Msg subMsg -> Model subModel -> ( Model subModel, Cmd (Msg subMsg) )
+mapUpdate rawQuery subUpdate msg model =
     case msg of
         ToggleAliases ->
-            ( { model | hideAliases = not model.hideAliases }, Cmd.none )
+            let
+                newHideAliases =
+                    not model.hideAliases
+            in
+            ( { model | hideAliases = not model.hideAliases }, setQuery (queryValue rawQuery newHideAliases) )
 
         SubMsg subMsg ->
             let
@@ -82,14 +86,7 @@ view query model =
             [ h1 [] [ text "Generated Query" ]
             , p [] [ toggleAliasesCheckbox ]
             , pre []
-                [ (if model.hideAliases then
-                    query
-                        |> stripAliases
-
-                   else
-                    query
-                  )
-                    |> text
+                [ queryValue query model.hideAliases |> text
                 ]
             ]
         , div []
@@ -97,6 +94,16 @@ view query model =
             , model.subModel |> PrintAny.view
             ]
         ]
+
+
+queryValue : String -> Bool -> String
+queryValue rawQuery hideAliases =
+    if hideAliases then
+        rawQuery
+            |> stripAliases
+
+    else
+        rawQuery
 
 
 toggleAliasesCheckbox : Html (Msg subMsg)
