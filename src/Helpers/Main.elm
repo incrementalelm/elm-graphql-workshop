@@ -1,4 +1,4 @@
-module Helpers.Main exposing (Program, document)
+port module Helpers.Main exposing (Program, document)
 
 import Browser
 import DateFormat exposing (text)
@@ -7,6 +7,9 @@ import Html.Attributes exposing (href, type_)
 import Html.Events exposing (onClick)
 import PrintAny
 import Regex
+
+
+port setQuery : String -> Cmd msg
 
 
 type alias Program flags subModel subMsg =
@@ -32,18 +35,30 @@ document :
     -> Program flags subModel subMsg
 document { init, update, queryString } =
     Browser.element
-        { init = mapInit init
+        { init = mapInit queryString init
         , update = mapUpdate update
         , subscriptions = \_ -> Sub.none
         , view = view queryString
         }
 
 
-mapInit : (flags -> ( subModel, Cmd subMsg )) -> flags -> ( Model subModel, Cmd (Msg subMsg) )
-mapInit subInit flags =
+mapInit : String -> (flags -> ( subModel, Cmd subMsg )) -> flags -> ( Model subModel, Cmd (Msg subMsg) )
+mapInit queryString subInit flags =
     subInit flags
         |> Tuple.mapFirst (\subModel -> { subModel = subModel, hideAliases = True })
         |> Tuple.mapSecond (Cmd.map SubMsg)
+        |> Tuple.mapSecond
+            (\cmd ->
+                Cmd.batch
+                    [ cmd
+                    , setQuery
+                        (queryString |> stripAliases)
+                    ]
+            )
+
+
+
+-- |> Tuple.mapSecond (Cmd.map (\current -> Cmd.batch [ current ]))
 
 
 mapUpdate : (subMsg -> subModel -> ( subModel, Cmd subMsg )) -> Msg subMsg -> Model subModel -> ( Model subModel, Cmd (Msg subMsg) )
