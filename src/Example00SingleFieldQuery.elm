@@ -35,12 +35,17 @@ import Time
 
 
 type alias Response =
-    String
+    ()
 
 
 query : SelectionSet Response RootQuery
 query =
-    Query.hello
+    Query.hero identity SelectionSet.empty
+
+
+characterSelection : SelectionSet String Swapi.Interface.Character
+characterSelection =
+    Character.name
 
 
 makeRequest : Cmd Msg
