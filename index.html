@@ -32,6 +32,12 @@
     <script src="//cdn.jsdelivr.net/react/15.4.2/react.min.js"></script>
     <script src="//cdn.jsdelivr.net/react/15.4.2/react-dom.min.js"></script>
 
+    <link rel="stylesheet" href="/lib/codemirror.css">
+    <script src="/lib/codemirror.js"></script>
+    <script src="/lib/elm.js"></script>
+    <style>.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
+
+
     <!--
       These two files can be found in the npm module, however you may wish to
       copy them directly into your environment, or perhaps include them in your
@@ -42,9 +48,12 @@
   </head>
   <body>
     <div id="graphiql" style="max-height: 400px">Loading...</div>
+    <textarea name="code" id="elm-data">Loading Elm Data...</textarea>
     <div id="elm">Loading...</div>
     <script>
       function renderGraphiql(elmGraphqlConfig) {
+        console.log('setting to', elmGraphqlConfig.response);
+        window.elmData.setValue(elmGraphqlConfig.response)
         // When the query and variables string is edited, update the URL bar so
         // that it can be easily shared
         function onEditQuery(newQuery) {
@@ -110,5 +119,15 @@
         renderGraphiql(config)
       })
     </script>
+
+
+    <script>
+      window.elmData = CodeMirror.fromTextArea(document.getElementById("elm-data"), {
+        lineNumbers: false,
+        mode: "text/x-elm",
+        theme: 'graphiql'
+      });
+    </script>
+
   </body>
 </html>
