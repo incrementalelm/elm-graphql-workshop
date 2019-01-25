@@ -6,6 +6,7 @@ import Element exposing (Element)
 import Html exposing (Html, a, div, h1, input, label, p, pre, text)
 import Html.Attributes exposing (href, type_)
 import Html.Events exposing (onClick)
+import Instructions exposing (Instructions)
 import Mark
 import Mark.Default
 import PrintAny
@@ -34,7 +35,7 @@ document :
     { init : flags -> ( subModel, Cmd subMsg )
     , update : subMsg -> subModel -> ( subModel, Cmd subMsg )
     , queryString : String
-    , instructions : String
+    , instructions : Instructions
     }
     -> Program flags subModel subMsg
 document { init, update, queryString, instructions } =
@@ -42,7 +43,7 @@ document { init, update, queryString, instructions } =
         { init = mapInit queryString init
         , update = mapUpdate queryString update
         , subscriptions = \_ -> Sub.none
-        , view = view { queryString = queryString, instructions = instructions }
+        , view = view instructions
         }
 
 
@@ -83,32 +84,17 @@ mapUpdate rawQuery subUpdate msg model =
             ( { model | subModel = a }, b |> Cmd.map SubMsg )
 
 
-view : { queryString : String, instructions : String } -> Model a -> Html (Msg subMsg)
-view { instructions } model =
+view : Instructions -> Model a -> Html (Msg subMsg)
+view instructions model =
     div []
         [ p [] [ toggleAliasesCheckbox ]
         , div []
             [ h1 [] [ text "Elm Response" ]
             , model.subModel |> PrintAny.view
-            , instructions
-                |> parseMarkup
+            , Instructions.view instructions
                 |> Element.layout []
             ]
         ]
-
-
-parseMarkup : String -> Element msg
-parseMarkup instructions =
-    instructions
-        |> Mark.parse Mark.Default.document
-        |> (\parseResult ->
-                case parseResult of
-                    Ok instructionsView ->
-                        instructionsView ()
-
-                    Err error ->
-                        Element.text <| Debug.toString error
-           )
 
 
 queryValue : String -> Bool -> String
