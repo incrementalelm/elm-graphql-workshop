@@ -4,6 +4,7 @@ import Browser
 import DateFormat exposing (text)
 import Element exposing (Element)
 import Element.Background
+import Element.Font
 import Html exposing (Html, a, div, h1, input, label, p, pre, text)
 import Html.Attributes exposing (href, type_)
 import Html.Events exposing (onClick)
@@ -102,8 +103,14 @@ mapUpdate rawQuery subUpdate msg model =
 
 view : Instructions -> Model a -> Html (Msg subMsg)
 view instructions model =
-    Instructions.view instructions
-        |> Element.el
+    [ Element.el
+        [ Element.Font.size 28
+        , Element.Font.family [ Element.Font.typeface "Rubik" ]
+        ]
+        (Element.text instructions.title)
+    , Instructions.view instructions
+    ]
+        |> Element.column
             [ Element.width (Element.fillPortion 1)
             , Element.height Element.fill
             ]
@@ -111,6 +118,9 @@ view instructions model =
             [ Element.width Element.fill
             , Element.height Element.fill
             , Element.padding 20
+            , Element.Font.family
+                [ Element.Font.typeface "Roboto"
+                ]
             ]
 
 

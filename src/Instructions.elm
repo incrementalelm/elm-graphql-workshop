@@ -7,6 +7,7 @@ import Mark.Default
 
 type alias Instructions =
     { body : String
+    , title : String
     }
 
 
