@@ -81,6 +81,6 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Making The First Query"
-            , body = "| Title\n    My fancy cat blog article"
+            , body = "This is the body"
             }
         }

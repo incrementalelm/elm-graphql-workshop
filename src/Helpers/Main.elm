@@ -113,14 +113,12 @@ view instructions model =
         |> Element.column
             [ Element.width (Element.fillPortion 1)
             , Element.height Element.fill
+            , Element.spacing 12
             ]
         |> Element.layout
             [ Element.width Element.fill
             , Element.height Element.fill
             , Element.padding 20
-            , Element.Font.family
-                [ Element.Font.typeface "Roboto"
-                ]
             ]
 
 
