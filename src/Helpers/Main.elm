@@ -3,6 +3,7 @@ port module Helpers.Main exposing (Program, document)
 import Browser
 import DateFormat exposing (text)
 import Element exposing (Element)
+import Element.Background
 import Html exposing (Html, a, div, h1, input, label, p, pre, text)
 import Html.Attributes exposing (href, type_)
 import Html.Events exposing (onClick)
@@ -86,15 +87,26 @@ mapUpdate rawQuery subUpdate msg model =
 
 view : Instructions -> Model a -> Html (Msg subMsg)
 view instructions model =
-    div []
-        [ p [] [ toggleAliasesCheckbox ]
-        , div []
-            [ h1 [] [ text "Elm Response" ]
-            , model.subModel |> PrintAny.view
-            , Instructions.view instructions
-                |> Element.layout []
-            ]
+    Element.row
+        [ Element.width Element.fill
+        , Element.height Element.fill
+        , Element.padding 20
         ]
+        [ Element.column
+            [ Element.width (Element.fillPortion 1)
+            , Element.height Element.fill
+            ]
+            [ toggleAliasesCheckbox
+            , Element.el [] (Element.text "Elm Response")
+            , model.subModel |> PrintAny.view |> Element.html
+            ]
+        , Instructions.view instructions
+            |> Element.el
+                [ Element.width (Element.fillPortion 1)
+                , Element.height Element.fill
+                ]
+        ]
+        |> Element.layout []
 
 
 queryValue : String -> Bool -> String
@@ -107,7 +119,7 @@ queryValue rawQuery hideAliases =
         rawQuery
 
 
-toggleAliasesCheckbox : Html (Msg subMsg)
+toggleAliasesCheckbox : Element (Msg subMsg)
 toggleAliasesCheckbox =
     label []
         [ input [ type_ "checkbox", onClick ToggleAliases ] []
@@ -116,6 +128,7 @@ toggleAliasesCheckbox =
             [ text "(?)"
             ]
         ]
+        |> Element.html
 
 
 stripAliases : String -> String
