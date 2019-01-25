@@ -102,23 +102,16 @@ mapUpdate rawQuery subUpdate msg model =
 
 view : Instructions -> Model a -> Html (Msg subMsg)
 view instructions model =
-    Element.row
-        [ Element.width Element.fill
-        , Element.height Element.fill
-        , Element.padding 20
-        ]
-        [ Element.column
+    Instructions.view instructions
+        |> Element.el
             [ Element.width (Element.fillPortion 1)
             , Element.height Element.fill
             ]
-            [ toggleAliasesCheckbox ]
-        , Instructions.view instructions
-            |> Element.el
-                [ Element.width (Element.fillPortion 1)
-                , Element.height Element.fill
-                ]
-        ]
-        |> Element.layout [ Element.height Element.fill ]
+        |> Element.layout
+            [ Element.width Element.fill
+            , Element.height Element.fill
+            , Element.padding 20
+            ]
 
 
 queryValue : String -> Bool -> String
