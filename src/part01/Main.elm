@@ -79,4 +79,5 @@ main =
         { init = init
         , update = update
         , queryString = Document.serializeQuery query
+        , instructions = ""
         }

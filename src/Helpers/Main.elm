@@ -31,14 +31,15 @@ document :
     { init : flags -> ( subModel, Cmd subMsg )
     , update : subMsg -> subModel -> ( subModel, Cmd subMsg )
     , queryString : String
+    , instructions : String
     }
     -> Program flags subModel subMsg
-document { init, update, queryString } =
+document { init, update, queryString, instructions } =
     Browser.element
         { init = mapInit queryString init
         , update = mapUpdate queryString update
         , subscriptions = \_ -> Sub.none
-        , view = view queryString
+        , view = view { queryString = queryString, instructions = instructions }
         }
 
 
@@ -79,8 +80,8 @@ mapUpdate rawQuery subUpdate msg model =
             ( { model | subModel = a }, b |> Cmd.map SubMsg )
 
 
-view : String -> Model a -> Html (Msg subMsg)
-view query model =
+view : { queryString : String, instructions : String } -> Model a -> Html (Msg subMsg)
+view { queryString } model =
     div []
         [ p [] [ toggleAliasesCheckbox ]
         , div []
