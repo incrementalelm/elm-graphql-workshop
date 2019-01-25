@@ -18,6 +18,7 @@
       #graphiql {
         height: 100vh;
       }
+      .CodeMirror { height: 100% !important; }
     </style>
 
     <!--
@@ -47,8 +48,12 @@
     <script src="./node_modules/graphiql/graphiql.js" charset="utf-8"></script>
   </head>
   <body>
-    <div id="graphiql" style="max-height: 400px">Loading...</div>
-    <textarea name="code" id="elm-data">Loading Elm Data...</textarea>
+    <div style="height: 400px; display: flex; flex-direction: row; flex-wrap: wrap;">
+      <div id="graphiql" style="height: 100%; display: flex; flex-direction: column; flex-basis: 100%; flex: 2;">Loading...</div>
+      <div style="height: 100%; display: flex; flex-direction: column; flex-basis: 100%; flex: 1;">
+        <textarea name="code" id="elm-data" style="height: 100%; width: 100%; float: left">Loading Elm Data...</textarea>
+      </div>
+    </div>
     <div id="elm">Loading...</div>
     <script>
       function renderGraphiql(elmGraphqlConfig) {
