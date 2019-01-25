@@ -3,8 +3,8 @@
 
 
 module PrintAny exposing
-    ( view, log
-    , config, viewWithConfig
+    ( view
+    , asString
     )
 
 {-| A tiny library for debugging purposes.
@@ -22,7 +22,7 @@ string version of the record, which may take long time._
 
 # Basics
 
-@docs view, log
+@docs view
 
 
 # Advanced
@@ -36,6 +36,7 @@ string version of the record, which may take long time._
 
 import Element exposing (Element)
 import Element.Font
+import Html.Attributes
 import String
 
 
@@ -96,51 +97,8 @@ indentIncrementPixels =
     20
 
 
-{-| renders any record to the Dom.
-Usage:
-
-```Elm
-view model =
-    div []
-        [ text model.whatEverYouWant
-        , PrintAny.view model
-        ]
-```
-
-The output is a `<pre>` element.
-Inside is a set of indented `<p>` elements representing your record.
-
--}
 view : a -> Element msg
 view record =
-    [ viewWithConfig record ]
-        |> Element.paragraph
-            [ Element.Font.family [ Element.Font.monospace ]
-            , Element.Font.size 14
-            , Element.scrollbars
-            , Element.height Element.fill
-            ]
-
-
-{-| renders any record to the Dom, with custom configuration.
-
-Usage:
-
-```Elm
-view model =
-    div []
-        [ text model.whatEverYouWant
-        , PrintAny.viewWithConfig
-            PrintAny.config
-            20
-            "debug-record"
-            model
-        ]
-```
-
--}
-viewWithConfig : a -> Element msg
-viewWithConfig record =
     let
         lines =
             record
@@ -151,8 +109,37 @@ viewWithConfig record =
                 |> mergeQuoted
                 |> addIndents
     in
-    Element.column [] <|
+    Element.column
+        [ Element.Font.family [ Element.Font.monospace ]
+        , Element.Font.size 14
+        , Element.scrollbars
+        , Element.height Element.fill
+        , Element.explain Debug.todo
+        ]
+    <|
         List.map viewLine lines
+
+
+asString : a -> String
+asString record =
+    record
+        |> Debug.toString
+        |> splitWithQuotes
+        |> splitUnquotedWithChars
+        |> List.concat
+        |> mergeQuoted
+        |> addIndents
+        |> List.map (\( indentBy, line ) -> indentation indentBy ++ line)
+        |> String.join "\n"
+
+
+indentation : Int -> String
+indentation remaining =
+    if remaining > 0 then
+        " " ++ indentation (remaining - 1)
+
+    else
+        ""
 
 
 
@@ -166,83 +153,8 @@ viewLine ( indent, string ) =
         (Element.text string)
 
 
-{-| Prints a stylized version of any record to the DOM.
-
-So if you have:
-
-```Elm
-record =
-    { name = "Bill"
-    , friends = [ "Casey", "Dave", "Eve", "Fred" ]
-    , coordinates = ( 125, 33 )
-    }
-```
-
-Then `PrintAny.log record` will log to the console:
-
-```Elm
-{ name = "Bill"
-, friends =
-..[ "Casey"
-.., "Dave"
-.., "Eve"
-.., "Fred"
-..]
-, coordinates =
-..(125
-..,33
-..)
-}
-```
-
-The function will output the original record passed, so you can do:
-
-`myNewRecord = PrintAny.log { record | item = somethingNew }`
-
--}
-log : a -> a
-log record =
-    let
-        lines =
-            record
-                |> Debug.toString
-                |> splitWithQuotes
-                |> splitUnquotedWithChars
-                |> List.concat
-                |> mergeQuoted
-                |> addIndents
-                |> List.reverse
-
-        _ =
-            List.map logLine lines
-    in
-    record
-
-
-
-{- print a single line to the console -}
-
-
-logLine : ( Int, String ) -> ()
-logLine ( indent, string ) =
-    let
-        logIndent =
-            String.padLeft indent ' ' ""
-
-        _ =
-            Debug.log "" <| logIndent ++ string
-    in
-    ()
-
-
 
 -- helpers
-
-
-px : Int -> String
-px int =
-    String.fromInt int
-        ++ "px"
 
 
 type alias IndentedString =
