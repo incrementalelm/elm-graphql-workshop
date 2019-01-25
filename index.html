@@ -44,7 +44,7 @@
     <div id="graphiql" style="max-height: 400px">Loading...</div>
     <div id="elm">Loading...</div>
     <script>
-      function renderGraphiql(elmGraphqlQuery) {
+      function renderGraphiql(elmGraphqlConfig) {
         // When the query and variables string is edited, update the URL bar so
         // that it can be easily shared
         function onEditQuery(newQuery) {
@@ -91,7 +91,7 @@
         ReactDOM.render(
           React.createElement(GraphiQL, {
             fetcher: graphQLFetcher,
-            query: elmGraphqlQuery,
+            query: elmGraphqlConfig.query,
             variables: null,
             operationName: null,
             onEditQuery: onEditQuery,
@@ -106,8 +106,8 @@
     <script src="/elm.js"></script>
     <script>
       const app = Elm.Main.init({node: document.getElementById('elm')})
-      app.ports.setQuery.subscribe(newQuery => {
-        renderGraphiql(newQuery)
+      app.ports.setupGraphiql.subscribe(config => {
+        renderGraphiql(config)
       })
     </script>
   </body>

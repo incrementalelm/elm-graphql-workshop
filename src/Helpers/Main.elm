@@ -14,7 +14,7 @@ import PrintAny
 import Regex
 
 
-port setQuery : String -> Cmd msg
+port setupGraphiql : { query : String, response : String } -> Cmd msg
 
 
 type alias Program flags subModel subMsg =
@@ -57,8 +57,10 @@ mapInit queryString subInit flags =
             (\cmd ->
                 Cmd.batch
                     [ cmd
-                    , setQuery
-                        (queryString |> stripAliases)
+                    , setupGraphiql
+                        { query = queryString |> stripAliases
+                        , response = ""
+                        }
                     ]
             )
 
@@ -75,14 +77,27 @@ mapUpdate rawQuery subUpdate msg model =
                 newHideAliases =
                     not model.hideAliases
             in
-            ( { model | hideAliases = not model.hideAliases }, setQuery (queryValue rawQuery newHideAliases) )
+            ( { model | hideAliases = not model.hideAliases }
+            , setupGraphiql
+                { query = queryValue rawQuery newHideAliases
+                , response = PrintAny.asString model.subModel
+                }
+            )
 
         SubMsg subMsg ->
             let
                 ( a, b ) =
                     subUpdate subMsg model.subModel
             in
-            ( { model | subModel = a }, b |> Cmd.map SubMsg )
+            ( { model | subModel = a }
+            , Cmd.batch
+                [ b |> Cmd.map SubMsg
+                , setupGraphiql
+                    { query = queryValue rawQuery model.hideAliases
+                    , response = PrintAny.asString model.subModel
+                    }
+                ]
+            )
 
 
 view : Instructions -> Model a -> Html (Msg subMsg)
@@ -91,14 +106,22 @@ view instructions model =
         [ Element.width Element.fill
         , Element.height Element.fill
         , Element.padding 20
+
+        -- , Element.clip
+        -- , Element.htmlAttribute (Html.Attributes.style "flex-shrink" "1")
         ]
         [ Element.column
             [ Element.width (Element.fillPortion 1)
             , Element.height Element.fill
+
+            -- , Element.clip
+            -- , Element.htmlAttribute (Html.Attributes.style "flex-shrink" "1")
             ]
             [ toggleAliasesCheckbox
             , Element.el [] (Element.text "Elm Response")
-            , PrintAny.view model.subModel
+
+            -- , PrintAny.view model.subModel
+            , PrintAny.asString model.subModel |> Element.text
             ]
         , Instructions.view instructions
             |> Element.el
@@ -106,7 +129,7 @@ view instructions model =
                 , Element.height Element.fill
                 ]
         ]
-        |> Element.layout []
+        |> Element.layout [ Element.height Element.fill ]
 
 
 queryValue : String -> Bool -> String
