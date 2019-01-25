@@ -106,23 +106,12 @@ view instructions model =
         [ Element.width Element.fill
         , Element.height Element.fill
         , Element.padding 20
-
-        -- , Element.clip
-        -- , Element.htmlAttribute (Html.Attributes.style "flex-shrink" "1")
         ]
         [ Element.column
             [ Element.width (Element.fillPortion 1)
             , Element.height Element.fill
-
-            -- , Element.clip
-            -- , Element.htmlAttribute (Html.Attributes.style "flex-shrink" "1")
             ]
-            [ toggleAliasesCheckbox
-            , Element.el [] (Element.text "Elm Response")
-
-            -- , PrintAny.view model.subModel
-            , PrintAny.asString model.subModel |> Element.text
-            ]
+            [ toggleAliasesCheckbox ]
         , Instructions.view instructions
             |> Element.el
                 [ Element.width (Element.fillPortion 1)
