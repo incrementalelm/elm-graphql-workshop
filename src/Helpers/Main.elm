@@ -100,7 +100,6 @@ view instructions model =
             , Element.el [] (Element.text "Elm Response")
             , model.subModel
                 |> PrintAny.view
-                |> Element.el [ Element.scrollbars, Element.width Element.fill ]
             ]
         , Instructions.view instructions
             |> Element.el

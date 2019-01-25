@@ -35,6 +35,7 @@ string version of the record, which may take long time._
 -- import Html.Attributes exposing (class, style)
 
 import Element exposing (Element)
+import Element.Font
 import String
 
 
@@ -127,6 +128,12 @@ Inside is a set of indented `<p>` elements representing your record.
 view : a -> Element msg
 view record =
     viewWithConfig defaultConfig record
+        |> Element.el
+            [ Element.Font.family [ Element.Font.monospace ]
+            , Element.Font.size 14
+            , Element.scrollbars
+            , Element.width Element.fill
+            ]
 
 
 {-| renders any record to the Dom, with custom configuration.
@@ -176,10 +183,10 @@ viewWithConfig (Config config_) record =
 
 viewLine : Config -> ( Int, String ) -> Element msg
 viewLine (Config config_) ( indent, string ) =
-    Element.row
+    Element.el
         [ Element.paddingEach { top = 0, right = 0, bottom = 0, left = indent * config_.increment }
         ]
-        [ Element.text string ]
+        (Element.text string)
 
 
 {-| Prints a stylized version of any record to the DOM.
