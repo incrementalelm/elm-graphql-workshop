@@ -92,22 +92,8 @@ config increment className =
         }
 
 
-{-| Default configuration
-
-```Elm
-defaultConfig =
-  { increment = 20  -- 20 pixels indentation at each level
-  , className = "" -- no className supplied to wrapper
-  }```
-```
-
--}
-defaultConfig : Config
-defaultConfig =
-    Config
-        { increment = 20
-        , className = ""
-        }
+indentIncrementPixels =
+    20
 
 
 {-| renders any record to the Dom.
@@ -127,12 +113,12 @@ Inside is a set of indented `<p>` elements representing your record.
 -}
 view : a -> Element msg
 view record =
-    viewWithConfig defaultConfig record
-        |> Element.el
+    [ viewWithConfig record ]
+        |> Element.paragraph
             [ Element.Font.family [ Element.Font.monospace ]
             , Element.Font.size 14
             , Element.scrollbars
-            , Element.width Element.fill
+            , Element.height Element.fill
             ]
 
 
@@ -153,8 +139,8 @@ view model =
 ```
 
 -}
-viewWithConfig : Config -> a -> Element msg
-viewWithConfig (Config config_) record =
+viewWithConfig : a -> Element msg
+viewWithConfig record =
     let
         lines =
             record
@@ -165,27 +151,18 @@ viewWithConfig (Config config_) record =
                 |> mergeQuoted
                 |> addIndents
     in
-    Element.column
-        (if config_.className == "" then
-            []
-
-         else
-            [-- class config_.className
-            ]
-        )
-    <|
-        List.map (viewLine <| Config config_) lines
+    Element.column [] <|
+        List.map viewLine lines
 
 
 
 {- render a single formatted line to DOM -}
 
 
-viewLine : Config -> ( Int, String ) -> Element msg
-viewLine (Config config_) ( indent, string ) =
+viewLine : ( Int, String ) -> Element msg
+viewLine ( indent, string ) =
     Element.el
-        [ Element.paddingEach { top = 0, right = 0, bottom = 0, left = indent * config_.increment }
-        ]
+        [ Element.paddingEach { top = 0, right = 0, bottom = 0, left = indent * indentIncrementPixels } ]
         (Element.text string)
 
 

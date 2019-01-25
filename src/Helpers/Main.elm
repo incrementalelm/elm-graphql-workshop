@@ -98,8 +98,7 @@ view instructions model =
             ]
             [ toggleAliasesCheckbox
             , Element.el [] (Element.text "Elm Response")
-            , model.subModel
-                |> PrintAny.view
+            , PrintAny.view model.subModel
             ]
         , Instructions.view instructions
             |> Element.el
