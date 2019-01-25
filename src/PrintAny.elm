@@ -31,8 +31,10 @@ string version of the record, which may take long time._
 
 -}
 
-import Html exposing (Html, p, pre, text)
-import Html.Attributes exposing (class, style)
+-- import Html exposing (Html, p, pre, text)
+-- import Html.Attributes exposing (class, style)
+
+import Element exposing (Element)
 import String
 
 
@@ -122,7 +124,7 @@ The output is a `<pre>` element.
 Inside is a set of indented `<p>` elements representing your record.
 
 -}
-view : a -> Html msg
+view : a -> Element msg
 view record =
     viewWithConfig defaultConfig record
 
@@ -144,7 +146,7 @@ view model =
 ```
 
 -}
-viewWithConfig : Config -> a -> Html msg
+viewWithConfig : Config -> a -> Element msg
 viewWithConfig (Config config_) record =
     let
         lines =
@@ -156,12 +158,13 @@ viewWithConfig (Config config_) record =
                 |> mergeQuoted
                 |> addIndents
     in
-    pre
+    Element.column
         (if config_.className == "" then
             []
 
          else
-            [ class config_.className ]
+            [-- class config_.className
+            ]
         )
     <|
         List.map (viewLine <| Config config_) lines
@@ -171,14 +174,12 @@ viewWithConfig (Config config_) record =
 {- render a single formatted line to DOM -}
 
 
-viewLine : Config -> ( Int, String ) -> Html msg
+viewLine : Config -> ( Int, String ) -> Element msg
 viewLine (Config config_) ( indent, string ) =
-    p
-        [ style "paddingLeft" (px (indent * config_.increment))
-        , style "marginTop" "0px"
-        , style "marginBottom" "0px"
+    Element.row
+        [ Element.paddingEach { top = 0, right = 0, bottom = 0, left = indent * config_.increment }
         ]
-        [ text string ]
+        [ Element.text string ]
 
 
 {-| Prints a stylized version of any record to the DOM.

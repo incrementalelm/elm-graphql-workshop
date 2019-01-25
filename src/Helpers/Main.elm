@@ -98,7 +98,9 @@ view instructions model =
             ]
             [ toggleAliasesCheckbox
             , Element.el [] (Element.text "Elm Response")
-            , model.subModel |> PrintAny.view |> Element.html
+            , model.subModel
+                |> PrintAny.view
+                |> Element.el [ Element.scrollbars, Element.width Element.fill ]
             ]
         , Instructions.view instructions
             |> Element.el
