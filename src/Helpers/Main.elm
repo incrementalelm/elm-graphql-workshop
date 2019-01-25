@@ -2,9 +2,12 @@ port module Helpers.Main exposing (Program, document)
 
 import Browser
 import DateFormat exposing (text)
+import Element exposing (Element)
 import Html exposing (Html, a, div, h1, input, label, p, pre, text)
 import Html.Attributes exposing (href, type_)
 import Html.Events exposing (onClick)
+import Mark
+import Mark.Default
 import PrintAny
 import Regex
 
@@ -81,14 +84,31 @@ mapUpdate rawQuery subUpdate msg model =
 
 
 view : { queryString : String, instructions : String } -> Model a -> Html (Msg subMsg)
-view { queryString } model =
+view { instructions } model =
     div []
         [ p [] [ toggleAliasesCheckbox ]
         , div []
             [ h1 [] [ text "Elm Response" ]
             , model.subModel |> PrintAny.view
+            , instructions
+                |> parseMarkup
+                |> Element.layout []
             ]
         ]
+
+
+parseMarkup : String -> Element msg
+parseMarkup instructions =
+    instructions
+        |> Mark.parse Mark.Default.document
+        |> (\parseResult ->
+                case parseResult of
+                    Ok instructionsView ->
+                        instructionsView ()
+
+                    Err error ->
+                        Element.text <| Debug.toString error
+           )
 
 
 queryValue : String -> Bool -> String

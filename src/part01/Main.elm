@@ -79,5 +79,5 @@ main =
         { init = init
         , update = update
         , queryString = Document.serializeQuery query
-        , instructions = ""
+        , instructions = "| Title\n    My fancy cat blog article"
         }
