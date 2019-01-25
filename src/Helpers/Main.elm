@@ -86,15 +86,15 @@ mapUpdate rawQuery subUpdate msg model =
 
         SubMsg subMsg ->
             let
-                ( a, b ) =
+                ( updatedSubModel, subCmd ) =
                     subUpdate subMsg model.subModel
             in
-            ( { model | subModel = a }
+            ( { model | subModel = updatedSubModel }
             , Cmd.batch
-                [ b |> Cmd.map SubMsg
+                [ subCmd |> Cmd.map SubMsg
                 , setupGraphiql
                     { query = queryValue rawQuery model.hideAliases
-                    , response = PrintAny.asString model.subModel
+                    , response = PrintAny.asString updatedSubModel
                     }
                 ]
             )
