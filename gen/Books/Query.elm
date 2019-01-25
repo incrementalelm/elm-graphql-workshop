@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Books.Query exposing (books)
+module Books.Query exposing (books, version)
 
 import Books.InputObject
 import Books.Interface
@@ -23,3 +23,9 @@ import Json.Decode as Decode exposing (Decoder)
 books : SelectionSet decodesTo Books.Object.Book -> SelectionSet (List decodesTo) RootQuery
 books object_ =
     Object.selectionForCompositeField "books" [] object_ (identity >> Decode.list)
+
+
+{-| -}
+version : SelectionSet String RootQuery
+version =
+    Object.selectionForField "String" "version" [] Decode.string
