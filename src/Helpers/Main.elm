@@ -105,6 +105,7 @@ view : Instructions -> Model a -> Html (Msg subMsg)
 view instructions model =
     [ Element.el
         [ Element.Font.size 28
+        , Element.centerX
         , Element.Font.family [ Element.Font.typeface "Rubik" ]
         ]
         (Element.text instructions.title)
@@ -114,11 +115,12 @@ view instructions model =
             [ Element.width (Element.fillPortion 1)
             , Element.height Element.fill
             , Element.spacing 12
+            , Element.width (Element.fill |> Element.maximum 1000)
+            , Element.centerX
             ]
         |> Element.layout
-            [ Element.width Element.fill
-            , Element.height Element.fill
-            , Element.padding 20
+            [ Element.height Element.fill
+            , Element.padding 30
             , Element.htmlAttribute (Html.Attributes.style "min-height" "0px")
             , Element.htmlAttribute (Html.Attributes.style "height" "auto")
             ]

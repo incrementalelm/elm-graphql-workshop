@@ -195,7 +195,12 @@ listStyles cursor =
     case List.length cursor of
         0 ->
             -- top level element
-            [ Element.spacing 16 ]
+            [ Element.spacing 16
+            , Border.width 2
+            , Border.dashed
+            , Border.color (Element.rgba255 0 0 0 0.1)
+            , Element.padding 10
+            ]
 
         1 ->
             [ Element.spacing 16 ]
