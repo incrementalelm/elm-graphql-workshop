@@ -7,14 +7,30 @@ import Element.Font as Font
 import Element.Region
 import Html.Attributes
 import Mark exposing (Document)
-import Mark.Default
+import Mark.Default exposing (defaultTextStyle)
 
 
 document : Mark.Document (model -> Element msg)
 document =
     let
         defaultText =
-            Mark.Default.textWith Mark.Default.defaultTextStyle
+            Mark.Default.textWith
+                { defaultTextStyle
+                    | code =
+                        [ Background.color
+                            (Element.rgba 0 0 0 0.04)
+                        , Font.family
+                            [ Font.external
+                                { name = "Roboto Mono"
+                                , url = "https://fonts.googleapis.com/css?family=Roboto+Mono"
+                                }
+                            , Font.monospace
+                            ]
+                        , Font.color (Element.rgba255 210 40 130 1)
+                        , Border.rounded 2
+                        , Element.paddingXY 5 3
+                        ]
+                }
     in
     Mark.document
         (\children model ->
@@ -22,12 +38,17 @@ document =
                 [ Element.width Element.fill
                 , Element.centerX
                 , Font.family [ Font.typeface "Roboto" ]
+                , Font.color (Element.rgba255 23 42 58 0.7)
                 , Font.size 16
                 ]
                 (List.map (\view -> view model) children)
         )
         (Mark.manyOf
-            [ Mark.Default.header [ Font.size 36 ] defaultText
+            [ Mark.Default.header
+                [ Font.size 36
+                , Font.color (Element.rgba255 20 40 59 1)
+                ]
+                defaultText
             , Mark.Default.list
                 { style = listStyles
                 , icon = Mark.Default.listIcon
@@ -41,7 +62,13 @@ document =
                     (Element.rgba 0 0 0 0.04)
                 , Border.rounded 2
                 , Font.size 16
-                , Font.family [ Font.monospace ]
+                , Font.family
+                    [ Font.external
+                        { name = "Roboto Mono"
+                        , url = "https://fonts.googleapis.com/css?family=Roboto+Mono"
+                        }
+                    , Font.monospace
+                    ]
                 ]
 
             -- Toplevel Text
