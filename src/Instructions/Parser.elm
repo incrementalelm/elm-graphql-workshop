@@ -118,9 +118,18 @@ listIcon index symbol =
     in
     case symbol of
         Instructions.ListParser.Experiment ->
-            FontAwesome.styledIcon "fas fa-flask"
-                [ Element.paddingEach { edges | right = 5 }
-                , Font.color (Element.rgba255 88 161 247 1)
+            FontAwesome.styledIcon "fas fa-flask fa-xs"
+                [ Font.color (Element.rgba255 42 126 210 1)
+                , pad
+                ]
+
+        Instructions.ListParser.Question ->
+            -- FontAwesome.styledIcon "far fa-question-circle"
+            -- FontAwesome.styledIcon "fas fa-question-circle"
+            FontAwesome.styledIcon "fas fa-question fa-xs"
+                -- rgb(42, 126, 210)
+                [ Font.color (Element.rgba255 42 126 210 1)
+                , pad
                 ]
 
         Instructions.ListParser.Bullet ->

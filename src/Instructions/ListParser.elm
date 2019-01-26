@@ -15,6 +15,7 @@ import Parser.Advanced as Parser exposing ((|.), (|=), Parser)
 type ListIcon
     = Experiment
     | Bullet
+    | Question
     | Number
         { reset : List (Maybe Int)
         , decorations : List String
@@ -40,6 +41,7 @@ list config textParser =
                 Mark.oneOf
                     [ Mark.exactly "-> " Experiment
                     , Mark.exactly "--> " Experiment
+                    , Mark.exactly "(?) " Question
                     , Mark.exactly "- " Bullet
                     , Mark.exactly "-- " Bullet
                     , Mark.advanced
