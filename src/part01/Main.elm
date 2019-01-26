@@ -81,6 +81,6 @@ Let's turn this {Code|empty} query into something a bit more interesting!
 | List
     (?) There is exactly one top-level value you can get without doing any nested selection sets. Which is it? Why do you need to nest selection sets for some, but not for this one? Hint: try exploring the {Code|< Docs} pane. Confirm your answer by making the query in the Graphiql editor above and checking that it is valid without a nested Selection Set.
     (?) What do you expect to be the return type in your Elm code when you fetch this? Why?
-    -> Now, modify {Code|Main.elm} to fetch the field described above."""
+    -> Now, modify {Code|Main.elm} to fetch the field described above. *Note:* the solution doesn't involve importing any new modules."""
             }
         }
