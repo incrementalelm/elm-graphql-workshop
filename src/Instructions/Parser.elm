@@ -40,6 +40,7 @@ document =
                 , Font.family [ Font.typeface "Roboto" ]
                 , Font.color (Element.rgba255 23 42 58 0.7)
                 , Font.size 16
+                , Element.spacing 10
                 ]
                 (List.map (\view -> view model) children)
         )
