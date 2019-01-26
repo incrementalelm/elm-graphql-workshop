@@ -94,7 +94,7 @@ Before doing the exercise:
 
 | List
     - There is exactly one top-level value you can get without doing any nested selection sets. Which is it? Why do you need to nest selection sets for some, but not for this one? Hint: try exploring the {Code|< Docs} pane.
-    - Confirm your answer by making a query with no nested Selection Set in the Graphiql editor above.
+    - Confirm your answer by making the query in the Graphiql editor above and checking that it is valid without a nested Selection Set.
     - What do you expect to be the return type in your Elm code when you fetch this? Why?
 
 <>
