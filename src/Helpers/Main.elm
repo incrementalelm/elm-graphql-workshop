@@ -119,6 +119,8 @@ view instructions model =
             [ Element.width Element.fill
             , Element.height Element.fill
             , Element.padding 20
+            , Element.htmlAttribute (Html.Attributes.style "min-height" "0px")
+            , Element.htmlAttribute (Html.Attributes.style "height" "auto")
             ]
 
 
