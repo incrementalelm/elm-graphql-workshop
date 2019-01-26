@@ -86,7 +86,7 @@ main =
 
 | List
     - What happens if you delete {Code|__typename} in the GraphQL query pane?
-    - Why is the data returned different in the {Code|elm-graphql} response and the {Code|gql} response?
+    - How is the data returned different in the {Code|elm-graphql} response and the {Code|gql} response? Why?
 
 
 
