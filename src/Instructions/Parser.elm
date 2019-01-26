@@ -5,6 +5,7 @@ import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region
+import FontAwesome
 import Html.Attributes
 import Mark exposing (Document)
 import Mark.Default exposing (defaultTextStyle)
@@ -52,7 +53,7 @@ document =
                 defaultText
             , Mark.Default.list
                 { style = listStyles
-                , icon = Mark.Default.listIcon
+                , icon = listIcon
                 }
                 defaultText
             , image
@@ -93,6 +94,90 @@ image =
         )
         (Mark.field "src" Mark.string)
         (Mark.field "description" Mark.string)
+
+
+edges : { bottom : Int, left : Int, right : Int, top : Int }
+edges =
+    { top = 0
+    , left = 0
+    , right = 0
+    , bottom = 0
+    }
+
+
+listIcon : List Int -> Mark.Default.ListIcon -> Element msg
+listIcon index symbol =
+    let
+        pad =
+            Element.paddingEach
+                { edges
+                    | left = 28
+                    , right = 12
+                }
+    in
+    case symbol of
+        Mark.Default.Arrow ->
+            FontAwesome.styledIcon "fas fa-flask"
+                [ Element.paddingEach { edges | right = 5 }
+                , Font.color (Element.rgba255 88 161 247 1)
+                ]
+
+        Mark.Default.Bullet ->
+            let
+                icon =
+                    case List.length index of
+                        1 ->
+                            "•"
+
+                        _ ->
+                            "◦"
+            in
+            Element.el [ pad ] (Element.text icon)
+
+        Mark.Default.Number numberConfig ->
+            Element.el [ pad ]
+                (Element.text
+                    (index
+                        |> List.foldl applyDecoration ( List.reverse numberConfig.decorations, [] )
+                        |> Tuple.second
+                        |> List.foldl formatIndex ""
+                    )
+                )
+
+
+formatIndex : { a | decoration : String, index : Int, show : Bool } -> String -> String
+formatIndex index formatted =
+    if index.show then
+        formatted ++ String.fromInt index.index ++ index.decoration
+
+    else
+        formatted
+
+
+applyDecoration :
+    a
+    -> ( List String, List { decoration : String, index : a, show : Bool } )
+    -> ( List String, List { decoration : String, index : a, show : Bool } )
+applyDecoration index ( decs, decorated ) =
+    case decs of
+        [] ->
+            -- If there are no decorations, skip.
+            ( decs
+            , { index = index
+              , decoration = ""
+              , show = False
+              }
+                :: decorated
+            )
+
+        currentDec :: remaining ->
+            ( remaining
+            , { index = index
+              , decoration = currentDec
+              , show = True
+              }
+                :: decorated
+            )
 
 
 listStyles : List Int -> List (Element.Attribute msg)

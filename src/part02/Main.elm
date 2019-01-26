@@ -88,7 +88,7 @@ Taking tiny steps is essential to moving quickly and building up maintainable co
 
 
 | List
-    - Modify {Code|Main.elm} to get each {Code|Book}'s {Code|title}.
+    -> Modify {Code|Main.elm} to get each {Code|Book}'s {Code|title}.
 """
             }
         }
