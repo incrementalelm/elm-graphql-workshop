@@ -84,10 +84,6 @@ main =
             , body = """Look at the query in the query explorer. This is what an "empty" query looks like. You could make this query anywhere, in any schema, and you would get the same thing.
 
 
-| Header
-    ?
-
-
 | List
     - What happens if you delete {Code|__typename} in the GraphQL query pane?
     - Why is the data returned different in the {Code|elm-graphql} response and the {Code|gql} response?
