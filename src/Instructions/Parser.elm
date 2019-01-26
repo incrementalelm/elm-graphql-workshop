@@ -7,6 +7,7 @@ import Element.Font as Font
 import Element.Region
 import FontAwesome
 import Html.Attributes
+import Instructions.ListParser
 import Mark exposing (Document)
 import Mark.Default exposing (defaultTextStyle)
 
@@ -51,7 +52,7 @@ document =
                 , Font.color (Element.rgba255 20 40 59 1)
                 ]
                 defaultText
-            , Mark.Default.list
+            , Instructions.ListParser.list
                 { style = listStyles
                 , icon = listIcon
                 }
@@ -105,7 +106,7 @@ edges =
     }
 
 
-listIcon : List Int -> Mark.Default.ListIcon -> Element msg
+listIcon : List Int -> Instructions.ListParser.ListIcon -> Element msg
 listIcon index symbol =
     let
         pad =
@@ -116,13 +117,13 @@ listIcon index symbol =
                 }
     in
     case symbol of
-        Mark.Default.Arrow ->
+        Instructions.ListParser.Experiment ->
             FontAwesome.styledIcon "fas fa-flask"
                 [ Element.paddingEach { edges | right = 5 }
                 , Font.color (Element.rgba255 88 161 247 1)
                 ]
 
-        Mark.Default.Bullet ->
+        Instructions.ListParser.Bullet ->
             let
                 icon =
                     case List.length index of
@@ -134,7 +135,7 @@ listIcon index symbol =
             in
             Element.el [ pad ] (Element.text icon)
 
-        Mark.Default.Number numberConfig ->
+        Instructions.ListParser.Number numberConfig ->
             Element.el [ pad ]
                 (Element.text
                     (index
