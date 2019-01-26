@@ -122,6 +122,11 @@
     </script>
     <script src="/elm.js"></script>
     <script>
+      window.elmData = CodeMirror.fromTextArea(document.getElementById("elm-data"), {
+        lineNumbers: false,
+        mode: "text/x-elm",
+        theme: 'graphiql'
+      });
       const app = Elm.Main.init({node: document.getElementById('elm')})
       app.ports.setupGraphiql.subscribe(config => {
         renderGraphiql(config)
@@ -129,13 +134,6 @@
     </script>
 
 
-    <script>
-      window.elmData = CodeMirror.fromTextArea(document.getElementById("elm-data"), {
-        lineNumbers: false,
-        mode: "text/x-elm",
-        theme: 'graphiql'
-      });
-    </script>
 
   </body>
 </html>
