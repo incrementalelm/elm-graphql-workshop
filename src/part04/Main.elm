@@ -69,7 +69,7 @@ main =
 
 What is a constructor? Well, it's a way to build up a record.
 
-| Monospace
+| Blockquote
     An Elm constructor is just a function to build a record.
 
     The only difference it has from a regular Elm function is that it __________________.
