@@ -10,6 +10,21 @@ import Html.Attributes
 import Instructions.ListParser
 import Mark exposing (Document)
 import Mark.Default exposing (defaultTextStyle)
+import View.Ellie
+
+
+fonts : { body : Element.Attribute msg, mono : Element.Attribute msg }
+fonts =
+    { mono =
+        Font.family
+            [ Font.external
+                { name = "Roboto Mono"
+                , url = "https://fonts.googleapis.com/css?family=Roboto+Mono"
+                }
+            , Font.monospace
+            ]
+    , body = Font.family [ Font.typeface "Roboto" ]
+    }
 
 
 document : Mark.Document (model -> Element msg)
@@ -21,13 +36,7 @@ document =
                     | code =
                         [ Background.color
                             (Element.rgba 0 0 0 0.04)
-                        , Font.family
-                            [ Font.external
-                                { name = "Roboto Mono"
-                                , url = "https://fonts.googleapis.com/css?family=Roboto+Mono"
-                                }
-                            , Font.monospace
-                            ]
+                        , fonts.mono
                         , Font.color (Element.rgba255 210 40 130 1)
                         , Border.rounded 2
                         , Element.paddingXY 5 3
@@ -39,7 +48,7 @@ document =
             Element.textColumn
                 [ Element.width Element.fill
                 , Element.centerX
-                , Font.family [ Font.typeface "Roboto" ]
+                , fonts.body
                 , Font.color (Element.rgba255 23 42 58 0.7)
                 , Font.size 16
                 , Element.spacing 10
@@ -58,6 +67,8 @@ document =
                 }
                 defaultText
             , image
+            , ellie
+            , blockquote
             , Mark.Default.monospace
                 [ Element.spacing 5
                 , Element.padding 24
@@ -78,6 +89,42 @@ document =
             , Mark.map (\viewEls model -> Element.paragraph [] (viewEls model)) defaultText
             ]
         )
+
+
+{-| A monospaced code block without syntax highlighting.
+| Monospace
+Everything in this block will be rendered monospaced.
+Including this line.
+And this one.
+-}
+blockquote : Mark.Block (model -> Element msg)
+blockquote =
+    Mark.block "Blockquote"
+        (\string model ->
+            Element.column
+                [ Element.width Element.fill
+                , Element.paddingXY 30 30
+                , Element.spacing 30
+                , Border.shadow { offset = ( 2, 1 ), size = 1, blur = 4, color = Element.rgb 0.8 0.8 0.8 }
+                ]
+                [ Element.paragraph
+                    [ Font.family [ Font.typeface "Raleway" ]
+                    , Font.size 16
+                    , Element.spacing 12
+                    ]
+                    [ Element.text (String.trimRight string) ]
+
+                -- , author
+                ]
+        )
+        Mark.multiline
+
+
+ellie : Mark.Block (model -> Element msg)
+ellie =
+    Mark.block "Ellie"
+        (\id model -> View.Ellie.view id)
+        Mark.string
 
 
 image : Mark.Block (model -> Element msg)
