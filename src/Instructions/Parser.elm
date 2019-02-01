@@ -101,20 +101,22 @@ blockquote : Mark.Block (model -> Element msg)
 blockquote =
     Mark.block "Blockquote"
         (\string model ->
-            Element.column
+            Element.row
                 [ Element.width Element.fill
-                , Element.paddingXY 30 30
-                , Element.spacing 30
-                , Border.shadow { offset = ( 2, 1 ), size = 1, blur = 4, color = Element.rgb 0.8 0.8 0.8 }
+                , Element.height Element.fill
                 ]
-                [ Element.paragraph
+                [ Element.column
+                    [ Background.color (Element.rgba255 200 200 200 1)
+                    , Element.width (Element.px 8)
+                    , Element.height Element.fill
+                    ]
+                    []
+                , Element.paragraph
                     [ Font.family [ Font.typeface "Raleway" ]
-                    , Font.size 16
+                    , Element.paddingXY 16 10
                     , Element.spacing 12
                     ]
                     [ Element.text (String.trimRight string) ]
-
-                -- , author
                 ]
         )
         Mark.multiline
