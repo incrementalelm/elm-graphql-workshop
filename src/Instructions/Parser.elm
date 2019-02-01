@@ -104,22 +104,30 @@ blockquote =
             Element.row
                 [ Element.width Element.fill
                 , Element.height Element.fill
+                , Border.width 1
+                , Border.color blockquoteColor
                 ]
                 [ Element.column
-                    [ Background.color (Element.rgba255 200 200 200 1)
-                    , Element.width (Element.px 8)
+                    [ -- Background.color (Element.rgba255 200 200 200 1)
+                      Background.color blockquoteColor
+                    , Element.width (Element.px 6)
                     , Element.height Element.fill
                     ]
                     []
                 , Element.paragraph
                     [ Font.family [ Font.typeface "Raleway" ]
-                    , Element.paddingXY 16 10
+                    , Element.padding 16
                     , Element.spacing 12
                     ]
                     [ Element.text (String.trimRight string) ]
                 ]
         )
         Mark.multiline
+
+
+blockquoteColor : Element.Color
+blockquoteColor =
+    Element.rgba255 224 0 152 0.6
 
 
 ellie : Mark.Block (model -> Element msg)
