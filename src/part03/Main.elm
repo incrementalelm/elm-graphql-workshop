@@ -14,11 +14,7 @@ import Time
 
 
 type alias Response =
-    List Book
-
-
-type alias Book =
-    String
+    List String
 
 
 query : SelectionSet Response RootQuery
@@ -73,6 +69,11 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Nested Selection Sets"
-            , body = """Now that we're getting the titles of our books, we'd like to get the authors, too!"""
+            , body = """Now that we're getting the titles of our books, we'd like to get the authors, too! But we also want to practice taking *tiny steps*! Why? Because small steps is what let's us move quickly, steadily, and without mistakes! It might seem unnecessary now, but having this skill at your fingertips is what will make you a master Elm GraphQL query builder!
+
+| List
+    -> Change the {Code|type alias} for {Code|Book} to be a record with a *single field in it*.
+    (?) What's the benefit of starting with this step?
+"""
             }
         }
