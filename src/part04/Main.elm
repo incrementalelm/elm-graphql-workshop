@@ -67,19 +67,15 @@ main =
             { title = "Deconstructing Constructors"
             , body = """This simple Elm concept can really trip you up if you don't take the time to fully understand it. Let's take a moment to demystify Elm constructors!
 
-What is a constructor? Well, it's a way to build up a record.
+What is a constructor? Well, it's a way to build up data.
 
 | Blockquote
-    An Elm constructor is just a function to build a record.
+    1. An Elm constructor is just a function to build data.
 
-    The only difference it has from a regular Elm function is that it __________________.
-
-
+    2. The only difference from a regular Elm function is __________________.
 
 
-We'll fill in that blank in a minute.
-
-First, let's define a function manually that satisfies the first part.
+We'll fill in that blank in a minute. First, let's define a function manually that satisfies the first part.
 
 | Ellie
     4BVqf9HJc7xa1
@@ -89,9 +85,9 @@ Okay, so our {Code|buildPerson} function is functionally the same thing as an El
 
 
 | Blockquote
-    An Elm constructor is just a function to build a record.
+    1. An Elm constructor is just a function to build data.
 
-    The only difference it has from a regular Elm function is that *it starts with a capital letter*.
+    2. The only difference from a regular Elm function is *it starts with a capital letter*.
 
 That's right, Elm doesn't let you name your functions starting with a capital letter. So Elm Constructors are the only functions in Elm which start with a capital letter. And you define them in a special way: by defining a type.
 
