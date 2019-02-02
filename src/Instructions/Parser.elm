@@ -106,6 +106,7 @@ blockquote =
                 , Element.height Element.fill
                 , Border.width 1
                 , Border.color blockquoteColor
+                , Element.htmlAttribute (Html.Attributes.style "white-space" "pre")
                 ]
                 [ Element.column
                     [ -- Background.color (Element.rgba255 200 200 200 1)
