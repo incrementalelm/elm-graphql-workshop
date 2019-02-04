@@ -1,0 +1,33 @@
+# import Main, Weather, Clouds, Wind, Rain, Snow, City from "shared.graphql"
+
+type FiveDayForecastElement {
+  dt: String
+  weather: [Weather]
+  clouds: Clouds
+  wind: Wind
+  rain: Rain
+  snow: Snow
+  dtText: String
+  temp: Float!
+  tempMin: Float!
+  tempMax: Float!
+  pressure: Float!
+  seaLevelPressure: Float!
+  groundLevelPressure: Float!
+  humidity: Float!
+}
+
+type FiveDayForecastResponse {
+  cod: String
+  message: String
+  city: City
+  elementCount: Int
+  list: [FiveDayForecastElement]
+}
+
+type FiveDayForecast {
+  byCityName(name: String!, countryCode: String): FiveDayForecastResponse
+  byCityID(id: Int!, units: Units): FiveDayForecastResponse
+  byLatLon(lat: Float!, lon: Float!): FiveDayForecastResponse
+  byZIP(zip: Float!, countryCode: String): FiveDayForecastResponse
+}

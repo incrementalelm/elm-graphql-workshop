@@ -1,0 +1,39 @@
+# import Coordinate, Weather, Clouds, Rain, Snow from "shared.graphql"
+
+type CurrentWeather {
+  byCityName(name: String!, countryCode: String): CurrentWeatherResponse
+  byCityID(id: Int!): CurrentWeatherResponse
+  byLatLon(lat: Float!, lon: Float!): CurrentWeatherResponse
+  byZIP(zip: Float!, countryCode: String): CurrentWeatherResponse
+}
+
+type CurrentWeatherResponse {
+  coord: Coordinate
+  weather: [Weather]
+  wind: Wind
+  clouds: Clouds
+  rain: Rain
+  snow: Snow
+  temp: Float!
+  tempMin: Float!
+  tempMax: Float!
+  pressure: Float!
+  humidity: Float!
+  """
+  Sunrise time in specified location, in POSIX UTC date time format.
+  """
+  sunrise: Int!
+
+  """
+  Sunset time in specified location, in POSIX UTC date time format.
+  """
+  sunset: Int!
+
+  """
+  the current time in POSIX date time format.
+  """
+  dt: String
+  id: Int
+  name: String
+  cod: String
+}

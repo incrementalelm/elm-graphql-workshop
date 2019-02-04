@@ -2,7 +2,6 @@
   "name": "complex",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "elm-live src/workshop/Main.elm --open",
     "start2": "elm-live src/part01/Main.elm --proxyPrefix /api --proxyHost http://localhost:4000 --open -- --output elm.js",

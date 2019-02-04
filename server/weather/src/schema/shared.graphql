@@ -1,0 +1,180 @@
+enum Units {
+  metric
+  imperial
+  standard
+}
+
+enum Language {
+  """
+  Arabic
+  """
+  ar
+  """
+  Bulgarian
+  """
+  bg
+  """
+  Catalan
+  """
+  ca
+  """
+  Czech
+  """
+  cz
+  """
+  German
+  """
+  de
+  """
+  Greek
+  """
+  el
+  """
+  English
+  """
+  en
+  """
+  Persian (Farsi)
+  """
+  fa
+  """
+  Finnish
+  """
+  fi
+  """
+  French
+  """
+  fr
+  """
+  Galician
+  """
+  gl
+  """
+  Croatian
+  """
+  hr
+  """
+  Hungarian
+  """
+  hu
+  """
+  Italian
+  """
+  it
+  """
+  Japanese
+  """
+  ja
+  """
+  Korean
+  """
+  kr
+  """
+  Latvian
+  """
+  la
+  """
+  Lithuanian
+  """
+  lt
+  """
+  Macedonian
+  """
+  mk
+  """
+  Dutch
+  """
+  nl
+  """
+  Polish
+  """
+  pl
+  """
+  Portuguese
+  """
+  pt
+  """
+  Romanian
+  """
+  ro
+  """
+  Russian
+  """
+  ru
+  """
+  Swedish
+  """
+  se
+  """
+  Slovak
+  """
+  sk
+  """
+  Slovenian
+  """
+  sl
+  """
+  Spanish
+  """
+  es
+  """
+  Turkish
+  """
+  tr
+  """
+  Ukrainian
+  """
+  ua
+  """
+  Vietnamese
+  """
+  vi
+  """
+  Chinese Simplified
+  """
+  zh_cn
+  """
+  Chinese Traditional
+  """
+  zh_tw
+}
+
+type Rain {
+  volumePast3Hours: Float
+}
+
+type Snow {
+  volumePast3Hours: Float
+}
+
+type Clouds {
+  all: Float
+}
+
+type Wind {
+  speed: Float
+  deg: Float
+}
+
+# geographic coordinate
+type Coordinate {
+  # latitude
+  lat: Float
+  # longitude
+  lon: Float
+}
+
+type Weather {
+  id: Int
+  main: String
+  description: String
+  icon: String
+  iconURL: String
+}
+
+type City {
+  id: Int
+  name: String
+  coord: Coordinate
+  country: String
+}

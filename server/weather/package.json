@@ -1,0 +1,24 @@
+{
+  "name": "open-weather-graphql",
+  "version": "1.0.0",
+  "description": "graphql wrapper for open weather api",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon -e js,graphql src/index.js"
+  },
+  "keywords": [],
+  "author": "Dustin Schie <dustin@schie.io>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "graphql-yoga": "^1.16.7",
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.1.0"
+  }
+}
