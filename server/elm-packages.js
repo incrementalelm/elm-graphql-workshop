@@ -34,7 +34,7 @@ const resolvers = {
     byAuthor: (parent, args, context) => {
       return packages.filter(package => {
         if (package) {
-          return package.name.startsWith(args.author);
+          return package.name.startsWith(`${args.author}/`);
         } else {
           return false;
         }
