@@ -66,20 +66,25 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Nested Selection Sets"
-            , body = """To get Elm {Code|Package}s we need to specify what details we want for each {Code|Package}. As in the last exercise, we start out with {Code|SelectionSet.empty}.
+            , body = """As we learned in the previous section, a {Code|SelectionSet} is just a group of 0 or more fields. If a Field is a primitive type (like the {Code|randomQuote} field which had type {Code|String!}), then it's a leaf. But some Fields return {Code|Objects} instead of data. In these cases, we need to say which fields to get from that Object. In other words, we need to pass in a nested {Code|SelectionSet}.
 
+As in the last exercise, we start out with {Code|SelectionSet.empty}.
 
 | List
-    - What use might {Code|SelectionSet.empty} have in a real-world project?
+    -> Replace {Code|Query.randomQuote} with a Query calling {Code|allPackages}. Use {Code|SelectionSet.empty} for the nested {Code|SelectionSet}.
+    (?) What use might {Code|SelectionSet.empty} have in a real-world project?
     - How do the type signatures compare for the top-level query and the nested selection?
     - What would fetching books look like in a REST API?
 
 
-Taking tiny steps is essential to moving quickly and building up maintainable code. We want to fetch both the {Code|title} and {Code|author}, but in order to take the quickest path to the */next compiling state/*, we're going to start with just one.
+Now let's specify the details we want for each Elm {Code|Package}.
 
 
 | List
-    -> Modify {Code|Main.elm} to get each {Code|Book}'s {Code|title}.
+    -> Instead of {Code|SelectionSet.empty}, get the {Code|name} of each {Code|Package}.
+
+
+Taking tiny steps is essential to moving quickly and building up maintainable code. We want to fetch more than just the Package's {Code|name}. But in order to take the quickest path to the */next compiling state/*, our first step fetching one Field is a great start.
 """
             }
         }
