@@ -15,21 +15,12 @@ import Time
 
 
 type alias Response =
-    List ElmPackage
+    String
 
 
 query : SelectionSet Response RootQuery
 query =
-    Query.allPackages elmPackageSelection
-
-
-type alias ElmPackage =
-    ()
-
-
-elmPackageSelection : SelectionSet ElmPackage ElmStuff.Object.Package
-elmPackageSelection =
-    SelectionSet.empty
+    Query.randomQuote
 
 
 makeRequest : Cmd Msg
@@ -75,7 +66,7 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Nested Selection Sets"
-            , body = """To get {Code|Book}s we need to specify what details we want for each {Code|Book}. As in the last exercise, we start out with {Code|SelectionSet.empty}.
+            , body = """To get Elm {Code|Package}s we need to specify what details we want for each {Code|Package}. As in the last exercise, we start out with {Code|SelectionSet.empty}.
 
 
 | List
