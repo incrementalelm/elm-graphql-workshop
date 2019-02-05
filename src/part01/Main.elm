@@ -1,7 +1,7 @@
 module Main exposing (main)
 
-import Books.Query as Query
 import Browser
+import ElmStuff.Query as Query
 import Graphql.Document as Document
 import Graphql.Http
 import Graphql.Operation exposing (RootQuery)
