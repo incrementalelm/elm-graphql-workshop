@@ -17,9 +17,34 @@ const quotes = [
   "There are worse things than being explicit."
 ];
 
+const talks = [
+  {
+    title: "Making Impossible States Impossible",
+    minutes: 25,
+    url: "https://www.youtube.com/watch?v=IcgmSRJHu_8"
+  },
+  {
+    title: "The Life of a File",
+    minutes: 47,
+    url: "https://www.youtube.com/watch?v=XpDsk374LDE"
+  },
+  {
+    title: "Scaling Elm Apps",
+    minutes: 59,
+    url: "https://www.youtube.com/watch?v=DoA4Txr4GUs"
+  }
+];
+
 const typeDefs = gql`
   type Query {
     randomQuote: String!
+    talks: [Talk!]!
+  }
+
+  type Talk {
+    title: String!
+    minutes: Int!
+    url: String!
   }
 `;
 
@@ -27,7 +52,8 @@ const resolvers = {
   Query: {
     randomQuote: () => {
       return quotes[Math.floor(Math.random() * quotes.length)];
-    }
+    },
+    talks: () => talks
   }
 };
 
