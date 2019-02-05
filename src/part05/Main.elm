@@ -10,7 +10,6 @@ import Helpers.Main
 import RemoteData exposing (RemoteData)
 import Time
 import Weather.Object.CurrentWeather
-import Weather.Object.CurrentWeatherResponse
 import Weather.Query as Query
 
 
@@ -36,18 +35,16 @@ difference city1 city2 =
 
 
 weatherFor cityName =
-    Query.currentWeather identity
-        (Weather.Object.CurrentWeather.byCityName
-            identity
-            { name = cityName }
-            Weather.Object.CurrentWeatherResponse.temp
-        )
+    Query.currentWeatherByCityName
+        identity
+        { name = cityName }
+        Weather.Object.CurrentWeather.temp
 
 
 makeRequest : Cmd Msg
 makeRequest =
     query
-        |> Graphql.Http.queryRequest "http://localhost:4000/"
+        |> Graphql.Http.queryRequest "/api"
         |> Graphql.Http.send (RemoteData.fromResult >> GotResponse)
 
 

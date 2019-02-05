@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Query exposing (CurrentWeatherOptionalArguments, FiveDayForecastOptionalArguments, currentWeather, fiveDayForecast)
+module Weather.Query exposing (CurrentWeatherByCityNameOptionalArguments, CurrentWeatherByCityNameRequiredArguments, currentWeatherByCityName)
 
 import Graphql.Internal.Builder.Argument as Argument exposing (Argument)
 import Graphql.Internal.Builder.Object as Object
@@ -11,8 +11,6 @@ import Graphql.Operation exposing (RootMutation, RootQuery, RootSubscription)
 import Graphql.OptionalArgument exposing (OptionalArgument(..))
 import Graphql.SelectionSet exposing (SelectionSet)
 import Json.Decode as Decode exposing (Decoder)
-import Weather.Enum.Language
-import Weather.Enum.Units
 import Weather.InputObject
 import Weather.Interface
 import Weather.Object
@@ -21,51 +19,28 @@ import Weather.ScalarDecoders
 import Weather.Union
 
 
-type alias CurrentWeatherOptionalArguments =
-    { lang : OptionalArgument Weather.Enum.Language.Language
-    , units : OptionalArgument Weather.Enum.Units.Units
-    }
+type alias CurrentWeatherByCityNameOptionalArguments =
+    { countryCode : OptionalArgument String }
+
+
+type alias CurrentWeatherByCityNameRequiredArguments =
+    { name : String }
 
 
 {-|
 
-  - lang -
-  - units -
+  - name -
+  - countryCode -
 
 -}
-currentWeather : (CurrentWeatherOptionalArguments -> CurrentWeatherOptionalArguments) -> SelectionSet decodesTo Weather.Object.CurrentWeather -> SelectionSet decodesTo RootQuery
-currentWeather fillInOptionals object_ =
+currentWeatherByCityName : (CurrentWeatherByCityNameOptionalArguments -> CurrentWeatherByCityNameOptionalArguments) -> CurrentWeatherByCityNameRequiredArguments -> SelectionSet decodesTo Weather.Object.CurrentWeather -> SelectionSet decodesTo RootQuery
+currentWeatherByCityName fillInOptionals requiredArgs object_ =
     let
         filledInOptionals =
-            fillInOptionals { lang = Absent, units = Absent }
+            fillInOptionals { countryCode = Absent }
 
         optionalArgs =
-            [ Argument.optional "lang" filledInOptionals.lang (Encode.enum Weather.Enum.Language.toString), Argument.optional "units" filledInOptionals.units (Encode.enum Weather.Enum.Units.toString) ]
+            [ Argument.optional "countryCode" filledInOptionals.countryCode Encode.string ]
                 |> List.filterMap identity
     in
-    Object.selectionForCompositeField "currentWeather" optionalArgs object_ identity
-
-
-type alias FiveDayForecastOptionalArguments =
-    { lang : OptionalArgument Weather.Enum.Language.Language
-    , units : OptionalArgument Weather.Enum.Units.Units
-    }
-
-
-{-|
-
-  - lang -
-  - units -
-
--}
-fiveDayForecast : (FiveDayForecastOptionalArguments -> FiveDayForecastOptionalArguments) -> SelectionSet decodesTo Weather.Object.FiveDayForecast -> SelectionSet decodesTo RootQuery
-fiveDayForecast fillInOptionals object_ =
-    let
-        filledInOptionals =
-            fillInOptionals { lang = Absent, units = Absent }
-
-        optionalArgs =
-            [ Argument.optional "lang" filledInOptionals.lang (Encode.enum Weather.Enum.Language.toString), Argument.optional "units" filledInOptionals.units (Encode.enum Weather.Enum.Units.toString) ]
-                |> List.filterMap identity
-    in
-    Object.selectionForCompositeField "fiveDayForecast" optionalArgs object_ identity
+    Object.selectionForCompositeField "currentWeatherByCityName" (optionalArgs ++ [ Argument.required "name" requiredArgs.name Encode.string ]) object_ identity

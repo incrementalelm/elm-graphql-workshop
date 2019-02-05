@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Object.CurrentWeather exposing (ByCityIDRequiredArguments, ByCityNameOptionalArguments, ByCityNameRequiredArguments, ByLatLonRequiredArguments, ByZIPOptionalArguments, ByZIPRequiredArguments, byCityID, byCityName, byLatLon, byZIP)
+module Weather.Object.CurrentWeather exposing (clouds, cod, coord, dt, humidity, id, name, pressure, rain, snow, sunrise, sunset, temp, tempMax, tempMin, weather, wind)
 
 import Graphql.Internal.Builder.Argument as Argument exposing (Argument)
 import Graphql.Internal.Builder.Object as Object
@@ -19,86 +19,106 @@ import Weather.ScalarDecoders
 import Weather.Union
 
 
-type alias ByCityNameOptionalArguments =
-    { countryCode : OptionalArgument String }
+{-| -}
+coord : SelectionSet decodesTo Weather.Object.Coordinate -> SelectionSet (Maybe decodesTo) Weather.Object.CurrentWeather
+coord object_ =
+    Object.selectionForCompositeField "coord" [] object_ (identity >> Decode.nullable)
 
 
-type alias ByCityNameRequiredArguments =
-    { name : String }
+{-| -}
+weather : SelectionSet decodesTo Weather.Object.Weather -> SelectionSet (Maybe (List (Maybe decodesTo))) Weather.Object.CurrentWeather
+weather object_ =
+    Object.selectionForCompositeField "weather" [] object_ (identity >> Decode.nullable >> Decode.list >> Decode.nullable)
 
 
-{-|
+{-| -}
+wind : SelectionSet decodesTo Weather.Object.Wind -> SelectionSet (Maybe decodesTo) Weather.Object.CurrentWeather
+wind object_ =
+    Object.selectionForCompositeField "wind" [] object_ (identity >> Decode.nullable)
 
-  - name -
-  - countryCode -
 
+{-| -}
+clouds : SelectionSet decodesTo Weather.Object.Clouds -> SelectionSet (Maybe decodesTo) Weather.Object.CurrentWeather
+clouds object_ =
+    Object.selectionForCompositeField "clouds" [] object_ (identity >> Decode.nullable)
+
+
+{-| -}
+rain : SelectionSet decodesTo Weather.Object.Rain -> SelectionSet (Maybe decodesTo) Weather.Object.CurrentWeather
+rain object_ =
+    Object.selectionForCompositeField "rain" [] object_ (identity >> Decode.nullable)
+
+
+{-| -}
+snow : SelectionSet decodesTo Weather.Object.Snow -> SelectionSet (Maybe decodesTo) Weather.Object.CurrentWeather
+snow object_ =
+    Object.selectionForCompositeField "snow" [] object_ (identity >> Decode.nullable)
+
+
+{-| -}
+temp : SelectionSet Float Weather.Object.CurrentWeather
+temp =
+    Object.selectionForField "Float" "temp" [] Decode.float
+
+
+{-| -}
+tempMin : SelectionSet Float Weather.Object.CurrentWeather
+tempMin =
+    Object.selectionForField "Float" "tempMin" [] Decode.float
+
+
+{-| -}
+tempMax : SelectionSet Float Weather.Object.CurrentWeather
+tempMax =
+    Object.selectionForField "Float" "tempMax" [] Decode.float
+
+
+{-| -}
+pressure : SelectionSet Float Weather.Object.CurrentWeather
+pressure =
+    Object.selectionForField "Float" "pressure" [] Decode.float
+
+
+{-| -}
+humidity : SelectionSet Float Weather.Object.CurrentWeather
+humidity =
+    Object.selectionForField "Float" "humidity" [] Decode.float
+
+
+{-| Sunrise time in specified location, in POSIX UTC date time format.
 -}
-byCityName : (ByCityNameOptionalArguments -> ByCityNameOptionalArguments) -> ByCityNameRequiredArguments -> SelectionSet decodesTo Weather.Object.CurrentWeatherResponse -> SelectionSet decodesTo Weather.Object.CurrentWeather
-byCityName fillInOptionals requiredArgs object_ =
-    let
-        filledInOptionals =
-            fillInOptionals { countryCode = Absent }
-
-        optionalArgs =
-            [ Argument.optional "countryCode" filledInOptionals.countryCode Encode.string ]
-                |> List.filterMap identity
-    in
-    Object.selectionForCompositeField "byCityName" (optionalArgs ++ [ Argument.required "name" requiredArgs.name Encode.string ]) object_ identity
+sunrise : SelectionSet Int Weather.Object.CurrentWeather
+sunrise =
+    Object.selectionForField "Int" "sunrise" [] Decode.int
 
 
-type alias ByCityIDRequiredArguments =
-    { id : Int }
-
-
-{-|
-
-  - id -
-
+{-| Sunset time in specified location, in POSIX UTC date time format.
 -}
-byCityID : ByCityIDRequiredArguments -> SelectionSet decodesTo Weather.Object.CurrentWeatherResponse -> SelectionSet decodesTo Weather.Object.CurrentWeather
-byCityID requiredArgs object_ =
-    Object.selectionForCompositeField "byCityID" [ Argument.required "id" requiredArgs.id Encode.int ] object_ identity
+sunset : SelectionSet Int Weather.Object.CurrentWeather
+sunset =
+    Object.selectionForField "Int" "sunset" [] Decode.int
 
 
-type alias ByLatLonRequiredArguments =
-    { lat : Float
-    , lon : Float
-    }
-
-
-{-|
-
-  - lat -
-  - lon -
-
+{-| the current time in POSIX date time format.
 -}
-byLatLon : ByLatLonRequiredArguments -> SelectionSet decodesTo Weather.Object.CurrentWeatherResponse -> SelectionSet decodesTo Weather.Object.CurrentWeather
-byLatLon requiredArgs object_ =
-    Object.selectionForCompositeField "byLatLon" [ Argument.required "lat" requiredArgs.lat Encode.float, Argument.required "lon" requiredArgs.lon Encode.float ] object_ identity
+dt : SelectionSet (Maybe String) Weather.Object.CurrentWeather
+dt =
+    Object.selectionForField "(Maybe String)" "dt" [] (Decode.string |> Decode.nullable)
 
 
-type alias ByZIPOptionalArguments =
-    { countryCode : OptionalArgument String }
+{-| -}
+id : SelectionSet (Maybe Int) Weather.Object.CurrentWeather
+id =
+    Object.selectionForField "(Maybe Int)" "id" [] (Decode.int |> Decode.nullable)
 
 
-type alias ByZIPRequiredArguments =
-    { zip : Float }
+{-| -}
+name : SelectionSet (Maybe String) Weather.Object.CurrentWeather
+name =
+    Object.selectionForField "(Maybe String)" "name" [] (Decode.string |> Decode.nullable)
 
 
-{-|
-
-  - zip -
-  - countryCode -
-
--}
-byZIP : (ByZIPOptionalArguments -> ByZIPOptionalArguments) -> ByZIPRequiredArguments -> SelectionSet decodesTo Weather.Object.CurrentWeatherResponse -> SelectionSet decodesTo Weather.Object.CurrentWeather
-byZIP fillInOptionals requiredArgs object_ =
-    let
-        filledInOptionals =
-            fillInOptionals { countryCode = Absent }
-
-        optionalArgs =
-            [ Argument.optional "countryCode" filledInOptionals.countryCode Encode.string ]
-                |> List.filterMap identity
-    in
-    Object.selectionForCompositeField "byZIP" (optionalArgs ++ [ Argument.required "zip" requiredArgs.zip Encode.float ]) object_ identity
+{-| -}
+cod : SelectionSet (Maybe String) Weather.Object.CurrentWeather
+cod =
+    Object.selectionForField "(Maybe String)" "cod" [] (Decode.string |> Decode.nullable)

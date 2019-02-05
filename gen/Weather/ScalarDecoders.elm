@@ -2,9 +2,18 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.ScalarDecoders exposing (placeholder)
+module Weather.ScalarDecoders exposing (Upload, decoders)
+
+import Json.Decode as Decode exposing (Decoder)
+import Weather.Scalar exposing (defaultDecoders)
 
 
-placeholder : String
-placeholder =
-    ""
+type alias Upload =
+    Weather.Scalar.Upload
+
+
+decoders : Weather.Scalar.Decoders Upload
+decoders =
+    Weather.Scalar.defineDecoders
+        { decoderUpload = defaultDecoders.decoderUpload
+        }

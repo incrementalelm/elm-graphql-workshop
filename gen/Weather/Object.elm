@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Object exposing (City(..), Clouds(..), Coordinate(..), CurrentWeather(..), CurrentWeatherResponse(..), FiveDayForecast(..), FiveDayForecastElement(..), FiveDayForecastResponse(..), Rain(..), Snow(..), Weather(..), Wind(..))
+module Weather.Object exposing (City(..), Clouds(..), Coordinate(..), CurrentWeather(..), Rain(..), Snow(..), Weather(..), Wind(..))
 
 
 type City
@@ -19,22 +19,6 @@ type Coordinate
 
 type CurrentWeather
     = CurrentWeather
-
-
-type CurrentWeatherResponse
-    = CurrentWeatherResponse
-
-
-type FiveDayForecast
-    = FiveDayForecast
-
-
-type FiveDayForecastElement
-    = FiveDayForecastElement
-
-
-type FiveDayForecastResponse
-    = FiveDayForecastResponse
 
 
 type Rain
