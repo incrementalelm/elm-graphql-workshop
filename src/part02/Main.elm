@@ -1,9 +1,9 @@
 module Main exposing (main)
 
-import Books.Object
-import Books.Object.Book
-import Books.Query as Query
 import Browser
+import ElmStuff.Object
+import ElmStuff.Object.Package
+import ElmStuff.Query as Query
 import Graphql.Document as Document
 import Graphql.Http
 import Graphql.Operation exposing (RootQuery)
@@ -15,20 +15,20 @@ import Time
 
 
 type alias Response =
-    List Book
+    List ElmPackage
 
 
 query : SelectionSet Response RootQuery
 query =
-    Query.books bookSelection
+    Query.allPackages elmPackageSelection
 
 
-type alias Book =
+type alias ElmPackage =
     ()
 
 
-bookSelection : SelectionSet Book Books.Object.Book
-bookSelection =
+elmPackageSelection : SelectionSet ElmPackage ElmStuff.Object.Package
+elmPackageSelection =
     SelectionSet.empty
 
 
