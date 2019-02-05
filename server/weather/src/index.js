@@ -1,5 +1,7 @@
 const { GraphQLServer } = require('graphql-yoga');
 require('dotenv').config();
+const cors = require('cors');
+const express = require('express');
 
 const opts = {
   port: process.env.PORT || 4000
@@ -12,5 +14,7 @@ const server = new GraphQLServer({
   resolvers,
   opts
 });
+
+server.express.use(express.static('../../'));
 
 server.start(() => console.log(`Server is running at http://localhost:${opts.port}`));

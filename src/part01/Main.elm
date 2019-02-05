@@ -1,7 +1,5 @@
 module Main exposing (main)
 
-import Books.Object.Book
-import Books.Query as Query
 import Browser
 import Graphql.Document as Document
 import Graphql.Http
@@ -11,21 +9,25 @@ import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, w
 import Helpers.Main
 import RemoteData exposing (RemoteData)
 import Time
+import Weather.Object.CurrentWeather
+import Weather.Object.CurrentWeatherResponse
+import Weather.Query as Query
 
 
 type alias Response =
-    ()
+    Float
 
 
 query : SelectionSet Response RootQuery
 query =
-    SelectionSet.empty
+    Query.currentWeather identity
+        (Weather.Object.CurrentWeather.byCityName identity { name = "Santa Barbara" } Weather.Object.CurrentWeatherResponse.temp)
 
 
 makeRequest : Cmd Msg
 makeRequest =
     query
-        |> Graphql.Http.queryRequest "/api"
+        |> Graphql.Http.queryRequest "http://localhost:4000/"
         |> Graphql.Http.send (RemoteData.fromResult >> GotResponse)
 
 
