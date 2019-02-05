@@ -66,15 +66,24 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Nested Selection Sets"
-            , body = """As we learned in the previous section, a {Code|SelectionSet} is just a group of 0 or more fields. If a Field is a primitive type (like the {Code|randomQuote} field which had type {Code|String!}), then it's a leaf. But some Fields return {Code|Objects} instead of data. In these cases, we need to say which fields to get from that Object. In other words, we need to pass in a nested {Code|SelectionSet}.
+            , body = """As we learned in the previous section, a {Code|SelectionSet} is just a group of 0 or more fields.
+
+| Blockquote
+    elm-graphql SelectionSets: A group of 0 or more Fields.
+
+| List
+    (?) How do {Code|elm-graphql} {Code|SelectionSet}s differ from GraphQL Selection Sets?
+
+
+If a Field is a primitive type (like the {Code|randomQuote} field which had type {Code|String!}), then it's a leaf. But some Fields return {Code|Objects} instead of data. In these cases, we need to say which fields to get from that Object. In other words, we need to pass in a nested {Code|SelectionSet}.
 
 As in the last exercise, we start out with {Code|SelectionSet.empty}.
 
 | List
     -> Replace {Code|Query.randomQuote} with a Query calling {Code|allPackages}. Use {Code|SelectionSet.empty} for the nested {Code|SelectionSet}.
     (?) What use might {Code|SelectionSet.empty} have in a real-world project?
-    - How do the type signatures compare for the top-level query and the nested selection?
-    - What would fetching books look like in a REST API?
+    (?) How do the type signatures compare for the top-level query and the nested selection?
+    (?) What would fetching books look like in a REST API?
 
 
 Now let's specify the details we want for each Elm {Code|Package}.
