@@ -4,7 +4,7 @@ const APPID = require('../app-id');
 
 module.exports = {
   get: (url, queries = {}) => {
-    const queryString = _.chain({ ...queries, ...{ units: 'metric' }, APPID })
+    const queryString = _.chain({ ...queries, APPID })
       .toPairs()
       .map(p => p.join('='))
       .join('&')

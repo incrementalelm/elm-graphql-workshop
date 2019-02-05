@@ -27,7 +27,7 @@ type FiveDayForecastResponse {
 
 type FiveDayForecast {
   byCityName(name: String!, countryCode: String): FiveDayForecastResponse
-  byCityID(id: Int!, units: Units): FiveDayForecastResponse
+  byCityID(id: Int!): FiveDayForecastResponse
   byLatLon(lat: Float!, lon: Float!): FiveDayForecastResponse
   byZIP(zip: Float!, countryCode: String): FiveDayForecastResponse
 }
