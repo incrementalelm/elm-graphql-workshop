@@ -15,7 +15,7 @@ import Time
 
 
 type alias Response =
-    List ()
+    List Package
 
 
 query : SelectionSet Response RootQuery
@@ -23,9 +23,20 @@ query =
     Query.allPackages packageSelection
 
 
-packageSelection : SelectionSet () ElmStuff.Object.Package
+type alias Package =
+    String
+
+
+packageSelection : SelectionSet Package ElmStuff.Object.Package
 packageSelection =
-    SelectionSet.empty
+    ElmStuff.Object.Package.versions
+        |> SelectionSet.map List.reverse
+        |> SelectionSet.map List.head
+        |> SelectionSet.map (Maybe.withDefault "No versions found")
+
+
+
+-- |> SelectionSet.map List.length
 
 
 makeRequest : Cmd Msg
@@ -100,7 +111,10 @@ Now let's forget about the package names for a second. I want to scan a list of 
       "4.5.2"
     ]
 
-This map is a bit more challenging, so let's break it down into small steps. The smaller the steps, the faster we move.
+This map is a bit more challenging, so let's break it down into small steps. The smaller our steps, the faster we move.
+
+| Blockquote
+    Small steps: The smaller our steps, the faster we move.
 
 First we'll do a hardcoded mapping. So instead of real data, turn every "latest version" into a hard coded "1.2.3".
 
