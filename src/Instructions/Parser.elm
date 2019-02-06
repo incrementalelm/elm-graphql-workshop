@@ -51,7 +51,7 @@ document =
                 , fonts.body
                 , Font.color (Element.rgba255 23 42 58 0.7)
                 , Font.size 16
-                , Element.spacing 10
+                , Element.spacing 16
                 ]
                 (List.map (\view -> view model) children)
         )
