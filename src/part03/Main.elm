@@ -1,8 +1,9 @@
 module Main exposing (main)
 
-import Books.Object.Book
-import Books.Query as Query
 import Browser
+import ElmStuff.Object
+import ElmStuff.Object.Package
+import ElmStuff.Query as Query
 import Graphql.Document as Document
 import Graphql.Http
 import Graphql.Operation exposing (RootQuery)
@@ -19,11 +20,12 @@ type alias Response =
 
 query : SelectionSet Response RootQuery
 query =
-    Query.books booksSelection
+    Query.allPackages packageSelection
 
 
-booksSelection =
-    Books.Object.Book.title
+packageSelection : SelectionSet String ElmStuff.Object.Package
+packageSelection =
+    ElmStuff.Object.Package.name
 
 
 makeRequest : Cmd Msg
@@ -72,7 +74,7 @@ main =
             , body = """Now that we're getting the titles of our books, we'd like to get the authors, too! But we also want to practice taking *tiny steps*! Why? Because small steps is what let's us move quickly, steadily, and without mistakes! It might seem unnecessary now, but having this skill at your fingertips is what will make you a master Elm GraphQL query builder!
 
 | List
-    -> Change the {Code|type alias} for {Code|Book} to be a record with a *single field in it*. Hint: you'll need to use a function called {Code|SelectionSet.map}.
+    -> Change the {Code|type alias} for {Code|ElmStuff} to be a record with a *single field in it*. Hint: you'll need to use a function called {Code|SelectionSet.map}.
     (?) What's the benefit of starting with this step?
 """
             }
