@@ -15,7 +15,7 @@ import Time
 
 
 type alias Response =
-    List Package
+    List ()
 
 
 query : SelectionSet Response RootQuery
@@ -23,20 +23,9 @@ query =
     Query.allPackages packageSelection
 
 
-type alias Package =
-    String
-
-
-packageSelection : SelectionSet Package ElmStuff.Object.Package
+packageSelection : SelectionSet () ElmStuff.Object.Package
 packageSelection =
-    ElmStuff.Object.Package.versions
-        |> SelectionSet.map List.reverse
-        |> SelectionSet.map List.head
-        |> SelectionSet.map (Maybe.withDefault "No versions found")
-
-
-
--- |> SelectionSet.map List.length
+    SelectionSet.empty
 
 
 makeRequest : Cmd Msg
