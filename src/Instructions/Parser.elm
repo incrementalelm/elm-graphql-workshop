@@ -117,8 +117,10 @@ blockquote =
                     []
                 , Element.paragraph
                     [ Font.family [ Font.typeface "Raleway" ]
-                    , Element.padding 16
+                    , Element.padding 28
                     , Element.spacing 12
+                    , Font.italic
+                    , Font.semiBold
                     ]
                     [ Element.text (String.trimRight string) ]
                 ]
