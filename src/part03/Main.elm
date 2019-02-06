@@ -84,6 +84,34 @@ Let's use a new tool to turn our returned data into something meaningful. Instea
     (?) Look at the type signature in the docs for {Code|SelectionSet.map}. What does it tell you?
     -> Using {Code|SelectionSet.map}, change the top-level {Code|SelectionSet} to give us the count of all packages. Note that the type of {Code|Response} will change {Code|Int} instead of a {Code|List ()}.
 
+| Header
+    More Complex Maps
+
+Now let's forget about the package names for a second. I want to scan a list of the latest version numbers. So I want to see something like this:
+
+
+| Monospace
+
+    Success
+    [
+      "1.0.0"
+      "2.0.3"
+      "1.5.0"
+      "4.5.2"
+    ]
+
+This map is a bit more challenging, so let's break it down into small steps. The smaller the steps, the faster we move.
+
+First we'll do a hardcoded mapping. So instead of real data, turn every "latest version" into a hard coded "1.2.3".
+
+| List
+    -> Create a function which maps a versions argument of type {Code|List String} into a hard coded latest version of type {Code|String}. Apply this mapping to get a long list of "1.2.3" over and over again!
+    -> Now, change the hard coded "1.2.3" in your return type to be the actual "latest published package version" (i.e. the last {Code|String} in the {Code|versions} list).
+    (?) What would this code look like as a series of calls to {Code|SelectionSet.map}? Which format do you prefer?
+    (?) What did the hard coded mapping step do for you? What are some benefits? When would you choose to use this intermediary step, when would you not?
+
+| Header
+    Mapping Into a Record
 
 Now that we're getting the titles of our books, we'd like to get the authors, too! But we also want to practice taking *tiny steps*! Why? Because small steps is what let's us move quickly, steadily, and without mistakes! It might seem unnecessary now, but having this skill at your fingertips is what will make you a master Elm GraphQL query builder!
 
