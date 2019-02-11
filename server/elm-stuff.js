@@ -58,6 +58,7 @@ const typeDefs = gql`
     talks: [Talk!]!
     elmOrganization: Author!
     authors: KnownAuthors!
+    favoritePackages: [Package!]!
   }
 
   type KnownAuthors {
@@ -69,8 +70,10 @@ const typeDefs = gql`
   type Package {
     author: Author!
     name: String!
+    title: String!
     summary: String!
     versions: [String!]!
+    url: String!
   }
 
   type Talk {
@@ -84,6 +87,16 @@ const typeDefs = gql`
     packages: [Package!]!
   }
 `;
+
+function packageByFullName(fullPackageName) {
+  return packages.find(package => {
+    if (package) {
+      return package.name === fullPackageName;
+    } else {
+      return false;
+    }
+  });
+}
 
 function packagesByAuthor(authorName) {
   return packages.filter(package => {
@@ -109,10 +122,23 @@ const resolvers = {
         elm: "elm",
         elmCommunity: "elm-community"
       };
+    },
+    favoritePackages: () => {
+      return [
+        "mdgriffith/elm-ui",
+        "krisajenkins/remotedata",
+        "dillonkearns/elm-graphql",
+        "elm/time",
+        "lukewestby/elm-http-builder",
+        "terezka/line-charts"
+      ].map(packageByFullName);
     }
   },
   Package: {
-    author: parent => parent.name.split("/")[0]
+    author: parent => parent.name.split("/")[0],
+    title: parent => parent.name.split("/")[1],
+    url: parent =>
+      `https://package.elm-lang.org/packages/${parent.name}/latest/`
   },
   Author: {
     name: authorName => authorName,
