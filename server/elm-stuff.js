@@ -61,6 +61,7 @@ const typeDefs = gql`
   }
 
   type KnownAuthors {
+    all: [Author!]!
     elm: Author!
     elmCommunity: Author!
   }
@@ -104,6 +105,7 @@ const resolvers = {
     elmOrganization: () => "elm",
     authors: () => {
       return {
+        all: ["elm", "elm-community"],
         elm: "elm",
         elmCommunity: "elm-community"
       };
