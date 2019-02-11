@@ -60,6 +60,45 @@ enum Order {
 }
 ```
 
+# Scalars Are Leaves
+
+- Enum
+- String
+- Int
+- Float
+- Boolean
+- ID
+
+^ - More on custom scalars later.
+
+# Objects
+
+```haskell
+type Package {
+  name: String!
+  versions: [String!]!
+}
+```
+
+^ - Not a Leaf
+
+# Graph _QL_
+
+```haskell
+query {
+  talks {
+    title
+    minutes
+  }
+}
+```
+
+#### [`run`](http://localhost:4000/?query=query%20%7B%0A%20%20talks%20%7B%0A%20%20%20%20title%0A%20%20%20%20minutes%0A%20%20%7D%0A%7D)
+
+^ - Unlike REST, explicitly get all fields
+
+# /Graph/ QL
+
 # Foo
 
 ```haskell

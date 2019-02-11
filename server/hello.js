@@ -4,6 +4,13 @@ const typeDefs = gql`
   type Query {
     helloIsAnyoneHome: String
     hello: String!
+    talks: [Talk!]!
+  }
+
+  type Talk {
+    title: String!
+    minutes: Int!
+    url: String!
   }
 `;
 
@@ -24,10 +31,29 @@ function randomResponse() {
   return responses[Math.floor(Math.random() * responses.length)];
 }
 
+const talks = [
+  {
+    title: "Making Impossible States Impossible",
+    minutes: 25,
+    url: "https://www.youtube.com/watch?v=IcgmSRJHu_8"
+  },
+  {
+    title: "The Life of a File",
+    minutes: 47,
+    url: "https://www.youtube.com/watch?v=XpDsk374LDE"
+  },
+  {
+    title: "Scaling Elm Apps",
+    minutes: 59,
+    url: "https://www.youtube.com/watch?v=DoA4Txr4GUs"
+  }
+];
+
 const resolvers = {
   Query: {
     helloIsAnyoneHome: maybeRespond,
-    hello: maybeRespond
+    hello: maybeRespond,
+    talks: () => talks
   }
 };
 
