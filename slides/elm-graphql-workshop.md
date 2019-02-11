@@ -41,16 +41,6 @@ type Query {
 
 ^ - Built-in vs. ad-hoc type checking.
 
-# Objects
-
-```haskell
-type Package {
-  name: String!
-  summary: String!
-  versions: [String!]!
-}
-```
-
 # Enums
 
 ```haskell
@@ -73,28 +63,30 @@ enum Order {
 
 # Objects
 
+[.code-highlight: all]
+
+[.code-highlight: 2]
+
 ```haskell
 type Package {
-  name: String!
+  title: String!
+  url: String!
   versions: [String!]!
 }
 ```
-
-^ - Not a Leaf
 
 # Graph _QL_
 
 [.code-highlight: all]
 
-[.code-highlight: 3-4]
+[.code-highlight: 3]
 
-[.code-highlight: 2-5]
+[.code-highlight: 2-4]
 
 ```haskell
 query {
-  talks {
+  favoritePackages {
     title
-    minutes
   }
 }
 ```
@@ -102,6 +94,8 @@ query {
 #### [`run`](http://localhost:4000/?query=query%20%7B%0A%20%20talks%20%7B%0A%20%20%20%20title%0A%20%20%20%20minutes%0A%20%20%7D%0A%7D)
 
 ^ - Unlike REST, explicitly get all fields
+
+^ - Not a Leaf
 
 ^ - Selection Sets
 

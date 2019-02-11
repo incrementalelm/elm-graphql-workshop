@@ -69,7 +69,6 @@ const typeDefs = gql`
 
   type Package {
     author: Author!
-    name: String!
     title: String!
     summary: String!
     versions: [String!]!
