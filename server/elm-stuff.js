@@ -57,6 +57,12 @@ const typeDefs = gql`
     randomQuote: String!
     talks: [Talk!]!
     elmOrganization: Author!
+    authors: KnownAuthors!
+  }
+
+  type KnownAuthors {
+    elm: Author!
+    elmCommunity: Author!
   }
 
   type Package {
@@ -95,7 +101,13 @@ const resolvers = {
       return quotes[Math.floor(Math.random() * quotes.length)];
     },
     talks: () => talks,
-    elmOrganization: () => "elm"
+    elmOrganization: () => "elm",
+    authors: () => {
+      return {
+        elm: "elm",
+        elmCommunity: "elm-community"
+      };
+    }
   },
   Package: {
     author: parent => parent.name.split("/")[0]
