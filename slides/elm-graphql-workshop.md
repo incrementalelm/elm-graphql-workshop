@@ -84,6 +84,12 @@ type Package {
 
 # Graph _QL_
 
+[.code-highlight: all]
+
+[.code-highlight: 3-4]
+
+[.code-highlight: 2-5]
+
 ```haskell
 query {
   talks {
@@ -97,29 +103,20 @@ query {
 
 ^ - Unlike REST, explicitly get all fields
 
-# /Graph/ QL
+^ - Selection Sets
 
-# Foo
+# _Graph_ QL
 
-```haskell
-type Query {
-  hello: String
-  allPackages: [Package!]!
-  packagesByAuthor(author: String!): [Package!]!
-  findPackage(author: String!, name: String!): Package
-  randomQuote: String!
-  talks: [Talk!]!
-}
+# Mutations
 
-type Package {
-  name: String!
-  summary: String!
-  versions: [String!]!
-}
+^ - Just Objects
 
-type Talk {
-  title: String!
-  minutes: Int!
-  url: String!
-}
-```
+^ - Pick one: `query`, `mutation`, `subscription`
+
+# `dillonkearns/elm-graphql`
+
+# GraphQL Client Strategies
+
+- No code generation
+- Generate code for specific query
+- Generate code for whole schema
