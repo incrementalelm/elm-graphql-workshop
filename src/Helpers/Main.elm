@@ -104,7 +104,7 @@ mapUpdate rawQuery subUpdate msg model =
 view : Instructions -> Model a -> Html (Msg subMsg)
 view instructions model =
     [ Element.el
-        [ Element.Font.size 28
+        [ Element.Font.size 36
         , Element.centerX
         , Element.Font.family [ Element.Font.typeface "Rubik" ]
         ]

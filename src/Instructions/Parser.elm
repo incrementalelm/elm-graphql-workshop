@@ -57,7 +57,7 @@ document =
         )
         (Mark.manyOf
             [ Mark.Default.header
-                [ Font.size 36
+                [ Font.size 28
                 , Font.color (Element.rgba255 20 40 59 1)
                 ]
                 defaultText
