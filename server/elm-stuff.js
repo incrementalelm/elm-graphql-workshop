@@ -56,9 +56,11 @@ const typeDefs = gql`
     findPackage(author: String!, name: String!): Package
     randomQuote: String!
     talks: [Talk!]!
+    elmOrganization: Author!
   }
 
   type Package {
+    author: Author!
     name: String!
     summary: String!
     versions: [String!]!
@@ -69,24 +71,38 @@ const typeDefs = gql`
     minutes: Int!
     url: String!
   }
+
+  type Author {
+    name: String!
+    packages: [Package!]!
+  }
 `;
 
+function packagesByAuthor(authorName) {
+  return packages.filter(package => {
+    if (package) {
+      return package.name.startsWith(`${authorName}/`);
+    } else {
+      return false;
+    }
+  });
+}
 const resolvers = {
   Query: {
     allPackages: () => packages,
-    packagesByAuthor: (parent, args, context) => {
-      return packages.filter(package => {
-        if (package) {
-          return package.name.startsWith(`${args.author}/`);
-        } else {
-          return false;
-        }
-      });
-    },
+    packagesByAuthor: (parent, args, context) => packagesByAuthor(args.author),
     randomQuote: () => {
       return quotes[Math.floor(Math.random() * quotes.length)];
     },
-    talks: () => talks
+    talks: () => talks,
+    elmOrganization: () => "elm"
+  },
+  Package: {
+    author: parent => parent.name.split("/")[0]
+  },
+  Author: {
+    name: authorName => authorName,
+    packages: authorName => packagesByAuthor(authorName)
   }
 };
 
