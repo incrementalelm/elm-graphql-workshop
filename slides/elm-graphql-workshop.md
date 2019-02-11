@@ -20,6 +20,10 @@ type Query {
 }
 ```
 
+^ - Introduce GraphQL Playground
+
+^ - Sometimes null
+
 # Nullability
 
 ```haskell
@@ -28,6 +32,14 @@ type Query {
   hello: String!
 }
 ```
+
+^ - What does GraphQL buy you?
+
+^ - Single end point
+
+^ - Free docs
+
+^ - Built-in vs. ad-hoc type checking.
 
 # Objects
 
