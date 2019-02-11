@@ -107,6 +107,20 @@ query {
 
 # _Graph_ QL
 
+```javascript
+query {
+  authors {
+    elmCommunity {
+      packages {
+        name
+      }
+    }
+  }
+}
+```
+
+#### [`run`](http://localhost:4000/?query=%7B%0A%20%20authors%20%7B%0A%20%20%20%20elmCommunity%20%7B%0A%20%20%20%20%20%20packages%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
+
 # Mutations
 
 ^ - Just Objects
