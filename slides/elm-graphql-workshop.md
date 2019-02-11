@@ -75,7 +75,13 @@ type Package {
 }
 ```
 
-# Graph _QL_
+# -
+
+![fit ](img/query1.jpg)
+
+# -
+
+![fit original](img/query1.jpg)
 
 [.code-highlight: all]
 
@@ -83,7 +89,11 @@ type Package {
 
 [.code-highlight: 2-4]
 
-```haskell
+<br>
+<br>
+<br>
+
+````haskell
 query {
   favoritePackages {
     title
@@ -91,7 +101,7 @@ query {
 }
 ```
 
-#### [`run`](http://localhost:4000/?query=query%20%7B%0A%20%20talks%20%7B%0A%20%20%20%20title%0A%20%20%20%20minutes%0A%20%20%7D%0A%7D)
+#### [`run`](http://localhost:4000/?query=query%20%7B%0A%20%20favoritePackages%20%7B%0A%20%20%20%20title%0A%20%20%7D%0A%7D%0A)
 
 ^ - Unlike REST, explicitly get all fields
 
@@ -99,21 +109,15 @@ query {
 
 ^ - Selection Sets
 
-# _Graph_ QL
+# -
 
-```javascript
-query {
-  authors {
-    elmCommunity {
-      packages {
-        name
-      }
-    }
-  }
-}
-```
+![fit ](img/query2.jpg)
 
-#### [`run`](http://localhost:4000/?query=%7B%0A%20%20authors%20%7B%0A%20%20%20%20elmCommunity%20%7B%0A%20%20%20%20%20%20packages%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
+^ - Data shape matches request
+
+# -
+
+![fit ](img/query3.jpg)
 
 # Mutations
 
