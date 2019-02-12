@@ -67,14 +67,13 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Understanding GraphQL"
-            , body = """Let's get familiar with Graphiql, a tool for building and executing GraphQL requests.
-
-
-| List
-    -> Get the {Code|title} for each of my {Code|favoritePackages}
+            , body = """Let's get familiar with {Code|Graphiql}, a tool for building and executing GraphQL requests.
 
 | Header
     Graph*QL*
+
+| List
+    -> Get the {Code|title} for each of my {Code|favoritePackages}
 
 | Header
     *Graph*QL
@@ -82,7 +81,7 @@ main =
 
 | List
     -> Add the {Code|name}s for each {Code|author} to the previous query
-    -> Now get the names of all packages by each author from {Code|favoritePackages}. *Hint*: review the schema diagram if you get stuck.
+    -> Now get the names of all packages by each author from {Code|favoritePackages}. *Hint*: review the schema diagram below if you get stuck.
     (?) What are some other examples of data you could request by traversing relations like this, taking advantage of the /graph/ part of GraphQL?
 
 <>
