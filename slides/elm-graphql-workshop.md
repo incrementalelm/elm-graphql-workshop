@@ -24,6 +24,10 @@ type Query {
 
 ^ - Sometimes null
 
+# `GraphQL Field`
+
+Data that you ask for in your query.
+
 # Fields
 
 ```haskell
@@ -121,7 +125,7 @@ type Package {
 <br>
 <br>
 
-`````haskell
+``````haskell
 query {
   favoritePackages {
     title
@@ -131,11 +135,29 @@ query {
 
 #### [`run`](http://localhost:4000/?query=query%20%7B%0A%20%20favoritePackages%20%7B%0A%20%20%20%20title%0A%20%20%7D%0A%7D%0A)
 
+
 ^ - Unlike REST, explicitly get all fields
 
 ^ - Not a Leaf
 
+^ - Still a field
+
 ^ - Selection Sets
+
+# Branches Versus Leaves
+
+`````haskell
+query {
+  favoritePackages {
+    title
+  }
+}
+```
+
+^ - Must explicitly state selection for branches.
+
+^ - Scalar fields are leaves.
+
 
 # -
 
@@ -198,4 +220,4 @@ query {
 - Generate code for whole schema
 
 # Fin
-`````
+``````
