@@ -1,6 +1,10 @@
 module Main exposing (main)
 
 import Browser
+import ElmStuff.Object
+import ElmStuff.Object.Author
+import ElmStuff.Object.Package
+import ElmStuff.Query as Query
 import Graphql.Document as Document
 import Graphql.Http
 import Graphql.Operation exposing (RootQuery)
@@ -8,37 +12,15 @@ import Graphql.OptionalArgument exposing (OptionalArgument(..))
 import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, with)
 import Helpers.Main
 import RemoteData exposing (RemoteData)
-import Time
-import Weather.Object.CurrentWeather
-import Weather.Query as Query
 
 
 type alias Response =
-    String
+    ()
 
 
 query : SelectionSet Response RootQuery
 query =
-    SelectionSet.map2 difference
-        (weatherFor "Santa Barbara")
-        (weatherFor "Oslo")
-
-
-hottestDayInCelsius =
-    237.38
-
-
-difference city1 city2 =
-    "It is "
-        ++ String.fromFloat (hottestDayInCelsius - city1)
-        ++ "° (celsius) colder than the hottest recorded temperature"
-
-
-weatherFor cityName =
-    Query.currentWeatherByCityName
-        identity
-        { name = cityName }
-        Weather.Object.CurrentWeather.temp
+    SelectionSet.empty
 
 
 makeRequest : Cmd Msg
@@ -84,6 +66,13 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Combining Selection Sets"
-            , body = """"""
+            , body = """Let's combine the skills we've learned in order to /combine/ some {Code|SelectionSet}s together! What do I mean by combining {Code|SelectionSet}s? Well, it's actually nearly exactly the same as what we learned with {Code|SelectionSet.map}.
+
+The only difference is that instead of applying a function to the data that comes back from a single {Code|SelectionSet}, this time you will be applying a function to the data from /two/ different {Code|SelectionSet}s!
+
+| List
+    (?) Look at the package docs to find the type signature for {Code|SelectionSet.map2}. This function will be your main tool for this exercise. How does it compare with {Code|SelectionSet.map}?
+    (?) Before you begin: how can you make this task easier on yourself using the techniques for keeping things compiling at each tiny step?
+    -> Define the top-level {Code|query} in {Code|Main.elm} as a {Code|SelectionSet String RootQuery}, where the String is the percentage of Elm packages which were written by the authors of my favorite Elm packages. You can refer back to previous exercises if it's helpful. *Hint*: you may find the built-in Elm function {Code|List.sum} helpful in one spot here!"""
             }
         }
