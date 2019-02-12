@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmStuff.Query exposing (FindPackageRequiredArguments, PackagesByAuthorRequiredArguments, allPackages, findPackage, packagesByAuthor, randomQuote, talks)
+module ElmStuff.Query exposing (FindPackageRequiredArguments, PackagesByAuthorRequiredArguments, allPackages, authors, elmOrganization, favoritePackages, findPackage, packagesByAuthor, randomQuote, talks)
 
 import ElmStuff.InputObject
 import ElmStuff.Interface
@@ -66,3 +66,21 @@ randomQuote =
 talks : SelectionSet decodesTo ElmStuff.Object.Talk -> SelectionSet (List decodesTo) RootQuery
 talks object_ =
     Object.selectionForCompositeField "talks" [] object_ (identity >> Decode.list)
+
+
+{-| -}
+elmOrganization : SelectionSet decodesTo ElmStuff.Object.Author -> SelectionSet decodesTo RootQuery
+elmOrganization object_ =
+    Object.selectionForCompositeField "elmOrganization" [] object_ identity
+
+
+{-| -}
+authors : SelectionSet decodesTo ElmStuff.Object.KnownAuthors -> SelectionSet decodesTo RootQuery
+authors object_ =
+    Object.selectionForCompositeField "authors" [] object_ identity
+
+
+{-| -}
+favoritePackages : SelectionSet decodesTo ElmStuff.Object.Package -> SelectionSet (List decodesTo) RootQuery
+favoritePackages object_ =
+    Object.selectionForCompositeField "favoritePackages" [] object_ (identity >> Decode.list)

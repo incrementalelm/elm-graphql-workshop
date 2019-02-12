@@ -2,7 +2,15 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmStuff.Object exposing (Package(..), Talk(..))
+module ElmStuff.Object exposing (Author(..), KnownAuthors(..), Package(..), Talk(..))
+
+
+type Author
+    = Author
+
+
+type KnownAuthors
+    = KnownAuthors
 
 
 type Package

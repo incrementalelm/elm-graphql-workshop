@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmStuff.Object.Package exposing (name, summary, versions)
+module ElmStuff.Object.Package exposing (author, summary, title, url, versions)
 
 import ElmStuff.InputObject
 import ElmStuff.Interface
@@ -20,9 +20,15 @@ import Json.Decode as Decode
 
 
 {-| -}
-name : SelectionSet String ElmStuff.Object.Package
-name =
-    Object.selectionForField "String" "name" [] Decode.string
+author : SelectionSet decodesTo ElmStuff.Object.Author -> SelectionSet decodesTo ElmStuff.Object.Package
+author object_ =
+    Object.selectionForCompositeField "author" [] object_ identity
+
+
+{-| -}
+title : SelectionSet String ElmStuff.Object.Package
+title =
+    Object.selectionForField "String" "title" [] Decode.string
 
 
 {-| -}
@@ -35,3 +41,9 @@ summary =
 versions : SelectionSet (List String) ElmStuff.Object.Package
 versions =
     Object.selectionForField "(List String)" "versions" [] (Decode.string |> Decode.list)
+
+
+{-| -}
+url : SelectionSet String ElmStuff.Object.Package
+url =
+    Object.selectionForField "String" "url" [] Decode.string
