@@ -9,17 +9,35 @@ import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, w
 import Helpers.Main
 import RemoteData exposing (RemoteData)
 import Time
-import Weather.Object.CurrentWeather
+import Weather.Object.CurrentWeather as CurrentWeather
 import Weather.Query as Query
 
 
 type alias Response =
-    Float
+    CurrentWeather
 
 
 query : SelectionSet Response RootQuery
 query =
-    Query.currentWeather Weather.Object.CurrentWeather.temperature
+    Query.currentWeather weatherSelection
+
+
+type alias CurrentWeather =
+    { temperature : Float
+    , city : String
+    , country : String
+    , lat : Float
+    , lon : Float
+    }
+
+
+weatherSelection =
+    SelectionSet.map5 CurrentWeather
+        CurrentWeather.temperature
+        CurrentWeather.city
+        CurrentWeather.country
+        CurrentWeather.lat
+        CurrentWeather.lon
 
 
 makeRequest : Cmd Msg
@@ -65,7 +83,25 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Pipelines"
-            , body = """
+            , body = """Often when working with GraphQL requests in Elm, you want to add a new field to your request. There are two different methods for adding new fields. Let's practice them both.
+
+
+| Header
+    Method 1: Map{Code|<n + 1>}
+
+
+| List
+    -> Add one more piece of data from the {Code|currentWeather} to your request by turning {Code|map5} into a {Code|map6}.
+    (?) What kind of error message do you get? How precise is it?
+
+
+| Header
+    Pipelines
+
+| List
+    -> Convert the current {Code|map6} into a pipeline.
+    -> Add one more field to the pipeline.
+    (?) How does this error message compare to the {Code|mapN} message?
 """
             }
         }
