@@ -83,23 +83,7 @@ main =
         , update = update
         , queryString = Document.serializeQuery query
         , instructions =
-            { title = "Making The First Query"
-            , body = """Look at the query in the query explorer. This is what an "empty" query looks like. You could make this query anywhere, in any schema, and you would get the same thing.
-
-
-| List
-    -> What happens if you delete {Code|__typename} in the GraphQL query pane?
-    (?) How is the data returned different in the {Code|elm-graphql} response and the {Code|gql} response? Why?
-
-
-
-<>
-Let's turn this {Code|empty} query into something a bit more interesting!
-<>
-
-| List
-    (?) There is exactly one top-level value you can get without doing any nested selection sets. Which is it? Why do you need to nest selection sets for some, but not for this one? Hint: try exploring the {Code|< Docs} pane. Confirm your answer by making the query in the Graphiql editor above and checking that it is valid without a nested Selection Set.
-    (?) What do you expect to be the return type in your Elm code when you fetch this? Why?
-    -> Now, modify {Code|Main.elm} to fetch the field described above. *Note:* the solution doesn't involve importing any new modules."""
+            { title = "Combining Selection Sets"
+            , body = """"""
             }
         }
