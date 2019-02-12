@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "elm-live src/workshop/Main.elm --open",
-    "start2": "elm-live src/part01/Main.elm --proxyPrefix /api --proxyHost http://localhost:4000 --open -- --output elm.js",
     "books": "node server/books.js",
     "weather": "node server/weather.js"
   },
@@ -21,6 +19,6 @@
     "gql": "^1.1.2",
     "graphiql": "^0.12.0",
     "graphql": "^0.13.2",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.10"
   }
 }
