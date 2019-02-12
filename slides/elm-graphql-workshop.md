@@ -205,11 +205,38 @@ query {
 
 ![fit ](img/query3.jpg)
 
+# Everything Is A Fields
+
+```haskell
+type Query {
+  helloIsAnyoneHome: String
+  hello: String!
+  favoritePackages: [Package!]!
+}
+```
+
+```haskell
+query {
+  helloIsAnyoneHome
+}
+```
+
+^ - If you ask for it, it's a field.
+
+^ - Including query.
+
+
 # Mutations
 
-^ - Just Objects
+```haskell
+mutation {
+  addTodo(description: "Learn GraphQL")
+}
+```
 
-^ - Pick one: `query`, `mutation`, `subscription`
+- Just Objects
+
+- Pick one: `query`, `mutation`, `subscription`
 
 # `dillonkearns/elm-graphql`
 
