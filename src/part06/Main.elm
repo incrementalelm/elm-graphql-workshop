@@ -96,12 +96,23 @@ main =
 
 
 | Header
-    Pipelines
+    Method 2: Pipelines
 
 | List
     -> Convert the current {Code|map6} into a pipeline.
     -> Add one more field to the pipeline.
     (?) How does this error message compare to the {Code|mapN} message?
+
+
+| Header
+    Error Messages
+
+| List
+    -> Duplicate the {Code|weatherSelection} under a different name. Change the copied code to use a {Code|map6} so you can see them side-by-side.
+    (?) How do the two versions compare?
+    -> Cause an error in both the original and the duplicate by changing the types within your {Code|CurrentWeather} type alias definition. Try changing {Code|temperature: Float} to {Code|temperature: String}.
+    (?) How do the messages themselves differ?
+    (?) Do the error messages point to different lines of code? If so, why?
 """
             }
         }
