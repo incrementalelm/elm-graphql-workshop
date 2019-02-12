@@ -81,7 +81,7 @@ main =
 
 | List
     -> Add the {Code|name}s for each {Code|author} to the previous query
-    -> Now get the names of all packages by each author from {Code|favoritePackages}. *Hint*: review the schema diagram below if you get stuck.
+    -> Now get the titles of all packages by each author from {Code|favoritePackages}. *Hint*: review the schema diagram below if you get stuck.
     (?) What are some other examples of data you could request by traversing relations like this, taking advantage of the /graph/ part of GraphQL?
 
 <>
