@@ -24,6 +24,34 @@ type Query {
 
 ^ - Sometimes null
 
+# Fields
+
+```haskell
+type Query {
+  helloIsAnyoneHome: String
+}
+```
+
+```haskell
+query {
+  helloIsAnyoneHome
+}
+```
+
+```javascript
+{
+  "data": {
+    "helloIsAnyoneHome": "One sec, I'll be right there!"
+  }
+}
+```
+
+^ #### Schema Definition Language (`SDL`)
+
+^ #### GraphQL Query (`gql`)
+
+^ #### Response (`JSON`)
+
 # Nullability
 
 ```haskell
