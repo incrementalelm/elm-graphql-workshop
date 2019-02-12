@@ -70,7 +70,7 @@ main =
         , update = update
         , queryString = Document.serializeQuery query
         , instructions =
-            { title = "Nested Selection Sets"
+            { title = "Transforming Selection Sets"
             , body = """Wow, that's a lot of {Code|()}'s! Unless you can scan a screen as fast as Commander Data from Star Trek, you probably don't find those too interesting. But it does represent something interesting. The total number of Elm 0.19 packages!
 
 
