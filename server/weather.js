@@ -13,15 +13,15 @@ const typeDefs = gql`
 
   type CurrentWeather {
     temperature: Float!
-    location: Location!
-  }
-
-  type Location {
     city: String!
     country: String!
     lat: Float!
     lon: Float!
-    tz_id: String!
+    tzId: String!
+    localTime: Int!
+    updatedAt: Int!
+    windSpeed: Float!
+    windDirection: String!
   }
 `;
 const CURRENT_WEATHER_URL = "http://api.apixu.com/v1/current.json";
@@ -36,10 +36,15 @@ const resolvers = {
   },
   CurrentWeather: {
     temperature: response => response.current.temp_c,
-    location: response => response.location
-  },
-  Location: {
-    city: location => location.name
+    city: response => response.location.name,
+    country: response => response.location.country,
+    lat: response => response.location.lat,
+    lon: response => response.location.lon,
+    tzId: response => response.location.tz_id,
+    localTime: response => response.location.localtime_epoch,
+    updatedAt: response => response.current.last_updated_epoch,
+    windSpeed: response => response.current.wind_kph,
+    windDirection: response => response.current.wind_dir
   }
 };
 

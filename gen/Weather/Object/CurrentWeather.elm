@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Object.CurrentWeather exposing (location, temperature)
+module Weather.Object.CurrentWeather exposing (city, country, lat, localTime, lon, temperature, tzId, updatedAt, windDirection, windSpeed)
 
 import Graphql.Internal.Builder.Argument as Argument exposing (Argument)
 import Graphql.Internal.Builder.Object as Object
@@ -26,6 +26,54 @@ temperature =
 
 
 {-| -}
-location : SelectionSet decodesTo Weather.Object.Location -> SelectionSet decodesTo Weather.Object.CurrentWeather
-location object_ =
-    Object.selectionForCompositeField "location" [] object_ identity
+city : SelectionSet String Weather.Object.CurrentWeather
+city =
+    Object.selectionForField "String" "city" [] Decode.string
+
+
+{-| -}
+country : SelectionSet String Weather.Object.CurrentWeather
+country =
+    Object.selectionForField "String" "country" [] Decode.string
+
+
+{-| -}
+lat : SelectionSet Float Weather.Object.CurrentWeather
+lat =
+    Object.selectionForField "Float" "lat" [] Decode.float
+
+
+{-| -}
+lon : SelectionSet Float Weather.Object.CurrentWeather
+lon =
+    Object.selectionForField "Float" "lon" [] Decode.float
+
+
+{-| -}
+tzId : SelectionSet String Weather.Object.CurrentWeather
+tzId =
+    Object.selectionForField "String" "tzId" [] Decode.string
+
+
+{-| -}
+localTime : SelectionSet Int Weather.Object.CurrentWeather
+localTime =
+    Object.selectionForField "Int" "localTime" [] Decode.int
+
+
+{-| -}
+updatedAt : SelectionSet Int Weather.Object.CurrentWeather
+updatedAt =
+    Object.selectionForField "Int" "updatedAt" [] Decode.int
+
+
+{-| -}
+windSpeed : SelectionSet Float Weather.Object.CurrentWeather
+windSpeed =
+    Object.selectionForField "Float" "windSpeed" [] Decode.float
+
+
+{-| -}
+windDirection : SelectionSet String Weather.Object.CurrentWeather
+windDirection =
+    Object.selectionForField "String" "windDirection" [] Decode.string

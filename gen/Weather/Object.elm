@@ -2,12 +2,8 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Object exposing (CurrentWeather(..), Location(..))
+module Weather.Object exposing (CurrentWeather(..))
 
 
 type CurrentWeather
     = CurrentWeather
-
-
-type Location
-    = Location
