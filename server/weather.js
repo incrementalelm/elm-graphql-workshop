@@ -4,6 +4,8 @@ const _ = require("lodash");
 
 const key = "4a6d4fbbebab4dbdb91151515191202";
 
+let cachedWeather = null;
+
 const typeDefs = gql`
   type Query {
     currentWeather: CurrentWeather!
@@ -26,7 +28,10 @@ const CURRENT_WEATHER_URL = "http://api.apixu.com/v1/current.json";
 const resolvers = {
   Query: {
     currentWeather: () => {
-      return get(CURRENT_WEATHER_URL, { q: "Oslo" });
+      if (!cachedWeather) {
+        cachedWeather = get(CURRENT_WEATHER_URL, { q: "Oslo" });
+      }
+      return cachedWeather;
     }
   },
   CurrentWeather: {
