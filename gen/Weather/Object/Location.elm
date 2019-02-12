@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Object.CurrentWeather exposing (location, temperature)
+module Weather.Object.Location exposing (city, country, lat, lon, tz_id)
 
 import Graphql.Internal.Builder.Argument as Argument exposing (Argument)
 import Graphql.Internal.Builder.Object as Object
@@ -20,12 +20,30 @@ import Weather.Union
 
 
 {-| -}
-temperature : SelectionSet Float Weather.Object.CurrentWeather
-temperature =
-    Object.selectionForField "Float" "temperature" [] Decode.float
+city : SelectionSet String Weather.Object.Location
+city =
+    Object.selectionForField "String" "city" [] Decode.string
 
 
 {-| -}
-location : SelectionSet decodesTo Weather.Object.Location -> SelectionSet decodesTo Weather.Object.CurrentWeather
-location object_ =
-    Object.selectionForCompositeField "location" [] object_ identity
+country : SelectionSet String Weather.Object.Location
+country =
+    Object.selectionForField "String" "country" [] Decode.string
+
+
+{-| -}
+lat : SelectionSet Float Weather.Object.Location
+lat =
+    Object.selectionForField "Float" "lat" [] Decode.float
+
+
+{-| -}
+lon : SelectionSet Float Weather.Object.Location
+lon =
+    Object.selectionForField "Float" "lon" [] Decode.float
+
+
+{-| -}
+tz_id : SelectionSet String Weather.Object.Location
+tz_id =
+    Object.selectionForField "String" "tz_id" [] Decode.string

@@ -19,7 +19,7 @@ type alias Response =
 
 query : SelectionSet Response RootQuery
 query =
-    Query.currentWeatherByCityName identity { name = "Oslo" } Weather.Object.CurrentWeather.temp
+    Query.currentWeather Weather.Object.CurrentWeather.temperature
 
 
 makeRequest : Cmd Msg

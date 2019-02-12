@@ -11,6 +11,16 @@ const typeDefs = gql`
 
   type CurrentWeather {
     temperature: Float!
+    location: Location!
+  }
+
+  type Location {
+    city: String!
+    country: String!
+    lat: Float!
+    lon: Float!
+    tz_id: String!
+  }
 `;
 const CURRENT_WEATHER_URL = "http://api.apixu.com/v1/current.json";
 const resolvers = {
@@ -20,7 +30,11 @@ const resolvers = {
     }
   },
   CurrentWeather: {
-    temperature: response => response.current.temp_c
+    temperature: response => response.current.temp_c,
+    location: response => response.location
+  },
+  Location: {
+    city: location => location.name
   }
 };
 

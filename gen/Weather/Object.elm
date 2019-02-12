@@ -2,36 +2,12 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Object exposing (City(..), Clouds(..), Coordinate(..), CurrentWeather(..), Rain(..), Snow(..), Weather(..), Wind(..))
-
-
-type City
-    = City
-
-
-type Clouds
-    = Clouds
-
-
-type Coordinate
-    = Coordinate
+module Weather.Object exposing (CurrentWeather(..), Location(..))
 
 
 type CurrentWeather
     = CurrentWeather
 
 
-type Rain
-    = Rain
-
-
-type Snow
-    = Snow
-
-
-type Weather
-    = Weather
-
-
-type Wind
-    = Wind
+type Location
+    = Location

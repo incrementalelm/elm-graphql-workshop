@@ -2,39 +2,49 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Scalar exposing (Decoders, Upload(..), defaultDecoders, defineDecoders, unwrapDecoders)
+module Weather.Scalar exposing (Codecs, Upload(..), defaultCodecs, defineCodecs, unwrapCodecs, unwrapEncoder)
 
+import Graphql.Codec exposing (Codec)
 import Graphql.Internal.Builder.Object as Object
+import Graphql.Internal.Encode
 import Json.Decode as Decode exposing (Decoder)
+import Json.Encode as Encode
 
 
 type Upload
     = Upload String
 
 
-defineDecoders :
-    { decoderUpload : Decoder decoderUpload }
-    -> Decoders decoderUpload
-defineDecoders definitions =
-    Decoders
-        { decoderUpload = definitions.decoderUpload }
+defineCodecs :
+    { codecUpload : Codec valueUpload }
+    -> Codecs valueUpload
+defineCodecs definitions =
+    Codecs definitions
 
 
-unwrapDecoders :
-    Decoders decoderUpload
-    -> { decoderUpload : Decoder decoderUpload }
-unwrapDecoders (Decoders unwrappedDecoders) =
-    unwrappedDecoders
+unwrapCodecs :
+    Codecs valueUpload
+    -> { codecUpload : Codec valueUpload }
+unwrapCodecs (Codecs unwrappedCodecs) =
+    unwrappedCodecs
 
 
-type Decoders decoderUpload
-    = Decoders (RawDecoders decoderUpload)
+unwrapEncoder getter (Codecs unwrappedCodecs) =
+    (unwrappedCodecs |> getter |> .encoder) >> Graphql.Internal.Encode.fromJson
 
 
-type alias RawDecoders decoderUpload =
-    { decoderUpload : Decoder decoderUpload }
+type Codecs valueUpload
+    = Codecs (RawCodecs valueUpload)
 
 
-defaultDecoders : RawDecoders Upload
-defaultDecoders =
-    { decoderUpload = Object.scalarDecoder |> Decode.map Upload }
+type alias RawCodecs valueUpload =
+    { codecUpload : Codec valueUpload }
+
+
+defaultCodecs : RawCodecs Upload
+defaultCodecs =
+    { codecUpload =
+        { encoder = \(Upload raw) -> Encode.string raw
+        , decoder = Object.scalarDecoder |> Decode.map Upload
+        }
+    }

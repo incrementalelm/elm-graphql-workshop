@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.Query exposing (CurrentWeatherByCityNameOptionalArguments, CurrentWeatherByCityNameRequiredArguments, currentWeatherByCityName)
+module Weather.Query exposing (currentWeather)
 
 import Graphql.Internal.Builder.Argument as Argument exposing (Argument)
 import Graphql.Internal.Builder.Object as Object
@@ -15,32 +15,11 @@ import Weather.InputObject
 import Weather.Interface
 import Weather.Object
 import Weather.Scalar
-import Weather.ScalarDecoders
+import Weather.ScalarCodecs
 import Weather.Union
 
 
-type alias CurrentWeatherByCityNameOptionalArguments =
-    { countryCode : OptionalArgument String }
-
-
-type alias CurrentWeatherByCityNameRequiredArguments =
-    { name : String }
-
-
-{-|
-
-  - name -
-  - countryCode -
-
--}
-currentWeatherByCityName : (CurrentWeatherByCityNameOptionalArguments -> CurrentWeatherByCityNameOptionalArguments) -> CurrentWeatherByCityNameRequiredArguments -> SelectionSet decodesTo Weather.Object.CurrentWeather -> SelectionSet decodesTo RootQuery
-currentWeatherByCityName fillInOptionals requiredArgs object_ =
-    let
-        filledInOptionals =
-            fillInOptionals { countryCode = Absent }
-
-        optionalArgs =
-            [ Argument.optional "countryCode" filledInOptionals.countryCode Encode.string ]
-                |> List.filterMap identity
-    in
-    Object.selectionForCompositeField "currentWeatherByCityName" (optionalArgs ++ [ Argument.required "name" requiredArgs.name Encode.string ]) object_ identity
+{-| -}
+currentWeather : SelectionSet decodesTo Weather.Object.CurrentWeather -> SelectionSet decodesTo RootQuery
+currentWeather object_ =
+    Object.selectionForCompositeField "currentWeather" [] object_ identity

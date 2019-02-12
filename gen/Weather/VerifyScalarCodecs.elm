@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Weather.VerifyScalarDecoders exposing (placeholder)
+module Weather.VerifyScalarCodecs exposing (placeholder)
 
 
 placeholder : String
