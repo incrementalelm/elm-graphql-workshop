@@ -90,10 +90,10 @@ Now let's specify the details we want for each Elm {Code|Package}.
 
 
 | List
-    -> Instead of {Code|SelectionSet.empty}, get the {Code|name} of each {Code|Package}.
+    -> Instead of {Code|SelectionSet.empty}, get the {Code|title} of each {Code|Package}.
 
 
-Taking tiny steps is essential to moving quickly and building up maintainable code. We want to fetch more than just the Package's {Code|name}. But in order to take the quickest path to the */next compiling state/*, our first step fetching one Field is a great start.
+Taking tiny steps is essential to moving quickly and building up maintainable code. We want to fetch more than just the Package's {Code|title}. But in order to take the quickest path to the */next compiling state/*, our first step fetching one Field is a great start.
 """
             }
         }
