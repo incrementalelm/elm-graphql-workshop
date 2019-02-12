@@ -93,7 +93,7 @@ type Package {
 <br>
 <br>
 
-````haskell
+`````haskell
 query {
   favoritePackages {
     title
@@ -111,7 +111,43 @@ query {
 
 # -
 
-![fit ](img/query2.jpg)
+![fit original](img/query2.jpg)
+
+<br>
+<br>
+<br>
+
+````haskell
+query {
+  favoritePackages {
+    title
+  }
+}
+```
+
+#### [`run`](http://localhost:4000/?query=query%20%7B%0A%20%20favoritePackages%20%7B%0A%20%20%20%20title%0A%20%20%7D%0A%7D%0A)
+
+^ - Data shape matches request
+# -
+
+![fit original](img/query2.jpg)
+
+[.code-highlight: 4]
+
+<br>
+<br>
+<br>
+
+````haskell
+query {
+  favoritePackages {
+    title
+    author { name }
+  }
+}
+```
+
+#### [`run`](http://localhost:4000/?query=query%20%7B%0A%20%20favoritePackages%20%7B%0A%20%20%20%20title%0A%20%20%7D%0A%7D%0A)
 
 ^ - Data shape matches request
 
@@ -132,3 +168,6 @@ query {
 - No code generation
 - Generate code for specific query
 - Generate code for whole schema
+
+# Fin
+`````
