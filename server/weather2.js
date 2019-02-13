@@ -8,7 +8,7 @@ let cachedWeather = null;
 
 const typeDefs = gql`
   type Query {
-    currentWeather(city: String!, units: TemperatureUnit): CurrentWeather!
+    currentWeather(city: String!, units: TemperatureUnit!): CurrentWeather!
   }
 
   enum TemperatureUnit {
