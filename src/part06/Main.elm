@@ -91,8 +91,9 @@ main =
 
 
 | List
+    -> Pick a new field to add to the {Code|currentWeather} selection. Change the {Code|CurrentWeather} alias first. Look up the type of the field you're going to add and use that information to change the record alias.
     -> Add one more piece of data from the {Code|currentWeather} to your request by turning {Code|map5} into a {Code|map6}.
-    (?) What kind of error message do you get? How precise is it?
+    (?) How was the experience of finding the field's type? What other ways could you look it up?
 
 
 | Header
@@ -101,7 +102,6 @@ main =
 | List
     -> Convert the current {Code|map6} into a pipeline.
     -> Add one more field to the pipeline.
-    (?) How does this error message compare to the {Code|mapN} message?
 
 
 | Header
