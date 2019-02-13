@@ -246,5 +246,16 @@ mutation {
 - Generate code for specific query
 - Generate code for whole schema
 
-# Fin
+
+# Exercise 00
+
+TODO: Download Link
+
+```bash
+cd /path/to/repo
+npm install
+./run.sh src/part00
+```
+
+# Thank You!
 ``````
