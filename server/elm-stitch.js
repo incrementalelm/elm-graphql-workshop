@@ -100,6 +100,11 @@ const githubLink = setContext(request => ({
   }
 })).concat(new HttpLink({ uri: "https://api.github.com/graphql", fetch }));
 
+// const executableExtendedSchema = makeExecutableSchema({
+//   resolvers: extendedResolvers,
+//   typeDefs: extendedTypeDefs
+// });
+
 async function startServer() {
   const githubSchema = await introspectSchema(githubLink);
 
@@ -107,8 +112,40 @@ async function startServer() {
     schema: githubSchema,
     link: githubLink
   });
+
+  const extendedTypeDefs = `
+  extend type Package {
+    repository: Repository!
+  }
+  `;
+
+  const extendedResolvers = {
+    Package: {
+      repository: {
+        fragment: "... on Package { author { name } title }",
+        resolve(elmPackage, args, context, info) {
+          console.log("elmPackage", elmPackage);
+          return info.mergeInfo.delegateToSchema({
+            schema: githubExecutableSchema,
+            operation: "query",
+            fieldName: "repository",
+            args: {
+              owner: elmPackage.author.name,
+              name: elmPackage.title
+            },
+            context,
+            info
+          });
+        }
+      }
+    }
+  };
+
   const server = new ApolloServer({
-    schema: mergeSchemas({ schemas: [githubExecutableSchema, elmSchema] })
+    schema: mergeSchemas({
+      schemas: [githubExecutableSchema, elmSchema, extendedTypeDefs],
+      resolvers: extendedResolvers
+    })
   });
 
   await server.listen().then(({ url }) => {
