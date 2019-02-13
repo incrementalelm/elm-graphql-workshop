@@ -124,7 +124,6 @@ async function startServer() {
       repository: {
         fragment: "... on Package { author { name } title }",
         resolve(elmPackage, args, context, info) {
-          console.log("elmPackage", elmPackage);
           return info.mergeInfo.delegateToSchema({
             schema: githubExecutableSchema,
             operation: "query",
