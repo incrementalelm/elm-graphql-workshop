@@ -4,7 +4,9 @@ let packages = require("./elm-package-cache.json");
 const {
   introspectSchema,
   makeRemoteExecutableSchema,
+  FilterRootFields,
   makeExecutableSchema,
+  transformSchema,
   mergeSchemas
 } = require("graphql-tools");
 
@@ -108,10 +110,15 @@ const githubLink = setContext(request => ({
 async function startServer() {
   const githubSchema = await introspectSchema(githubLink);
 
-  const githubExecutableSchema = makeRemoteExecutableSchema({
+  const githubExecutableSchemaUnfiltered = makeRemoteExecutableSchema({
     schema: githubSchema,
     link: githubLink
   });
+
+  const githubExecutableSchema = transformSchema(
+    githubExecutableSchemaUnfiltered,
+    [new FilterRootFields((operation, rootField) => rootField === "repository")]
+  );
 
   const extendedTypeDefs = `
   extend type Package {
