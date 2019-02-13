@@ -257,6 +257,8 @@ npm install
 ./run.sh src/part00
 ```
 
+[http://localhost:8000](http://localhost:8000)
+
 # Exercise 01
 
 Walk Before You Run
@@ -364,6 +366,39 @@ type User {
 - Except that it can't be recursive
 - Allows you to state that a group must either be there or not
 - Still can't express union types fully (like one of (first,last))
+
+# Required Argument Code Gen
+
+```elm
+currentWeather : CurrentWeatherRequiredArguments
+    -> SelectionSet decodesTo Weather.Object.CurrentWeather
+    -> SelectionSet decodesTo RootQuery
+
+type alias CurrentWeatherRequiredArguments = { someArgument : String, ... }
+```
+
+# Exercise 07
+
+```bash
+./run src/part07
+```
+
+# Optional Argument Code Gen
+
+```elm
+currentWeather : (CurrentWeatherOptionalArguments -> CurrentWeatherOptionalArguments)
+    -> CurrentWeatherRequiredArguments
+    -> SelectionSet decodesTo Weather.Object.CurrentWeather
+    -> SelectionSet decodesTo RootQuery
+
+type alias CurrentWeatherRequiredArguments = { someArgument : String, ... }
+```
+
+# Exercise 08
+
+```bash
+./run src/part08
+```
 
 
 # Thank You!
