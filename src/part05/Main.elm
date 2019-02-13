@@ -1,7 +1,5 @@
 module Main exposing (main)
 
-import Books.Object.Book
-import Books.Query as Query
 import Browser
 import Graphql.Document as Document
 import Graphql.Http
