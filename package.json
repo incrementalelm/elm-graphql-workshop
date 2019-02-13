@@ -21,5 +21,10 @@
     "graphql": "^0.13.2",
     "lodash": "^4.17.11",
     "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "apollo-link-context": "^1.0.14",
+    "apollo-link-http": "^1.5.11",
+    "node-fetch": "^2.3.0"
   }
 }

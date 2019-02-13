@@ -1,6 +1,36 @@
 const { ApolloServer, gql } = require("apollo-server");
 const axios = require("axios");
 let packages = require("./elm-package-cache.json");
+const {
+  introspectSchema,
+  makeRemoteExecutableSchema
+} = require("graphql-tools");
+
+const { setContext } = require("apollo-link-context");
+const { HttpLink } = require("apollo-link-http");
+const fetch = require("node-fetch");
+
+const githubLink = setContext(request => ({
+  headers: {
+    Authorization: `Bearer dbd4c239b0bbaa40ab0ea291fa811775da8f5b59`
+  }
+})).concat(new HttpLink({ uri: "https://api.github.com/graphql", fetch }));
+
+async function startServer() {
+  const githubSchema = await introspectSchema(githubLink);
+
+  const githubExecutableSchema = makeRemoteExecutableSchema({
+    schema: githubSchema,
+    link: githubLink
+  });
+  const server = new ApolloServer({ schema: githubExecutableSchema });
+
+  await server.listen().then(({ url }) => {
+    console.log(`🚀  Server ready at ${url}`);
+  });
+}
+
+startServer();
 
 axios
   .get("https://package.elm-lang.org/search.json")
@@ -82,14 +112,10 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  engine: process.env.ENGINE_API_KEY && {
-    apiKey: process.env.ENGINE_API_KEY
-  }
-});
-
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+// const server = new ApolloServer({
+//   typeDefs,
+//   resolvers,
+//   engine: process.env.ENGINE_API_KEY && {
+//     apiKey: process.env.ENGINE_API_KEY
+//   }
+// });
