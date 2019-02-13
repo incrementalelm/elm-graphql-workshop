@@ -326,6 +326,44 @@ query {
 
 #### [run](https://developer.github.com/v4/explorer/?query=query%20%7B%0A%20%20viewer%20%7B%0A%20%20%20%20avatarUrl(size%3A%2048\)%0A%20%20%7D%0A%7D)
 
+# Non-Scalar Arguments
+
+- How do you abstract a set of arguments?
+
+# Top-Level Arguments
+```haskell
+type Repository {
+  issues(assignee: String, createdBy: String, labels: [String!], ...)
+}
+
+type User {
+  issues(assignee: String, createdBy: String, labels: [String!], ...)
+}
+```
+
+# Input Objects
+```haskell
+input IssueFilters {
+  assignee: String
+  createdBy: String
+  labels: [String!]
+  # ...
+}
+
+type Repository {
+  issues(IssueFilters)
+}
+
+type User {
+  issues(assignee: String, createdBy: String, labels: [String!], ...)
+}
+```
+
+- Definition: a group of scalars
+- Exactly like a GraphQL Object
+- Except that it can't be recursive
+- Allows you to state that a group must either be there or not
+- Still can't express union types fully (like one of (first,last))
 
 
 # Thank You!
