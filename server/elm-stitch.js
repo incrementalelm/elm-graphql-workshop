@@ -92,14 +92,6 @@ const resolvers = {
   }
 };
 
-// const server = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-//   engine: process.env.ENGINE_API_KEY && {
-//     apiKey: process.env.ENGINE_API_KEY
-//   }
-// });
-
 const elmSchema = makeExecutableSchema({ resolvers, typeDefs });
 
 const githubLink = setContext(request => ({
