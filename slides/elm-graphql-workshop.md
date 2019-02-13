@@ -257,5 +257,65 @@ npm install
 ./run.sh src/part00
 ```
 
+# Exercise 01
+
+Walk Before You Run
+
+```
+./run.sh src/part01
+```
+
+
+# GraphQL Arguments
+
+```haskell
+query {
+  viewer {
+    avatarUrl
+  }
+}
+```
+
+# GraphQL Arguments
+
+```haskell
+query {
+  viewer {
+    avatarUrl(size: 48)
+  }
+}
+```
+
+```haskell
+type User {
+  avatarUrl(size: Int): URI!
+}
+```
+
+#### [run](https://developer.github.com/v4/explorer/?query=query%20%7B%0A%20%20viewer%20%7B%0A%20%20%20%20avatarUrl(size%3A%2048\)%0A%20%20%7D%0A%7D)
+
+# Required Arguments
+
+```haskell
+type Query {
+  repository(owner: String!, name: String!): Repository
+}
+```
+
+```haskell
+query {
+  repository {
+    name
+  }
+}
+```
+
+#### [run](https://developer.github.com/v4/explorer/?query=query%20%7B%0A%20%20repository%20%7B%0A%20%20%20%20name%0A%20%20%7D%0A%7D)
+
+^ - What's going to happen?
+
+^ - By the way, way is Repository nullable?
+
+
 # Thank You!
 ``````
