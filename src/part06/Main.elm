@@ -87,7 +87,7 @@ main =
 
 
 | Header
-    Method 1: Map{Code|<n + 1>}
+    Method 1: Map<n + 1>
 
 
 | List
