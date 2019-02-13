@@ -11,6 +11,9 @@ function get(url, queries = {}) {
   return axios.get(getUrl).then(({ data }) => data);
 }
 
+const CURRENT_WEATHER_URL = "http://api.apixu.com/v1/current.json";
+
 module.exports = {
-  get
+  get,
+  CURRENT_WEATHER_URL
 };

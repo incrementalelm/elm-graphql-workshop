@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server");
-const { get } = require("./helpers");
+const { get, CURRENT_WEATHER_URL } = require("./helpers");
 
 const key = "4a6d4fbbebab4dbdb91151515191202";
 
@@ -31,7 +31,6 @@ const typeDefs = gql`
 
 let units;
 
-const CURRENT_WEATHER_URL = "http://api.apixu.com/v1/current.json";
 const resolvers = {
   Query: {
     currentWeather: (parent, args) => {

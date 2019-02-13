@@ -1,6 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server");
-const axios = require("axios");
-const _ = require("lodash");
+const { get, CURRENT_WEATHER_URL } = require("./helpers");
 
 const key = "4a6d4fbbebab4dbdb91151515191202";
 
@@ -24,12 +23,11 @@ const typeDefs = gql`
     windDirection: String!
   }
 `;
-const CURRENT_WEATHER_URL = "http://api.apixu.com/v1/current.json";
 const resolvers = {
   Query: {
     currentWeather: () => {
       if (!cachedWeather) {
-        cachedWeather = get(CURRENT_WEATHER_URL, { q: "Oslo" });
+        cachedWeather = get(CURRENT_WEATHER_URL, { q: "Oslo", key });
       }
       return cachedWeather;
     }
@@ -47,16 +45,6 @@ const resolvers = {
     windDirection: response => response.current.wind_dir
   }
 };
-
-function get(url, queries = {}) {
-  const queryString = _.chain({ ...queries, key })
-    .toPairs()
-    .map(p => p.join("="))
-    .join("&")
-    .value();
-  const getUrl = `${url}?${queryString}`;
-  return axios.get(getUrl).then(({ data }) => data);
-}
 
 const server = new ApolloServer({
   typeDefs,
