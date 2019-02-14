@@ -241,6 +241,19 @@ mutation {
 
 # `dillonkearns/elm-graphql`
 
+# Avoidable Uncertainty
+
+![original](img/run-fix.jpg)
+
+# With Certainty
+
+![original](img/compile-fix.jpg)
+
+# Types Without Borders
+
+![original 100% right](img/types-without-borders-youtube.jpeg)
+
+
 # GraphQL Client Strategies
 
 - No code generation
