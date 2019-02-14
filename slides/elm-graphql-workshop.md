@@ -403,6 +403,7 @@ type alias CurrentWeatherRequiredArguments = { someArgument : String, ... }
 
 - `a -> a`
 - How would you define this function?
+- Get it compiling, then get it right
 
 # The `OptionalArgument` type
 
