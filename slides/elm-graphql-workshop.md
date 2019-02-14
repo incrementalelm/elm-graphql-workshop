@@ -205,7 +205,7 @@ query {
 
 ![fit ](img/query3.jpg)
 
-# Everything Is A Fields
+# Everything Is A Field
 
 ```haskell
 type Query {
