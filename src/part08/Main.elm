@@ -9,10 +9,10 @@ import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, w
 import Helpers.Main
 import RemoteData exposing (RemoteData)
 import Time
-import WeatherTwo.Enum.TemperatureUnit
-import WeatherTwo.Object
-import WeatherTwo.Object.CurrentWeather as CurrentWeather
-import WeatherTwo.Query as Query
+import WeatherOptionalArgs.Enum.TemperatureUnit
+import WeatherOptionalArgs.Object
+import WeatherOptionalArgs.Object.CurrentWeather as CurrentWeather
+import WeatherOptionalArgs.Query as Query
 
 
 type alias Response =
@@ -26,7 +26,7 @@ query =
     SelectionSet.succeed hardcodedWeather
 
 
-weatherSelection : SelectionSet CurrentWeather WeatherTwo.Object.CurrentWeather
+weatherSelection : SelectionSet CurrentWeather WeatherOptionalArgs.Object.CurrentWeather
 weatherSelection =
     SelectionSet.map5 CurrentWeather
         CurrentWeather.temperature
@@ -102,6 +102,12 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Optional Arguments"
-            , body = """"""
+            , body = """The schema has changed to use a default argument for units. This exercise is going to look exactly like the last one, except that you'll be using an optional argument in one spot.
+
+
+| List
+    (?) Take a look at the schema in the docs explorer. What are the pros and cons of the new design, using an optional arg for units?
+    -> Take the smallest possible step to change the hardcoded data to retrieve actual data. Based on the type signature of {Code|currentWeather}, how do you pass in no optional arguments?
+    -> Now that you're fetching some data with the default unit, pass in an optional argument to say you want to use {Code|Fahrenheit} instead of the default units."""
             }
         }
