@@ -108,6 +108,15 @@ main =
 | List
     (?) Take a look at the schema in the docs explorer. What are the pros and cons of the new design, using an optional arg for units?
     -> Take the smallest possible step to change the hardcoded data to retrieve actual data. Based on the type signature of {Code|currentWeather}, how do you pass in no optional arguments?
-    -> Now that you're fetching some data with the default unit, pass in an optional argument to say you want to use {Code|Fahrenheit} instead of the default units."""
+    -> Now that you're fetching some data with the default unit, pass in an optional argument to say you want to use {Code|Fahrenheit} instead of the default units.
+
+| Header
+    Annotations
+
+Sometimes you will have some logic around supplying optional arguments, or you'll want to re-use or abstract optional arguments. Let's try.
+
+| List
+    -> Extract the optional arguments function into a top-level function
+    -> Add a type annotation. There is a type alias provided  by the generated code."""
             }
         }

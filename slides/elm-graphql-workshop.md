@@ -394,6 +394,40 @@ currentWeather : (CurrentWeatherOptionalArguments -> CurrentWeatherOptionalArgum
 type alias CurrentWeatherRequiredArguments = { someArgument : String, ... }
 ```
 
+- Helps to memorize this order
+- Always the same
+- Any argument may be missing
+- How do you give no optional arguments?
+
+# `identity`
+
+- `a -> a`
+- How would you define this function?
+
+# The `OptionalArgument` type
+
+```elm
+type OptionalArgument a
+    = Present a
+    | Absent
+    | Null
+```
+
+- Why not just a Maybe?
+- [`OptionalArgument` docs](https://package.elm-lang.org/packages/dillonkearns/elm-graphql/latest/Graphql-OptionalArgument)
+
+# Supplying Optional Args
+
+```elm
+-- Null, Present, Absent
+import Graphql.OptionalArgument exposing (OptionalArgument(..))
+
+Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
+```
+
+- Which is the default if you don't pass it in?
+- [Optional Args in a Language Without Optional Args](https://medium.com/@zenitram.oiram/graphqelm-optional-arguments-in-a-language-without-optional-arguments-d8074ca3cf74)
+
 # Exercise 08
 
 ```bash
