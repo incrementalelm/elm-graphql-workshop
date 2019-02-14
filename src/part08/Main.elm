@@ -116,7 +116,7 @@ main =
 Sometimes you will have some logic around supplying optional arguments, or you'll want to re-use or abstract optional arguments. Let's try.
 
 | List
-    -> Extract the optional arguments function into a top-level function
+    -> Extract the optional arguments function into a top-level function.
     -> Add a type annotation. There is a type alias provided  by the generated code."""
             }
         }
