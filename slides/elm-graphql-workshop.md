@@ -73,6 +73,18 @@ type Query {
 
 ^ - Built-in vs. ad-hoc type checking.
 
+# Scalars Are Leaves
+
+- String
+- Int
+- Float
+- Boolean
+- ID
+- Custom Scalars (URL, GitSha, Miles)
+- Enum
+
+^ - More on custom scalars later.
+
 # Enums
 
 ```haskell
@@ -81,17 +93,6 @@ enum Order {
   DESCENDING
 }
 ```
-
-# Scalars Are Leaves
-
-- Enum
-- String
-- Int
-- Float
-- Boolean
-- ID
-
-^ - More on custom scalars later.
 
 # Objects
 
