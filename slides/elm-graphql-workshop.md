@@ -8,6 +8,26 @@ slide-dividers: #
 
 ![fit](img/opening.jpg)
 
+# GraphQL Intro
+
+- Created by Facebook
+- [Who's using it?](https://graphql.org/users/)
+- Perfect fit for Elm
+- Under-fetching & over-fetching
+- The REST dance
+- Graphiql
+- Introspection
+- Documentation navigation
+
+# Challenges
+
+- Caching
+  - GET versus POST
+  - Flexible payloads
+  - Servers are catching up to new practices
+- N+1 queries
+  - Solves the problem in some ways, makes it harder in others
+
 # GraphQL Concepts
 
 - SDL (Schema Definition Language)
