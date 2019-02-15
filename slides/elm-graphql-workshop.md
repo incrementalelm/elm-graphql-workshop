@@ -429,7 +429,7 @@ type alias CurrentWeatherRequiredArguments = { someArgument : String, ... }
 # Exercise 07
 
 ```bash
-./run src/part07
+./run.sh src/part07
 ```
 
 # Optional Argument Code Gen
@@ -478,10 +478,10 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 - Which is the default if you don't pass it in?
 - [Optional Args in a Language Without Optional Args](https://medium.com/@zenitram.oiram/graphqelm-optional-arguments-in-a-language-without-optional-arguments-d8074ca3cf74)
 
-# Exercise 08
+# Exercise 08 - Optional Arguments
 
 ```bash
-./run src/part08
+./run.sh src/part08
 ```
 
 # Custom Scalars
@@ -503,6 +503,11 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 - Semantically, it's an ISO-8601 DateTime
 - Contracts => Serializer/Deserializer
 
+# Exercise 09 - Custom Scalars
+
+```bash
+./run.sh src/part09
+```
 
 # Thank You!
 ``````
