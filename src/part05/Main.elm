@@ -107,12 +107,13 @@ There are two contexts in Elm: Types and Values. You can't use a Type as a Value
 
 | List
     (?) Which Types and which Values exist after you define your {Code|type alias User = ...} that didn't before?
+    -> Get the Ellie below to compile using a {Code|type alias}.
 
 | Ellie
-    4BTH7sy8zRWa1
+    4KmQTYjGnHLa1
 
 | List
-    -> Try using `type alias Person = String`. Does it compile? What does Elm define in this case?
+    -> Try doing the Ellie again with `type alias Person = String Int`. Does it compile? Which Types and Values does Elm define in this case?
 """
             }
         }
