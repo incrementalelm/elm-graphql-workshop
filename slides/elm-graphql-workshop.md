@@ -338,7 +338,23 @@ Walk Before You Run
 
 ![inline 60%](img/query3.jpg)
 
+# Exercise 03 - Transforming Selection Sets
 
+```bash
+./run.sh src/part03
+```
+
+# Exercise 04 - Combining
+
+```bash
+./run.sh src/part04
+```
+
+# Exercise 05 - Deconstructing Constructors
+
+```bash
+./run.sh src/part05
+```
 # Required Arguments
 
 ```haskell

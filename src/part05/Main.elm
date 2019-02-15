@@ -90,16 +90,23 @@ Okay, so our {Code|buildPerson} function is functionally the same thing as an El
 That's right, Elm doesn't let you name your functions starting with a capital letter. So Elm Constructors are the only functions in Elm which start with a capital letter. And you define them in a special way: by defining a type.
 
 
-To wrap up, there are 2 ways that you can define a Type Constructor in Elm:
+| Header
+    Elm Constructors
+
+There are 2 ways that you can define a Type Constructor in Elm:
 
 | List
     # *Record Type Aliases* Example: {Code|type alias User = \\{ name : String, id : Int \\}}. Now the type of the {Code|User} function Elm defines for us is {Code|(String -> Int -> User)}.
 
     # *Custom Type Constructors* Example: {Code|type User = Guest \\| LoggedInUser String Int}. Now the type of the {Code|LoggedInUser} function Elm defines for us is {Code|String -> Int -> User}. Note that we have two things here. A function called {Code|LoggedInUser}, and a /type/ called {Code|User}. You can't use {Code|User} as a function, nor can you use {Code|LoggedInUser} as a type.
 
+| Header
+    Types and Values
+
+There are two contexts in Elm: Types and Values. You can't use a Type as a Value, and you can't use a Value as a type! They're totally separate.
+
 | List
-    (?) What Elm things exist after you define your {Code|type alias} that didn't before?
-    (?) In what context can these things be used?
+    (?) Which Types and which Values exist after you define your {Code|type alias User = ...} that didn't before?
 
 | Ellie
     4BTH7sy8zRWa1
