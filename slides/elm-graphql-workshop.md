@@ -653,6 +653,35 @@ heroUnionSelection =
         }
 ```
 
+# Data Modeling Example
+
+JavaScript
+
+```javascript
+{
+    hasError: true,
+    errorMessage : 'Error message from server',
+    doneLoading: true,
+    data: null
+}
+```
+
+---
+
+![fit](img/remote-data-truth-table.png)
+
+---
+
+# RemoteData
+
+```elm
+type RemoteData data
+    = NotAsked
+    | Loading
+    | Failure Http.Error
+    | Success data
+```
+
 # Subscriptions
 
 # Up-To-Date Generated Code
