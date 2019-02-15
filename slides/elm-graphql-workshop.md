@@ -484,6 +484,25 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 ./run src/part08
 ```
 
+# Custom Scalars
+
+- What is the purpose of a scalar?
+  - `Date`
+  - `DateTime`
+  - `GitObjectID`
+  - `HTML`
+  - `URI`
+  - `DateTime`: "An ISO-8601 encoded UTC date string."
+
+# Custom Scalars Are Contracts
+
+- Custom Scalar type wrappers by default
+  - `type alias DateTime = DateTime String`
+- Isn't that just a fancy `String`?
+- Yup! Type-wise...
+- Semantically, it's an ISO-8601 DateTime
+- Contracts => Serializer/Deserializer
+
 
 # Thank You!
 ``````
