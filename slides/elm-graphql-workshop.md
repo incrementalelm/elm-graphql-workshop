@@ -355,6 +355,13 @@ Walk Before You Run
 ```bash
 ./run.sh src/part05
 ```
+
+# Exercise 06 - Pipelines
+
+```bash
+./run.sh src/part06
+```
+
 # Required Arguments
 
 ```haskell
@@ -465,7 +472,11 @@ currentWeather : CurrentWeatherRequiredArguments
 type alias CurrentWeatherRequiredArguments = { someArgument : String, ... }
 ```
 
-# Exercise 07
+# Cunningham's Law
+
+- "The best way to get the right answer on the Internet is not to ask a question, it's to post the wrong answer."
+
+# Exercise 07 - Required Arguments
 
 ```bash
 ./run.sh src/part07
