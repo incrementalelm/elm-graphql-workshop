@@ -571,9 +571,66 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 ./run.sh src/part10
 ```
 
-# Tying It All Together
+# Polymorphism in GraphQL
+
+```haskell
+interface Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [Episode]!
+}
+```
+
+```haskell
+type Human implements Character {
+  id: ID!
+  name: String!
+  friends: [Character!]!
+  homePlanet: String!
+}
+
+type Droid implements Character {
+  id: ID!
+  name: String!
+  friends: [Character!]!
+  primaryFunction: String!
+}
+```
+
+
+# Polymorphism in Elm GraphQL
+
+```elm
+type alias HumanOrDroidWithName =
+    { name : String
+    , details : HumanOrDroidDetails
+    }
+
+heroSelection : SelectionSet HumanOrDroidWithName Swapi.Interface.Character
+heroSelection =
+    SelectionSet.map2 HumanOrDroidWithName
+        Character.name
+        (Character.fragments
+            { onHuman = SelectionSet.map HumanDetails Human.homePlanet
+            , onDroid = SelectionSet.map DroidDetails Droid.primaryFunction
+            }
+```
+
+# Subscriptions
+
+# Exercise 12 Tying It All Together
 
 - Schema Stitching
+
+```bash
+./run.sh src/part12
+```
+
+# Feedback
+
+- Anonymous Survey
+  - [tiny.cc/elm-graphql-feedback](http://tiny.cc/elm-graphql-feedback)
 
 
 # Thank You!

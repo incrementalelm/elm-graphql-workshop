@@ -91,6 +91,9 @@ main =
         , queryString = Document.serializeQuery query
         , instructions =
             { title = "Tying It All Together"
-            , body = """"""
+            , body = """Have some fun with this API!
+| List
+    -> Order the packages under the "elm-community" organization by the number of Github stars.
+"""
             }
         }
