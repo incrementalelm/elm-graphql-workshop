@@ -48,10 +48,6 @@ stargazerCount =
             ElmGithub.Object.StargazerConnection.totalCount
 
 
-
-{- you can delete hardcodedWeather -}
-
-
 makeRequest : Cmd Msg
 makeRequest =
     query
@@ -94,7 +90,7 @@ main =
         , update = update
         , queryString = Document.serializeQuery query
         , instructions =
-            { title = "Optional Arguments"
+            { title = "Tying It All Together"
             , body = """"""
             }
         }
