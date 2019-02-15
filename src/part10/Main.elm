@@ -93,6 +93,14 @@ Let's try some stacked up imperfections.
 
 | List
     -> Retrieve our {Code|favoritePackages}, and for each package get its {Code|name} and {Code|author}'s name. Make sure there are no {Code|Maybe}s anywhere in your model!
+
+
+| Header
+    Bonus
+
+| List
+    -> Check out a real world GraphQL API: {Link|yelp.com\\/developers\\/graphiql | url = https://www.yelp.com/developers/graphiql }. Explore the types and find some real-world imperfections.
+    (?) How would you improve these imperfections?
 """
             }
         }
