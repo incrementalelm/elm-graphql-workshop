@@ -8,6 +8,10 @@ slide-dividers: #
 
 ![fit](img/opening.jpg)
 
+# Setup
+
+github.com/IncrementalElm/elm-graphql-workshop
+
 # Defining Success
 
 - Introduce yourself to your table
