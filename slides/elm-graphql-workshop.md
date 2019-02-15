@@ -676,5 +676,8 @@ heroUnionSelection =
   - [tiny.cc/elm-graphql-feedback](http://tiny.cc/elm-graphql-feedback)
 
 
-# Thank You!
+# -
+![](img/thank-you.jpg)
+
+# -
 ``````
