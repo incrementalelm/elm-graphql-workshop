@@ -565,5 +565,18 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 ./run.sh src/part09
 ```
 
+# Imperfect Schemas
+
+- Real-world APIs aren't always perfect
+- [yelp.com/developers/graphiql](https://www.yelp.com/developers/graphiql)
+- Play around with the API
+- Look at the types
+- What are some issues?
+
+# Tying It All Together
+
+- Schema Stitching
+
+
 # Thank You!
 ``````
