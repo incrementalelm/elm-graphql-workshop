@@ -309,16 +309,17 @@ npm install
 
 [http://localhost:8000](http://localhost:8000)
 
-# Shortest Path to Compiling
+# Take the SPC
+- Shortest Path to Compile
 
-"Clean code, that works."
 
-- Clean -> Work
-- Work -> Clean
+# Shortest Path to Compile
 
-"Clean code, that works, and compiles!"
-
-- Compile -> Work -> Clean
+- "Clean code, that works."
+  - Clean -> Work
+  - Work -> Clean
+- "Clean code, that works, and compiles!"
+  - Compile -> Work -> Clean
 
 
 # Exercise 01 - Our First Query
