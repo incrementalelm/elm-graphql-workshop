@@ -298,7 +298,8 @@ mutation {
 
 # Exercise 00
 
-TODO: Download Link
+[github.com/IncrementalElm/elm-graphql-workshop](https://github.com/IncrementalElm/elm-graphql-workshop
+)
 
 ```bash
 cd /path/to/repo
