@@ -571,7 +571,7 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 ./run.sh src/part10
 ```
 
-# Polymorphism in GraphQL
+# [Polymorphism in GraphQL](http://elm-graphql.herokuapp.com)
 
 ```haskell
 interface Character {
@@ -615,6 +615,21 @@ heroSelection =
             { onHuman = SelectionSet.map HumanDetails Human.homePlanet
             , onDroid = SelectionSet.map DroidDetails Droid.primaryFunction
             }
+```
+
+# Non-Exhaustive Fragments
+
+```elm
+nonExhaustiveFragment : SelectionSet (Maybe String) Swapi.Union.CharacterUnion
+nonExhaustiveFragment =
+    let
+        maybeFragments =
+            Swapi.Union.CharacterUnion.maybeFragments
+    in
+    Swapi.Union.CharacterUnion.fragments
+        { maybeFragments
+            | onHuman = Human.homePlanet
+        }
 ```
 
 # Subscriptions
