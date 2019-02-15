@@ -565,6 +565,12 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 ./run.sh src/part09
 ```
 
+# Exercise 10 - Imperfect Schemas
+
+```bash
+./run.sh src/part10
+```
+
 # Tying It All Together
 
 - Schema Stitching
