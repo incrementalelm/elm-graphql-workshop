@@ -653,6 +653,14 @@ heroUnionSelection =
         }
 ```
 
+# Up-To-Date Generated Code
+
+- Simple CI check
+- `npm run regenerate-elm-graphql && elm make ...`
+- Every time before your schema goes live
+- Otherwise, exhaustive checks could fail
+
+
 # Data Modeling Example
 
 JavaScript
@@ -683,13 +691,6 @@ type RemoteData data
 ```
 
 # Subscriptions
-
-# Up-To-Date Generated Code
-
-- Simple CI check
-- `npm run regenerate-elm-graphql && elm make ...`
-- Every time before your schema goes live
-- Otherwise, exhaustive checks could fail
 
 # Exercise 12 Tying It All Together
 
