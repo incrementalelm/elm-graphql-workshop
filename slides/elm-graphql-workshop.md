@@ -632,6 +632,25 @@ nonExhaustiveFragment =
         }
 ```
 
+# Unions
+
+- Exactly like fragments, except there are no common fields.
+
+# Unions in Elm GraphQL
+
+```elm
+type HumanOrDroidDetails
+    = HumanDetails (Maybe String)
+    | DroidDetails (Maybe String)
+
+heroUnionSelection : SelectionSet HumanOrDroidDetails Swapi.Union.CharacterUnion
+heroUnionSelection =
+    Swapi.Union.CharacterUnion.fragments
+        { onHuman = SelectionSet.map HumanDetails Human.homePlanet
+        , onDroid = SelectionSet.map DroidDetails Droid.primaryFunction
+        }
+```
+
 # Subscriptions
 
 # Exercise 12 Tying It All Together
