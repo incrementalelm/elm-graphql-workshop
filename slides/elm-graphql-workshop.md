@@ -308,7 +308,19 @@ npm install
 
 [http://localhost:8000](http://localhost:8000)
 
-# Exercise 01
+# Shortest Path to Compiling
+
+"Clean code, that works."
+
+- Clean -> Work
+- Work -> Clean
+
+"Clean code, that works, and compiles!"
+
+- Compile -> Work -> Clean
+
+
+# Exercise 01 - Our First Query
 
 Walk Before You Run
 
