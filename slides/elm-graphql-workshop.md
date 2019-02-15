@@ -8,6 +8,12 @@ slide-dividers: #
 
 ![fit](img/opening.jpg)
 
+# Defining Success
+
+- Introduce yourself to your table
+- Share what wild success would look like for you
+- What would the visible outcome look like?
+
 # GraphQL Intro
 
 - Created by Facebook
