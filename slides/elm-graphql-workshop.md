@@ -259,6 +259,19 @@ mutation {
 
 - Pick one: `query`, `mutation`, `subscription`
 
+# Exercise 00
+
+[github.com/IncrementalElm/elm-graphql-workshop](https://github.com/IncrementalElm/elm-graphql-workshop
+)
+
+```bash
+cd /path/to/repo
+npm install
+./run.sh src/part00
+```
+
+[http://localhost:8000](http://localhost:8000)
+
 # `dillonkearns/elm-graphql`
 
 # Avoidable Uncertainty
@@ -296,19 +309,6 @@ mutation {
 - Check in generated code
 - Nice to organize in `gen` folder
 
-# Exercise 00
-
-[github.com/IncrementalElm/elm-graphql-workshop](https://github.com/IncrementalElm/elm-graphql-workshop
-)
-
-```bash
-cd /path/to/repo
-npm install
-./run.sh src/part00
-```
-
-[http://localhost:8000](http://localhost:8000)
-
 # Take the SPC
 - Shortest Path to Compile
 
@@ -329,6 +329,15 @@ Walk Before You Run
 ```
 ./run.sh src/part01
 ```
+
+# Exercise 02 - Nested Selection Sets
+
+```bash
+./run.sh src/part02
+```
+
+![inline 60%](img/query3.jpg)
+
 
 # Required Arguments
 
