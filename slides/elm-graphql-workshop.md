@@ -280,6 +280,21 @@ mutation {
 - Generate code for specific query
 - Generate code for whole schema
 
+# `elm-graphql` Features
+
+- High-level DSL for GraphQL queries
+- Elm language constructs to build and abstract (not Strings)
+- JSON response under the hood
+- Meaningful Elm data structures above the hood
+- Elm compiler errors for invalid queries
+- Docs in your editor
+
+# `elm-graphql` CLI
+
+- Introspection queries
+- Just point it at your schema!
+- Check in generated code
+- Nice to organize in `gen` folder
 
 # Exercise 00
 
