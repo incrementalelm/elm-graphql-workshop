@@ -1,4 +1,4 @@
-footer: bit.ly/**examplefirst**
+footer: incrementalelm.com
 build-lists: true
 slide-dividers: #
 
@@ -269,10 +269,10 @@ mutation {
 
 - Pick one: `query`, `mutation`, `subscription`
 
-# Exercise 00
 
-[github.com/IncrementalElm/elm-graphql-workshop](https://github.com/IncrementalElm/elm-graphql-workshop
-)
+# Graphiql Demo
+
+# Exercise 00
 
 ```bash
 cd /path/to/repo
@@ -280,7 +280,6 @@ npm install
 ./run.sh src/part00
 ```
 
-[http://localhost:8000](http://localhost:8000)
 
 # `dillonkearns/elm-graphql`
 
