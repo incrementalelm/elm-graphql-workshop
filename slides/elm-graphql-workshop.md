@@ -280,6 +280,8 @@ npm install
 ./run.sh src/part00
 ```
 
+^ - Introduce panes.
+
 
 # `dillonkearns/elm-graphql`
 

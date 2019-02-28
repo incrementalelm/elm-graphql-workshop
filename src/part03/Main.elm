@@ -116,11 +116,11 @@ First we'll do a hardcoded mapping. So instead of real data, turn every "latest 
 | Header
     Mapping Into a Record
 
-Now that we're getting the titles of our books, we'd like to get the authors, too! But we also want to practice taking *tiny steps*! Why? Because small steps is what let's us move quickly, steadily, and without mistakes! It might seem unnecessary now, but having this skill at your fingertips is what will make you a master Elm GraphQL query builder!
+Now that we're getting the latest version of our packages, we'd like to get some other details, too! But we also want to practice taking *tiny steps*! Why? Because small steps is what let's us move quickly, steadily, and without mistakes! It might seem unnecessary now, but having this skill at your fingertips is what will make you a master Elm GraphQL query builder!
 
 | List
-    -> Change the {Code|type alias} for {Code|ElmStuff} to be a record with a *single field in it*. Hint: you'll need to use a function called {Code|SelectionSet.map}.
-    (?) What's the benefit of starting with this step?
+    -> Change the {Code|type alias} for {Code|ElmStuff} to be a record with a *single field in it*. Hint: you'll need to use {Code|SelectionSet.map}.
+    (?) What's the benefit of starting with this step before adding more fields to our {Code|ElmStuff} record alias?
 """
             }
         }
