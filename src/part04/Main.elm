@@ -72,7 +72,12 @@ The only difference is that instead of applying a function to the data that come
 
 | List
     (?) Look at the package docs to find the type signature for {Code|SelectionSet.map2}. This function will be your main tool for this exercise. How does it compare with {Code|SelectionSet.map}?
-    (?) Before you begin: how can you make this task easier on yourself using the techniques for keeping things compiling at each tiny step?
-    -> Define the top-level {Code|query} in {Code|Main.elm} as a {Code|SelectionSet String RootQuery}, where the String is the percentage of Elm packages which were written by the authors of my favorite Elm packages. You can refer back to previous exercises if it's helpful. *Hint*: you may find the built-in Elm function {Code|List.sum} helpful in one spot here!"""
+
+| Header
+    Programming by Intention
+
+| List
+    (?) Before you begin: how can you make this task easier on yourself using the techniques for keeping things compiling at each tiny step? What would you wish into existence to make your life easier?
+    -> Define the top-level {Code|query} in {Code|Main.elm} to be the percentage of Elm packages which were written by the authors of my favorite Elm packages. For example, if my favorite Elm package authors had written a combined total of 10 packages, and there were a total 100 Elm packages, the answer would be {Code|10%}. You can refer back to previous exercises if it's helpful."""
             }
         }
