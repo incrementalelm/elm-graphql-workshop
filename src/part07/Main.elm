@@ -105,7 +105,7 @@ main =
             , body = """We're going to replace the hardcoded selection in the top-level {Code|query} with the {Code|currentWeather}. We'll learn how to use required arguments, with some tricks for finding them quickly and easily.
 
 | List
-    (?) How many arguments did the {Code|weatherSelection} function take before? How many should it take now?
+    (?) How many arguments did the {Code|Query.currentWeather} function take before? How many should it take now?
     -> We're going to use the compiler to tell us the required arguments. Make a call to {Code|currentWeather}, supplying {Code|\\{\\}} (empty record) as the required arguments, and {Code|weatherSelection} as the {Code|SelectionSet}.
     (?) What other techniques could you use to determine the required arguments?
     -> Fix the compiler error."""
