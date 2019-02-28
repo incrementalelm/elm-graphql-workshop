@@ -470,30 +470,6 @@ type User {
 }
 ```
 
-# Input Objects
-```haskell
-input IssueFilters {
-  assignee: String
-  createdBy: String
-  labels: [String!]
-  # ...
-}
-
-type Repository {
-  issues(IssueFilters)
-}
-
-type User {
-  issues(assignee: String, createdBy: String, labels: [String!], ...)
-}
-```
-
-- Definition: a group of scalars
-- Exactly like a GraphQL Object
-- Except that it can't be recursive
-- Allows you to state that a group must either be there or not
-- Still can't express union types fully (like one of (first,last))
-
 # Required Argument Code Gen
 
 ```elm
@@ -565,6 +541,30 @@ Query.hero (\optionals -> {optionals | episode = Present Episode.EMPIRE })
 ```bash
 ./run.sh src/part08
 ```
+
+# Input Objects
+```haskell
+input IssueFilters {
+  assignee: String
+  createdBy: String
+  labels: [String!]
+  # ...
+}
+
+type Repository {
+  issues(IssueFilters)
+}
+
+type User {
+  issues(assignee: String, createdBy: String, labels: [String!], ...)
+}
+```
+
+- Definition: a group of scalars
+- Exactly like a GraphQL Object
+- Except that it can't be recursive
+- Allows you to state that a group must either be there or not
+- Still can't express union types fully (like one of (first,last))
 
 # Custom Scalars
 
