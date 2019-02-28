@@ -353,6 +353,29 @@ Walk Before You Run
 ./run.sh src/part03
 ```
 
+# Programming by Intention
+
+```elm
+Fibonacci.init
+  |> Fibonacci.next
+  |> Fibonacci.next
+  |> Fibonacci.next
+  |> Expect.equal 2
+```
+
+- `Fibonacci.of(2) |> Expect.equal 2`
+
+- Consider use before implementation
+
+# Annotations
+
+- Annotation-driven code
+
+- Code-driven annotation
+
+- Both are useful tools ([tweet](https://twitter.com/joelquen/status/1100158323641499648))
+
+
 # Exercise 04 - Combining
 
 ```bash
