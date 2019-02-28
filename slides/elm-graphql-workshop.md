@@ -573,7 +573,7 @@ type User {
 - Anonymous Survey
   - [incrementalelm.com/feedback](https://incrementalelm.com/feedback)
 
-# Advanced Workshop
+# Advanced Workshop 3/21, 1-5pm PST
 
 - Handling imperfect schemas
 - Improving schemas
@@ -584,6 +584,13 @@ type User {
 - Pagination
 - New pagination API
 
+
+# Elm Europe Workshop!
+
+June 26 in Paris
+
+
+![right original](img/workshop.jpg)
 
 # -
 
