@@ -571,7 +571,7 @@ type User {
 # Feedback
 
 - Anonymous Survey
-  - [tiny.cc/elm-graphql-feedback](http://tiny.cc/elm-graphql-feedback)
+  - [incrementalelm.com/feedback](https://incrementalelm.com/feedback)
 
 # Advanced Workshop
 
