@@ -571,6 +571,21 @@ type User {
 - Anonymous Survey
   - [tiny.cc/elm-graphql-feedback](http://tiny.cc/elm-graphql-feedback)
 
+# Advanced Workshop
+
+- Handling imperfect schemas
+- Improving schemas
+- Data modeling
+- Polymorphic types
+- Custom Scalars
+- Custom Scalar Codecs
+- Pagination
+- New pagination API
+
+
+# -
+
+![fit original](img/pagination.jpg)
 
 # -
 ![](img/thank-you.jpg)
