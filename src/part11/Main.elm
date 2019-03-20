@@ -8,7 +8,11 @@ import Graphql.OptionalArgument exposing (OptionalArgument(..))
 import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, with)
 import Helpers.Main
 import RemoteData exposing (RemoteData)
+import ShoppingCart.Enum.DiscountLookupReason exposing (DiscountLookupReason)
+import ShoppingCart.Object.DiscountInfo
+import ShoppingCart.Object.DiscountLookupError
 import ShoppingCart.Query as Query
+import ShoppingCart.Union.DiscountInfoOrError
 import Time
 
 
@@ -16,9 +20,22 @@ type alias Response =
     ()
 
 
+type DiscountInfoOrError
+    = DiscountInfo { discountedPrice : String }
+    | DiscountLookupError { reason : DiscountLookupReason }
+
+
 query : SelectionSet Response RootQuery
 query =
-    SelectionSet.empty
+    Query.discountOrError { code = "abc" }
+        (ShoppingCart.Union.DiscountInfoOrError.fragments
+            { onDiscountInfo = SelectionSet.empty
+            , onDiscountLookupError = SelectionSet.empty
+            }
+         -- { onDiscountInfo = ShoppingCart.Object.DiscountInfo.applicableProduct
+         -- , onDiscountLookupError = ShoppingCart.Object.DiscountLookupError.reason
+         -- }
+        )
 
 
 makeRequest : Cmd Msg
@@ -63,44 +80,33 @@ main =
         , update = update
         , queryString = Document.serializeQuery query
         , instructions =
-            { title = "Imperfect Schemas"
-            , body = """We're going to do some familiar queries. We'll be getting the exact same data as in previous exercises, but this time using an imperfect version of the schema.
+            { title = "Unions"
+            , body = """In GraphQL, a Union type is one of <n> different possible Objects.
 
 | List
-    (?) Explore the API and its types in the docs sidebar. What's different?
-    -> Retrieve a {Code|randomQuote}.
-
-| Header
-    Assumptions Vs. Guarantees
-
-The goal when designing your {Code|elm-graphql} API is to allow you to /completely remove all assumptions about your API/ and replace them with /guarantees/. Having a well-designed schema and API gets you pretty close to that! But in the real-world, sometimes we don't have a perfect schema so we have to make assumptions. That's what {Link|Result or Fail transformations | url=https://package.elm-lang.org/packages/dillonkearns/elm-graphql/latest/Graphql-SelectionSet#result-orfail-transformations } are for.
-
-| Blockquote
-    Result or Fail Transformations: Make an assumption that isn't guaranteed by your schema. If it fails, the entire decoder fails ⚠️
-
-Let's try it with our imperfect schema.
-
-| List
-    -> Take a look at the {Link|Result or Fail transformations | url=https://package.elm-lang.org/packages/dillonkearns/elm-graphql/latest/Graphql-SelectionSet#result-orfail-transformations } in the docs.
-    -> Use one of the "Result or fail" functions to eliminate any Maybes from your returned data.
-    (?) Are there any alternatives solutions that don't involve these unsafe functions? What are the tradeoffs?
-    (?) When would you use these versus changing the schema?
-
-| Header
-    Imperfection Compounded
-
-Let's try some stacked up imperfections.
-
-| List
-    -> Retrieve our {Code|favoritePackages}, and for each package get its {Code|name} and {Code|author}'s name. Make sure there are no {Code|Maybe}s anywhere in your model!
+    -> Take a look at the docs explorer and examine the `DiscountInfoOrError` union type. Which objects could it possibly be?
+    (?) What would the JSON look like for each of the possible objects returned in the `DiscountInfoOrError` union?
 
 
-| Header
-    Bonus
+A Union in GraphQL is a lot like a Custom Type in elm. The equivalent of `DiscountInfoOrError` in elm would look like:
 
-| List
-    -> Check out a real world GraphQL API: {Link|yelp.com\\/developers\\/graphiql | url = https://www.yelp.com/developers/graphiql }. Explore the types and find some real-world imperfections.
-    (?) How would you improve these imperfections?
-"""
+| Monospace
+    type DiscountInfoOrError
+      = DiscountInfo { discountedPrice : String }
+      | DiscountLookupError { reason : DiscountLookupReason }
+
+
+    describeInfoOrError : DiscountInfoOrError -> String
+    describeInfoOrError discountInfoOrError =
+      case discountInfoOrError of
+        DiscountInfo { discountedPrice } ->
+            "You got info"
+
+        DiscountLookupError { reason } ->
+            "You got an error"
+
+
+
+{Code|ShoppingCart.Union.DiscountInfoOrError.fragments}"""
             }
         }
