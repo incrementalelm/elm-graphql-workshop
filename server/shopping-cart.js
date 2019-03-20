@@ -9,9 +9,20 @@ const typeDefs = gql`
     applicableProduct: ProductCode!
   }
 
+  union DiscountInfoOrError = DiscountInfo | DiscountLookupError
+
+  type DiscountLookupError {
+    reason: DiscountLookupReason!
+  }
+
+  enum DiscountLookupReason {
+    NotFound
+  }
+
   type Query {
     discount(code: String!): DiscountInfo
       @deprecated(reason: "Use 'discountOrError'.")
+    discountOrError(code: String!): DiscountInfoOrError!
   }
 `;
 
@@ -21,6 +32,28 @@ const resolvers = {
       return {
         discountAmount: 199
       };
+    },
+    discountOrError: code => {
+      if (code === "abc") {
+        return {
+          discountAmount: 199
+        };
+      } else {
+        return {
+          reason: "NotFound"
+        };
+      }
+    }
+  },
+  DiscountInfoOrError: {
+    __resolveType(discountResponse, context, info) {
+      if (discountResponse.reason) {
+        return "DiscountLookupError";
+      } else if (discountResponse.discountAmount) {
+        return "DiscountInfo";
+      } else {
+        return null;
+      }
     }
   }
 };
