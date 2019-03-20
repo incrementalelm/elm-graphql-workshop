@@ -17,6 +17,7 @@ const typeDefs = gql`
 
   enum DiscountLookupReason {
     NotFound
+    Expired
   }
 
   type Query {
