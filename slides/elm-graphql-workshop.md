@@ -14,7 +14,8 @@ github.com/IncrementalElm/elm-graphql-workshop
 
 # Defining Success
 
-- Introduce yourself to your table
+- Introduce yourself
+- GraphQL experience? Elm experience?
 - Share what wild success would look like for you
 - What would the visible outcome look like?
 
