@@ -8,6 +8,54 @@ slide-dividers: #
 
 ![fit](img/opening.jpg)
 
+# Query Context ✅
+
+```haskell
+query {
+
+  viewer {
+    bio
+  }
+}
+```
+
+# Query Context 🚨🚔🚨 Violations
+
+```haskell
+query {
+  bio     # 💥⛔️💥
+  viewer {
+    bio
+  }
+}
+```
+
+- Cannot query field "bio" on type "Query"
+
+# `elm-graphql` Query Context
+
+```haskell
+userSelection : SelectionSet (Maybe String) Github.Object.User
+userSelection =
+  Github.Object.User.company
+```
+
+- _Context_: `Github.Object.User`
+
+# `elm-graphql` Query Context 💥⛔️💥
+
+```haskell
+query : SelectionSet (Maybe String) RootQuery
+query =
+  Query.repository
+    {  login = "dillonkearns"
+     , name = "elm-graphql" }
+    Github.Object.User.company -- 💥⛔️💥
+```
+
+- _Context_: `Github.Object.Repository`
+- _Context_: `Github.Object.User`
+
 # Setup
 
 github.com/IncrementalElm/elm-graphql-workshop
