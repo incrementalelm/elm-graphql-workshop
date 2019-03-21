@@ -112,6 +112,11 @@ A Union in GraphQL is a lot like a Custom Type in elm. The equivalent of `Discou
     #. use fragments to turn it into a data type like that.
     (?) Which solution do you like more, the {Code|Result}, or our custom type?
 
-{Code|ShoppingCart.Union.DiscountInfoOrError.fragments}"""
+| Header
+    Extra Credit
+
+{Code|ShoppingCart.Union.DiscountInfoOrError.fragments}
+| List
+    -> Display a human readable message for each of the discount lookup error codes."""
             }
         }
