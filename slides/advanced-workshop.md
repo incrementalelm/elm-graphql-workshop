@@ -120,6 +120,18 @@ locationsToString locations =
         |> Maybe.withDefault ""
 ```
 
+# Rules of Thumb for GraphQL Errors
+
+- **It's a GraphQL Error If...**
+  - Only developers should see it
+  - You don't expect it and want to log/track it
+- **It's GraphQL Data If...**
+  - A user will see it
+  - You expect it
+
+^ Can't blindly display the error to the user
+^ Scanning for a specific value is scraping data
+
 # Setup
 
 github.com/IncrementalElm/elm-graphql-workshop
