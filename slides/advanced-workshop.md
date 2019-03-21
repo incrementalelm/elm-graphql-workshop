@@ -95,6 +95,70 @@ viewer : SelectionSet decodesTo Github.Object.User
     -> SelectionSet decodesTo RootQuery
 ```
 
+# What is RemoteData?
+
+JavaScript
+
+```javascript
+{
+    hasError: true,
+    errorMessage : 'Error message from server',
+    doneLoading: true,
+    data: null
+}
+```
+
+---
+
+![fit](img/remote-data-truth-table.png)
+
+---
+
+# RemoteData
+
+```elm
+type RemoteData data
+    = NotAsked
+    | Loading
+    | Failure Http.Error
+    | Success data
+```
+
+# Setup
+
+github.com/IncrementalElm/elm-graphql-workshop
+
+# Custom Scalars
+
+- What is the purpose of a scalar?
+  - `Date`
+  - `DateTime`
+  - `GitObjectID`
+  - `HTML`
+  - `URI`
+  - `DateTime`: "An ISO-8601 encoded UTC date string."
+
+# Custom Scalars Are Contracts
+
+- Custom Scalar type wrappers by default
+  - `type DateTime = DateTime String`
+- Isn't that just a fancy `String`?
+- Yup! Type-wise...
+- Semantically, it's an ISO-8601 DateTime
+- Contracts => Serializer/Deserializer
+
+# Exercise 09 - Custom Scalars
+
+```bash
+./run.sh src/part09
+```
+
+# Exercise 10 - Imperfect Schemas
+
+```bash
+./run.sh src/part10
+```
+
 # GraphQL Errors
 
 ```haskell
@@ -138,10 +202,6 @@ locationsToString locations =
 ^ Can't blindly display the error to the user
 ^ Scanning for a specific value is scraping data
 
-# Setup
-
-github.com/IncrementalElm/elm-graphql-workshop
-
 # Exercise 11 - Unions
 
 ```
@@ -179,37 +239,6 @@ type Human implements Character {
 type Droid implements Character {
   primaryFunction: String
 }
-```
-
-# Custom Scalars
-
-- What is the purpose of a scalar?
-  - `Date`
-  - `DateTime`
-  - `GitObjectID`
-  - `HTML`
-  - `URI`
-  - `DateTime`: "An ISO-8601 encoded UTC date string."
-
-# Custom Scalars Are Contracts
-
-- Custom Scalar type wrappers by default
-  - `type DateTime = DateTime String`
-- Isn't that just a fancy `String`?
-- Yup! Type-wise...
-- Semantically, it's an ISO-8601 DateTime
-- Contracts => Serializer/Deserializer
-
-# Exercise 09 - Custom Scalars
-
-```bash
-./run.sh src/part09
-```
-
-# Exercise 10 - Imperfect Schemas
-
-```bash
-./run.sh src/part10
 ```
 
 # [Polymorphism in GraphQL](http://elm-graphql.herokuapp.com)
@@ -299,35 +328,6 @@ heroUnionSelection =
 - `npm run regenerate-elm-graphql && elm make ...`
 - Every time before your schema goes live
 - Otherwise, exhaustive checks could fail
-
-# Data Modeling Example
-
-JavaScript
-
-```javascript
-{
-    hasError: true,
-    errorMessage : 'Error message from server',
-    doneLoading: true,
-    data: null
-}
-```
-
----
-
-![fit](img/remote-data-truth-table.png)
-
----
-
-# RemoteData
-
-```elm
-type RemoteData data
-    = NotAsked
-    | Loading
-    | Failure Http.Error
-    | Success data
-```
 
 # Subscriptions
 
