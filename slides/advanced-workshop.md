@@ -144,6 +144,19 @@ github.com/IncrementalElm/elm-graphql-workshop
 
 # Polymorphic Types
 
+- All based on Objects only
+- Unions
+
+  - No fields in common
+  - Examples: Search, Errors
+
+- Interfaces
+  - Some common fields
+  - Examples: Teachers & Students, specific types of users
+  - Composition vs. inheritance - can only inherit from one thing
+
+# GraphQL Interfaces
+
 ```haskell
 interface Character {
   id: ID!
