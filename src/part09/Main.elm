@@ -13,6 +13,7 @@ import Time
 import WeatherCustomScalars.Object
 import WeatherCustomScalars.Object.CurrentWeather as CurrentWeather
 import WeatherCustomScalars.Query as Query
+import WeatherCustomScalars.Scalar as Scalar
 
 
 type alias Response =
@@ -40,8 +41,17 @@ compareToHottestDay currentTemperature =
     in
     { today = currentTemperature
     , hottestDay = worldRecordHighInCelsius
-    , comparison = String.fromFloat difference ++ " C cooler than the hottest ever recorded temperature."
+    , comparison = describeDifference difference
     }
+
+
+describeDifference : Float -> String
+describeDifference difference =
+    if difference >= 0 then
+        String.fromFloat difference ++ " C cooler than the hottest ever recorded temperature."
+
+    else
+        "😅🔥 Hmm, is it really " ++ String.fromFloat -difference ++ " C hotter than the hottest day ever right now?"
 
 
 makeRequest : Cmd Msg
@@ -117,10 +127,10 @@ Let's try that ourselves! But instead of creating a {Code|Currency} module, we'l
 
 | List
     -> Open up {Code|server\\/weather\\-custom\\-scalars.js} and take a look at the schema. If you haven't figured it out already, you can see the cause of the bug in the schema definition. Do not change the units on the server-side. Instead, we'll just be using a Custom Scalar to make the units explicit.
-    -> Add a new line to the schema string like this: {Code|scalar Fahrenheit}. The server will automatically restart.
+    -> Add a new line to the schema string like this: {Code|scalar Fahrenheit}. Change {Code|temperature: Float!} to {Code|temperature: Fahrenheit!}. The server will automatically restart.
     -> Regenerate the code by going to the top-level workshop directory and running {Code|npx elm\\-graphql http:\\/\\/localhost:4000\\/api \\-\\-output gen \\-\\-base WeatherCustomScalars}.
-    -> When you recompile your code, you'll get an error. Instead of a Float, you now have a {Code|Fahrenheit} type wrapper. Create a function with the following signature, and use it to do a {Code|SelectionSet.map} to get your code compiling. {Code|scalarToTemperature : Scalar.Fahrenheit -> Float}.
-    -> That's a good first step, and we may have fixed our bug. It's a good practice to defer unwrapping Semantic Types until the last possible moment. Change the type signature of your function to {Code|scalarToTemperature : Scalar.Fahrenheit -> Temperature} and fix the compiler errors.
+    -> When you recompile your code, you'll get an error. Instead of a Float, you now have a {Code|Fahrenheit} type wrapper. Create a function with the following signature, and use it to do a {Code|SelectionSet.map} to get your code compiling. {Code|fahrenheitToFloat (Scalar.Fahrenheit degreesF) = String.toFloat degreesF \\|> Maybe.withDefault 0.0}. You'll need to use that function like this {Code|\\|> SelectionSet.map fahrenheitToFloat}.
+    -> That's a good first step, and we could go ahead and convert it to celsius and fix our bug right here. But it's a good practice to defer unwrapping Semantic Types until the last possible moment. So change the type signature of your function to {Code|fahrenheitToTemperature : Scalar.Fahrenheit -> Temperature} and fix the compiler errors.
 
 | Header
     Bonus
