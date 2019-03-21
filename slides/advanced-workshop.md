@@ -56,6 +56,31 @@ query =
 - _Context_: `Github.Object.Repository`
 - _Context_: `Github.Object.User`
 
+# Why?
+
+```haskell
+repository : RepositoryRequiredArguments
+    -> SelectionSet decodesTo Github.Object.Repository
+    -> SelectionSet (Maybe decodesTo) RootQuery
+```
+
+```haskell
+viewer : SelectionSet decodesTo Github.Object.User
+    -> SelectionSet decodesTo RootQuery
+```
+
+# Why?
+
+```haskell
+repository : SelectionSet decodesTo Github.Object.Repository
+    -> SelectionSet (Maybe decodesTo) RootQuery
+```
+
+```haskell
+viewer : SelectionSet decodesTo Github.Object.User
+    -> SelectionSet decodesTo RootQuery
+```
+
 # Setup
 
 github.com/IncrementalElm/elm-graphql-workshop
