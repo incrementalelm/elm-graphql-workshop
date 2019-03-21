@@ -136,6 +136,32 @@ locationsToString locations =
 
 github.com/IncrementalElm/elm-graphql-workshop
 
+# Exercise 11 - Unions
+
+```
+./run.sh src/part11
+```
+
+# Polymorphic Types
+
+```haskell
+interface Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [Episode]!
+}
+
+type Human implements Character {
+  starships: [Starship]
+  totalCredits: Int
+}
+
+type Droid implements Character {
+  primaryFunction: String
+}
+```
+
 # Custom Scalars
 
 - What is the purpose of a scalar?
