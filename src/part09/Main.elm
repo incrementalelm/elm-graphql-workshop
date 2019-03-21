@@ -8,6 +8,7 @@ import Graphql.OptionalArgument exposing (OptionalArgument(..))
 import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, with)
 import Helpers.Main
 import RemoteData exposing (RemoteData)
+import Temperature exposing (Temperature)
 import Time
 import WeatherCustomScalars.Object
 import WeatherCustomScalars.Object.CurrentWeather as CurrentWeather
@@ -107,7 +108,7 @@ Let's try that ourselves! But instead of creating a {Code|Currency} module, we'l
 
 | List
     -> Take a look at {Code|src//Temperature.elm}. It exposes an Opaque Type for representing {Code|Temperature}, which you can build with {Code|fromCelsius} or {Code|fromFahrenheit}.
-    -> Wrap {Code|worldRecordHighInCelsius} using the {Code|Temperature} type, {Code|Celsius} using the functions you exposed for building a {Code|Temperature}. You'll need to change the type in some annotations, and it's a good idea to remove the now-redundant {Code|InCelsius} from the name. Get your code compiling (you'll need to convert one spot to go from a {Code|Temperature} to a {Code|Float}).
+    -> Change this line {Code|worldRecordHighInCelsius : Float} to {Code|worldRecordHigh : Temperature}. We're wrapping the {Code|Float} primitive in a Semantic Type, and we're changing the constant's name to reflect that ({Code|InCelsius} doesn't make sense now that it's a temperature). Now use {Code|fromCelsius} and {Code|toCelsius} in the appropriate places to get the code compiling again.
 
 
 | Header
