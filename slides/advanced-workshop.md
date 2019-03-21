@@ -89,6 +89,37 @@ viewer : SelectionSet decodesTo Github.Object.User
     -> SelectionSet decodesTo RootQuery
 ```
 
+# GraphQL Errors
+
+```haskell
+type alias GraphqlError =
+    { message : String
+    , locations : Maybe (List Location)
+    , details : Dict String Value
+    }
+```
+
+# -
+
+```haskell
+errorToString : GraphqlError -> String
+errorToString error =
+    "locations:"
+        ++ (error.locations
+                |> locationsToString
+           )
+        ++ ", message: \n"
+        ++ error.message
+
+
+locationsToString : Maybe (List Location) -> String
+locationsToString locations =
+    locations
+        |> Maybe.map (List.map (\location -> location |> Debug.toString))
+        |> Maybe.map (\locationStrings -> String.join "\n" locationStrings)
+        |> Maybe.withDefault ""
+```
+
 # Setup
 
 github.com/IncrementalElm/elm-graphql-workshop
