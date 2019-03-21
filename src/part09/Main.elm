@@ -106,8 +106,7 @@ For example, you could have {Code|type Currency = Currency Int} where the {Code|
 Let's try that ourselves! But instead of creating a {Code|Currency} module, we'll be creating a {Code|Temperature} module. Don't worry about the bug quite yet, we'll get to that in the next section.
 
 | List
-    -> Create a module called {Code|Temperature} under the {Code|src} folder. In it, expose an Opaque Type that looks like this {Code|type Temperature = Fahrenheit Float \\| Celsius Float}.
-    -> You'll need to write and expose some functions for converting to\\/from {Code|Temperature}. The top of your file should look like this {Code|module Temperature exposing (Temperature, fromCelsius, fromFahrenheit, toCelsius)}.
+    -> Take a look at {Code|src//Temperature.elm}. It exposes an Opaque Type for representing {Code|Temperature}, which you can build with {Code|fromCelsius} or {Code|fromFahrenheit}.
     -> Wrap {Code|worldRecordHighInCelsius} using the {Code|Temperature} type, {Code|Celsius} using the functions you exposed for building a {Code|Temperature}. You'll need to change the type in some annotations, and it's a good idea to remove the now-redundant {Code|InCelsius} from the name. Get your code compiling (you'll need to convert one spot to go from a {Code|Temperature} to a {Code|Float}).
 
 
