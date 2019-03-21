@@ -194,7 +194,7 @@ type Droid implements Character {
 # Custom Scalars Are Contracts
 
 - Custom Scalar type wrappers by default
-  - `type alias DateTime = DateTime String`
+  - `type DateTime = DateTime String`
 - Isn't that just a fancy `String`?
 - Yup! Type-wise...
 - Semantically, it's an ISO-8601 DateTime
