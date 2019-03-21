@@ -106,6 +106,11 @@ A Union in GraphQL is a lot like a Custom Type in elm. The equivalent of `Discou
             "You got an error"
 
 
+| List
+    #. turn it into a SelectionSet.empty (smallest possible steps). You should have {Code|query : SelectionSet () RootQuery}.
+    #. use the two {Code|Result} constructors, {Code|Err} and {Code|Ok}, to create a {Code|query : SelectionSet (Result DiscountLookupReason Int) RootQuery}.
+    #. use fragments to turn it into a data type like that.
+    (?) Which solution do you like more, the {Code|Result}, or our custom type?
 
 {Code|ShoppingCart.Union.DiscountInfoOrError.fragments}"""
             }
