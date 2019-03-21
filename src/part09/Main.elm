@@ -114,7 +114,9 @@ For example, you could have {Code|type Currency = Currency Int} where the {Code|
 | Header
     Using Our Own Semantic Type
 
-Let's try that ourselves! But instead of creating a {Code|Currency} module, we'll be creating a {Code|Temperature} module. Don't worry about the bug quite yet, we'll get to that in the next section.
+Let's try using one! Instead of a {Code|Currency} type, we'll be using an Opaque Type called {Code|Temperature}.
+
+*Don't worry about the bug quite yet*. We'll get to that in the next section.
 
 | List
     -> Take a look at {Code|src//Temperature.elm}. It exposes an Opaque Type for representing {Code|Temperature}, which you can build with {Code|fromCelsius} or {Code|fromFahrenheit}.
