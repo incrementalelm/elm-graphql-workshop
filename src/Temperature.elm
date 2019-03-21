@@ -1,9 +1,8 @@
-module Temperature exposing (Temperature, fromCelsius, fromFahrenheit, toCelsius, toFahrenheit)
+module Temperature exposing (Temperature, fromCelsius, fromFahrenheit, toCelsius)
 
 
 type Temperature
-    = Fahrenheit Float
-    | Celsius Float
+    = Celsius Float
 
 
 fromCelsius : Float -> Temperature
@@ -13,14 +12,9 @@ fromCelsius degreesCelsius =
 
 fromFahrenheit : Float -> Temperature
 fromFahrenheit degreesFahrenheit =
-    Fahrenheit degreesFahrenheit
+    Celsius ((degreesFahrenheit - 32) / 1.8)
 
 
 toCelsius : Temperature -> Float
-toCelsius temperature =
-    0.0
-
-
-toFahrenheit : Temperature -> Float
-toFahrenheit temperature =
-    0.0
+toCelsius (Celsius degreesC) =
+    degreesC
