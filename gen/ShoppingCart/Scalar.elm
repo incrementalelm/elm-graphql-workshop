@@ -2,17 +2,13 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ShoppingCart.Scalar exposing (Codecs, Dollars(..), ProductCode(..), Upload(..), defaultCodecs, defineCodecs, unwrapCodecs, unwrapEncoder)
+module ShoppingCart.Scalar exposing (Codecs, ProductCode(..), Upload(..), defaultCodecs, defineCodecs, unwrapCodecs, unwrapEncoder)
 
 import Graphql.Codec exposing (Codec)
 import Graphql.Internal.Builder.Object as Object
 import Graphql.Internal.Encode
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
-
-
-type Dollars
-    = Dollars String
 
 
 type ProductCode
@@ -24,20 +20,18 @@ type Upload
 
 
 defineCodecs :
-    { codecDollars : Codec valueDollars
-    , codecProductCode : Codec valueProductCode
+    { codecProductCode : Codec valueProductCode
     , codecUpload : Codec valueUpload
     }
-    -> Codecs valueDollars valueProductCode valueUpload
+    -> Codecs valueProductCode valueUpload
 defineCodecs definitions =
     Codecs definitions
 
 
 unwrapCodecs :
-    Codecs valueDollars valueProductCode valueUpload
+    Codecs valueProductCode valueUpload
     ->
-        { codecDollars : Codec valueDollars
-        , codecProductCode : Codec valueProductCode
+        { codecProductCode : Codec valueProductCode
         , codecUpload : Codec valueUpload
         }
 unwrapCodecs (Codecs unwrappedCodecs) =
@@ -48,24 +42,19 @@ unwrapEncoder getter (Codecs unwrappedCodecs) =
     (unwrappedCodecs |> getter |> .encoder) >> Graphql.Internal.Encode.fromJson
 
 
-type Codecs valueDollars valueProductCode valueUpload
-    = Codecs (RawCodecs valueDollars valueProductCode valueUpload)
+type Codecs valueProductCode valueUpload
+    = Codecs (RawCodecs valueProductCode valueUpload)
 
 
-type alias RawCodecs valueDollars valueProductCode valueUpload =
-    { codecDollars : Codec valueDollars
-    , codecProductCode : Codec valueProductCode
+type alias RawCodecs valueProductCode valueUpload =
+    { codecProductCode : Codec valueProductCode
     , codecUpload : Codec valueUpload
     }
 
 
-defaultCodecs : RawCodecs Dollars ProductCode Upload
+defaultCodecs : RawCodecs ProductCode Upload
 defaultCodecs =
-    { codecDollars =
-        { encoder = \(Dollars raw) -> Encode.string raw
-        , decoder = Object.scalarDecoder |> Decode.map Dollars
-        }
-    , codecProductCode =
+    { codecProductCode =
         { encoder = \(ProductCode raw) -> Encode.string raw
         , decoder = Object.scalarDecoder |> Decode.map ProductCode
         }

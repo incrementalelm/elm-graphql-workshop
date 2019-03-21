@@ -2,14 +2,10 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ShoppingCart.ScalarCodecs exposing (Dollars, ProductCode, Upload, codecs)
+module ShoppingCart.ScalarCodecs exposing (ProductCode, Upload, codecs)
 
 import Json.Decode as Decode exposing (Decoder)
 import ShoppingCart.Scalar exposing (defaultCodecs)
-
-
-type alias Dollars =
-    ShoppingCart.Scalar.Dollars
 
 
 type alias ProductCode =
@@ -20,10 +16,9 @@ type alias Upload =
     ShoppingCart.Scalar.Upload
 
 
-codecs : ShoppingCart.Scalar.Codecs Dollars ProductCode Upload
+codecs : ShoppingCart.Scalar.Codecs ProductCode Upload
 codecs =
     ShoppingCart.Scalar.defineCodecs
-        { codecDollars = defaultCodecs.codecDollars
-        , codecProductCode = defaultCodecs.codecProductCode
+        { codecProductCode = defaultCodecs.codecProductCode
         , codecUpload = defaultCodecs.codecUpload
         }

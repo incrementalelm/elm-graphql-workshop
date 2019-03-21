@@ -20,9 +20,9 @@ import ShoppingCart.Union
 
 
 {-| -}
-discountAmount : SelectionSet ShoppingCart.ScalarCodecs.Dollars ShoppingCart.Object.DiscountInfo
+discountAmount : SelectionSet Int ShoppingCart.Object.DiscountInfo
 discountAmount =
-    Object.selectionForField "ScalarCodecs.Dollars" "discountAmount" [] (ShoppingCart.ScalarCodecs.codecs |> ShoppingCart.Scalar.unwrapCodecs |> .codecDollars |> .decoder)
+    Object.selectionForField "Int" "discountAmount" [] Decode.int
 
 
 {-| -}

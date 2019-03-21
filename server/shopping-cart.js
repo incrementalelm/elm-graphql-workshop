@@ -1,11 +1,10 @@
 const { ApolloServer, gql } = require("apollo-server");
 
 const typeDefs = gql`
-  scalar Dollars
   scalar ProductCode
 
   type DiscountInfo {
-    discountAmount: Dollars!
+    discountAmount: Int!
     applicableProduct: ProductCode!
   }
 
