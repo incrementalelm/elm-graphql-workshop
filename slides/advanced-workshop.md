@@ -8,6 +8,12 @@ slide-dividers: #
 
 ![fit](img/opening.jpg)
 
+# Since Last Time
+
+- 💡 Light bulbs
+- 🤷‍♀️ Lingering questions
+- ⏳ What would make today worth your time?
+
 # Query Context ✅
 
 ```haskell
