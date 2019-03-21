@@ -14,7 +14,7 @@ slide-dividers: #
 query {
 
   viewer {
-    bio
+    company
   }
 }
 ```
@@ -23,14 +23,14 @@ query {
 
 ```haskell
 query {
-  bio     # 💥⛔️💥
+  company     # 💥⛔️💥
   viewer {
-    bio
+    company
   }
 }
 ```
 
-- Cannot query field "bio" on type "Query"
+- Cannot query field "company" on type "Query"
 
 # `elm-graphql` Query Context
 
@@ -56,7 +56,11 @@ query =
 - _Context_: `Github.Object.Repository`
 - _Context_: `Github.Object.User`
 
-# Why?
+# -
+
+```haskell
+Github.Object.User.company  -- which place would it fit?
+```
 
 ```haskell
 repository : RepositoryRequiredArguments
@@ -69,7 +73,11 @@ viewer : SelectionSet decodesTo Github.Object.User
     -> SelectionSet decodesTo RootQuery
 ```
 
-# Why?
+# -
+
+```haskell
+Github.Object.User.company  -- which place would it fit?
+```
 
 ```haskell
 repository : SelectionSet decodesTo Github.Object.Repository
