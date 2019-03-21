@@ -1,6 +1,11 @@
 module Main exposing (main)
 
 import Browser
+import ElmGithub.Object.Author
+import ElmGithub.Object.Package
+import ElmGithub.Object.Repository
+import ElmGithub.Object.StargazerConnection
+import ElmGithub.Query as Query
 import Graphql.Document as Document
 import Graphql.Http
 import Graphql.Operation exposing (RootQuery)
@@ -8,34 +13,39 @@ import Graphql.OptionalArgument exposing (OptionalArgument(..))
 import Graphql.SelectionSet as SelectionSet exposing (SelectionSet, hardcoded, with)
 import Helpers.Main
 import RemoteData exposing (RemoteData)
-import ShoppingCart.Enum.DiscountLookupReason exposing (DiscountLookupReason)
-import ShoppingCart.Object.DiscountInfo
-import ShoppingCart.Object.DiscountLookupError
-import ShoppingCart.Query as Query
-import ShoppingCart.Union.DiscountInfoOrError
 import Time
 
 
 type alias Response =
-    ()
-
-
-type DiscountInfoOrError
-    = DiscountInfo { discountedPrice : String }
-    | DiscountLookupError { reason : DiscountLookupReason }
+    List Package
 
 
 query : SelectionSet Response RootQuery
 query =
-    Query.discountOrError { code = "abc" }
-        (ShoppingCart.Union.DiscountInfoOrError.fragments
-            { onDiscountInfo = SelectionSet.empty
-            , onDiscountLookupError = SelectionSet.empty
-            }
-         -- { onDiscountInfo = ShoppingCart.Object.DiscountInfo.applicableProduct
-         -- , onDiscountLookupError = ShoppingCart.Object.DiscountLookupError.reason
-         -- }
-        )
+    -- Query.favoritePackages packageSelection
+    Query.packagesByAuthor { author = "elm-community" } packageSelection
+        |> SelectionSet.map (List.sortBy .stargazers)
+        |> SelectionSet.map List.reverse
+
+
+type alias Package =
+    { stargazers : Int
+    , title : String
+    , author : String
+    }
+
+
+packageSelection =
+    SelectionSet.map3 Package
+        stargazerCount
+        ElmGithub.Object.Package.title
+        (ElmGithub.Object.Package.author ElmGithub.Object.Author.name)
+
+
+stargazerCount =
+    ElmGithub.Object.Package.repository <|
+        ElmGithub.Object.Repository.stargazers identity
+            ElmGithub.Object.StargazerConnection.totalCount
 
 
 makeRequest : Cmd Msg
@@ -80,11 +90,10 @@ main =
         , update = update
         , queryString = Document.serializeQuery query
         , instructions =
-            { title = "Inexhaustive Unions"
-            , body = """
+            { title = "Tying It All Together"
+            , body = """Have some fun with this API!
 | List
-    -> Use {Code|ShoppingCart.Union.DiscountInfoOrError.maybeFragments} to build up a union that *always* is {Code|Nothing}.
-    (?) Why take this step?
-    -> Now get the discountedPrice for the success case. You should have a {Code|query : SelectionSet (Maybe Int) RootQuery}."""
+    -> Order the packages under the "elm-community" organization by the number of Github stars.
+"""
             }
         }
