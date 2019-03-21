@@ -132,18 +132,6 @@ Let's try using one! Instead of a {Code|Currency} type, we'll be using an Opaque
     -> Add a new line to the schema string like this: {Code|scalar Fahrenheit}. Change {Code|temperature: Float!} to {Code|temperature: Fahrenheit!}. The server will automatically restart.
     -> Regenerate the code by going to the top-level workshop directory and running {Code|npx elm\\-graphql http:\\/\\/localhost:4000\\/api \\-\\-output gen \\-\\-base WeatherCustomScalars}.
     -> When you recompile your code, you'll get an error. Instead of a Float, you now have a {Code|Fahrenheit} type wrapper. Create a function with the following signature, and use it to do a {Code|SelectionSet.map} to get your code compiling. {Code|fahrenheitToFloat (Scalar.Fahrenheit degreesF) = String.toFloat degreesF \\|> Maybe.withDefault 0.0}. You'll need to use that function like this {Code|\\|> SelectionSet.map fahrenheitToFloat}.
-    -> That's a good first step, and we could go ahead and convert it to celsius and fix our bug right here. But it's a good practice to defer unwrapping Semantic Types until the last possible moment. So change the type signature of your function to {Code|fahrenheitToTemperature : Scalar.Fahrenheit -> Temperature} and fix the compiler errors.
-
-| Header
-    Bonus
-
-If you still have time, here's a bonus exercise!
-
-| List
-    -> Grab the {Code|updatedAt} time in addition to the current data being fetched.
-    -> Install {Code|rtfeldman\\/elm-iso8601-date-strings} by running an {Code|elm install} command from the top-level workshop repo directory.
-    -> Also install {Code|sporto\\/time-distance}
-    -> Use {Code|rtfeldman\\/elm-iso8601-date-strings} to parse the {Code|updatedAt} time, and {Code|sporto\\/time-distance} to map it into a human readable string like "30 seconds ago".
-"""
+    -> That's a good first step, and we could go ahead and convert it to celsius and fix our bug right here. But it's a good practice to defer unwrapping Semantic Types until the last possible moment. So change the type signature of your function to {Code|fahrenheitToTemperature : Scalar.Fahrenheit -> Temperature} and fix the compiler errors."""
             }
         }
