@@ -71,6 +71,17 @@ query {
 
 ^ #### Response (`JSON`)
 
+# A Little About You
+
+- What's your GraphQL experience?
+- What's your elm experience?
+- What's your elm-graphql experience?
+- What would success look like in this session?
+
+# Demo!
+
+# Your Questions
+
 # elm Europe Workshop!
 
 June 26 in Paris
