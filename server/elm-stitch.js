@@ -67,10 +67,20 @@ function packagesByAuthor(authorName) {
     }
   });
 }
+function findPackage(author, name) {
+  return packages.filter(package => {
+    if (package) {
+      return package.name === `${author}/${name}`;
+    } else {
+      return false;
+    }
+  })[0];
+}
 const resolvers = {
   Query: {
     allPackages: () => packages,
     packagesByAuthor: (parent, args, context) => packagesByAuthor(args.author),
+    findPackage: (parent, args, context) => findPackage(args.author, args.name),
     favoritePackages: () => {
       return [
         "mdgriffith/elm-ui",
