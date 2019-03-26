@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Object.ContributionsCollection exposing (FirstIssueContributionOptionalArguments, FirstPullRequestContributionOptionalArguments, IssueContributionsOptionalArguments, JoinedGitHubContributionOptionalArguments, TotalIssueContributionsOptionalArguments, TotalPullRequestContributionsOptionalArguments, TotalRepositoriesWithContributedIssuesOptionalArguments, TotalRepositoriesWithContributedPullRequestsOptionalArguments, TotalRepositoryContributionsOptionalArguments, contributionCalendar, doesEndInCurrentMonth, earliestRestrictedContributionDate, endedAt, firstIssueContribution, firstPullRequestContribution, hasActivityInThePast, hasAnyContributions, hasAnyRestrictedContributions, isSingleDay, issueContributions, joinedGitHubContribution, latestRestrictedContributionDate, mostRecentCollectionWithActivity, mostRecentCollectionWithoutActivity, popularIssueContribution, popularPullRequestContribution, restrictedContributionsCount, startedAt, totalCommitContributions, totalIssueContributions, totalPullRequestContributions, totalPullRequestReviewContributions, totalRepositoriesWithContributedCommits, totalRepositoriesWithContributedIssues, totalRepositoriesWithContributedPullRequestReviews, totalRepositoriesWithContributedPullRequests, totalRepositoryContributions, user)
+module ElmGithub.Object.ContributionsCollection exposing (CommitContributionsByRepositoryOptionalArguments, FirstIssueContributionOptionalArguments, FirstPullRequestContributionOptionalArguments, FirstRepositoryContributionOptionalArguments, IssueContributionsByRepositoryOptionalArguments, IssueContributionsOptionalArguments, JoinedGitHubContributionOptionalArguments, PullRequestContributionsByRepositoryOptionalArguments, PullRequestContributionsOptionalArguments, PullRequestReviewContributionsByRepositoryOptionalArguments, PullRequestReviewContributionsOptionalArguments, RepositoryContributionsOptionalArguments, TotalIssueContributionsOptionalArguments, TotalPullRequestContributionsOptionalArguments, TotalRepositoriesWithContributedIssuesOptionalArguments, TotalRepositoriesWithContributedPullRequestsOptionalArguments, TotalRepositoryContributionsOptionalArguments, commitContributionsByRepository, contributionCalendar, contributionYears, doesEndInCurrentMonth, earliestRestrictedContributionDate, endedAt, firstIssueContribution, firstPullRequestContribution, firstRepositoryContribution, hasActivityInThePast, hasAnyContributions, hasAnyRestrictedContributions, isSingleDay, issueContributions, issueContributionsByRepository, joinedGitHubContribution, latestRestrictedContributionDate, mostRecentCollectionWithActivity, mostRecentCollectionWithoutActivity, popularIssueContribution, popularPullRequestContribution, pullRequestContributions, pullRequestContributionsByRepository, pullRequestReviewContributions, pullRequestReviewContributionsByRepository, repositoryContributions, restrictedContributionsCount, startedAt, totalCommitContributions, totalIssueContributions, totalPullRequestContributions, totalPullRequestReviewContributions, totalRepositoriesWithContributedCommits, totalRepositoriesWithContributedIssues, totalRepositoriesWithContributedPullRequestReviews, totalRepositoriesWithContributedPullRequests, totalRepositoryContributions, user)
 
 import ElmGithub.InputObject
 import ElmGithub.Interface
@@ -19,11 +19,40 @@ import Graphql.SelectionSet exposing (SelectionSet)
 import Json.Decode as Decode
 
 
+type alias CommitContributionsByRepositoryOptionalArguments =
+    { maxRepositories : OptionalArgument Int }
+
+
+{-| Commit contributions made by the user, grouped by repository.
+
+  - maxRepositories - How many repositories should be included.
+
+-}
+commitContributionsByRepository : (CommitContributionsByRepositoryOptionalArguments -> CommitContributionsByRepositoryOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.CommitContributionsByRepository -> SelectionSet (List decodesTo) ElmGithub.Object.ContributionsCollection
+commitContributionsByRepository fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { maxRepositories = Absent }
+
+        optionalArgs =
+            [ Argument.optional "maxRepositories" filledInOptionals.maxRepositories Encode.int ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "commitContributionsByRepository" optionalArgs object_ (identity >> Decode.list)
+
+
 {-| A calendar of this user's contributions on GitHub.
 -}
 contributionCalendar : SelectionSet decodesTo ElmGithub.Object.ContributionCalendar -> SelectionSet decodesTo ElmGithub.Object.ContributionsCollection
 contributionCalendar object_ =
     Object.selectionForCompositeField "contributionCalendar" [] object_ identity
+
+
+{-| The years the user has been making contributions with the most recent year first.
+-}
+contributionYears : SelectionSet (List Int) ElmGithub.Object.ContributionsCollection
+contributionYears =
+    Object.selectionForField "(List Int)" "contributionYears" [] (Decode.int |> Decode.list)
 
 
 {-| Determine if this collection's time span ends in the current month.
@@ -59,6 +88,10 @@ a RestrictedContribution will be returned.
 
   - ignoreTimeRange - If true, the first issue will be returned even if it was opened outside of the collection's time range.
 
+**Upcoming Change on 2019-07-01 UTC**
+**Description:** `ignoreTimeRange` will be removed. Use a `ContributionsCollection` starting sufficiently far back
+**Reason:** ignore\_time\_range will be removed
+
 -}
 firstIssueContribution : (FirstIssueContributionOptionalArguments -> FirstIssueContributionOptionalArguments) -> SelectionSet decodesTo ElmGithub.Union.CreatedIssueOrRestrictedContribution -> SelectionSet (Maybe decodesTo) ElmGithub.Object.ContributionsCollection
 firstIssueContribution fillInOptionals object_ =
@@ -84,6 +117,10 @@ has opted to show private contributions, a RestrictedContribution will be return
 
   - ignoreTimeRange - If true, the first pull request will be returned even if it was opened outside of the collection's time range.
 
+**Upcoming Change on 2019-07-01 UTC**
+**Description:** `ignoreTimeRange` will be removed. Use a `ContributionsCollection` starting sufficiently far back
+**Reason:** ignore\_time\_range will be removed
+
 -}
 firstPullRequestContribution : (FirstPullRequestContributionOptionalArguments -> FirstPullRequestContributionOptionalArguments) -> SelectionSet decodesTo ElmGithub.Union.CreatedPullRequestOrRestrictedContribution -> SelectionSet (Maybe decodesTo) ElmGithub.Object.ContributionsCollection
 firstPullRequestContribution fillInOptionals object_ =
@@ -96,6 +133,35 @@ firstPullRequestContribution fillInOptionals object_ =
                 |> List.filterMap identity
     in
     Object.selectionForCompositeField "firstPullRequestContribution" optionalArgs object_ (identity >> Decode.nullable)
+
+
+type alias FirstRepositoryContributionOptionalArguments =
+    { ignoreTimeRange : OptionalArgument Bool }
+
+
+{-| The first repository the user created on GitHub. This will be null if that
+first repository was created outside the collection's time range and
+ignoreTimeRange is false. If the repository is not visible, then a
+RestrictedContribution is returned.
+
+  - ignoreTimeRange - If true, the first repository will be returned even if it was opened outside of the collection's time range.
+
+**Upcoming Change on 2019-07-01 UTC**
+**Description:** `ignoreTimeRange` will be removed. Use a `ContributionsCollection` starting sufficiently far back
+**Reason:** ignore\_time\_range will be removed
+
+-}
+firstRepositoryContribution : (FirstRepositoryContributionOptionalArguments -> FirstRepositoryContributionOptionalArguments) -> SelectionSet decodesTo ElmGithub.Union.CreatedRepositoryOrRestrictedContribution -> SelectionSet (Maybe decodesTo) ElmGithub.Object.ContributionsCollection
+firstRepositoryContribution fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { ignoreTimeRange = Absent }
+
+        optionalArgs =
+            [ Argument.optional "ignoreTimeRange" filledInOptionals.ignoreTimeRange Encode.bool ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "firstRepositoryContribution" optionalArgs object_ (identity >> Decode.nullable)
 
 
 {-| Does the user have any more activity in the timeline that occurred prior to the collection's time range?
@@ -135,6 +201,7 @@ type alias IssueContributionsOptionalArguments =
     , last : OptionalArgument Int
     , excludeFirst : OptionalArgument Bool
     , excludePopular : OptionalArgument Bool
+    , orderBy : OptionalArgument ElmGithub.InputObject.ContributionOrder
     }
 
 
@@ -146,19 +213,47 @@ type alias IssueContributionsOptionalArguments =
   - last - Returns the last _n_ elements from the list.
   - excludeFirst - Should the user's first issue ever be excluded from the result.
   - excludePopular - Should the user's most commented issue be excluded from the result.
+  - orderBy - Ordering options for contributions returned from the connection.
 
 -}
 issueContributions : (IssueContributionsOptionalArguments -> IssueContributionsOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.CreatedIssueContributionConnection -> SelectionSet decodesTo ElmGithub.Object.ContributionsCollection
 issueContributions fillInOptionals object_ =
     let
         filledInOptionals =
-            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent, excludeFirst = Absent, excludePopular = Absent }
+            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent, excludeFirst = Absent, excludePopular = Absent, orderBy = Absent }
 
         optionalArgs =
-            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int, Argument.optional "excludeFirst" filledInOptionals.excludeFirst Encode.bool, Argument.optional "excludePopular" filledInOptionals.excludePopular Encode.bool ]
+            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int, Argument.optional "excludeFirst" filledInOptionals.excludeFirst Encode.bool, Argument.optional "excludePopular" filledInOptionals.excludePopular Encode.bool, Argument.optional "orderBy" filledInOptionals.orderBy ElmGithub.InputObject.encodeContributionOrder ]
                 |> List.filterMap identity
     in
     Object.selectionForCompositeField "issueContributions" optionalArgs object_ identity
+
+
+type alias IssueContributionsByRepositoryOptionalArguments =
+    { maxRepositories : OptionalArgument Int
+    , excludeFirst : OptionalArgument Bool
+    , excludePopular : OptionalArgument Bool
+    }
+
+
+{-| Issue contributions made by the user, grouped by repository.
+
+  - maxRepositories - How many repositories should be included.
+  - excludeFirst - Should the user's first issue ever be excluded from the result.
+  - excludePopular - Should the user's most commented issue be excluded from the result.
+
+-}
+issueContributionsByRepository : (IssueContributionsByRepositoryOptionalArguments -> IssueContributionsByRepositoryOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.IssueContributionsByRepository -> SelectionSet (List decodesTo) ElmGithub.Object.ContributionsCollection
+issueContributionsByRepository fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { maxRepositories = Absent, excludeFirst = Absent, excludePopular = Absent }
+
+        optionalArgs =
+            [ Argument.optional "maxRepositories" filledInOptionals.maxRepositories Encode.int, Argument.optional "excludeFirst" filledInOptionals.excludeFirst Encode.bool, Argument.optional "excludePopular" filledInOptionals.excludePopular Encode.bool ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "issueContributionsByRepository" optionalArgs object_ (identity >> Decode.list)
 
 
 type alias JoinedGitHubContributionOptionalArguments =
@@ -169,6 +264,10 @@ type alias JoinedGitHubContributionOptionalArguments =
 falls outside the collection's time range and ignoreTimeRange is false.
 
   - ignoreTimeRange - If true, the contribution will be returned even if the user signed up outside of the collection's time range.
+
+**Upcoming Change on 2019-07-01 UTC**
+**Description:** `ignoreTimeRange` will be removed. Use a `ContributionsCollection` starting sufficiently far back
+**Reason:** ignore\_time\_range will be removed
 
 -}
 joinedGitHubContribution : (JoinedGitHubContributionOptionalArguments -> JoinedGitHubContributionOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.JoinedGitHubContribution -> SelectionSet (Maybe decodesTo) ElmGithub.Object.ContributionsCollection
@@ -222,6 +321,154 @@ specified time frame.
 popularPullRequestContribution : SelectionSet decodesTo ElmGithub.Object.CreatedPullRequestContribution -> SelectionSet (Maybe decodesTo) ElmGithub.Object.ContributionsCollection
 popularPullRequestContribution object_ =
     Object.selectionForCompositeField "popularPullRequestContribution" [] object_ (identity >> Decode.nullable)
+
+
+type alias PullRequestContributionsOptionalArguments =
+    { after : OptionalArgument String
+    , before : OptionalArgument String
+    , first : OptionalArgument Int
+    , last : OptionalArgument Int
+    , excludeFirst : OptionalArgument Bool
+    , excludePopular : OptionalArgument Bool
+    , orderBy : OptionalArgument ElmGithub.InputObject.ContributionOrder
+    }
+
+
+{-| Pull request contributions made by the user.
+
+  - after - Returns the elements in the list that come after the specified cursor.
+  - before - Returns the elements in the list that come before the specified cursor.
+  - first - Returns the first _n_ elements from the list.
+  - last - Returns the last _n_ elements from the list.
+  - excludeFirst - Should the user's first pull request ever be excluded from the result.
+  - excludePopular - Should the user's most commented pull request be excluded from the result.
+  - orderBy - Ordering options for contributions returned from the connection.
+
+-}
+pullRequestContributions : (PullRequestContributionsOptionalArguments -> PullRequestContributionsOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.CreatedPullRequestContributionConnection -> SelectionSet decodesTo ElmGithub.Object.ContributionsCollection
+pullRequestContributions fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent, excludeFirst = Absent, excludePopular = Absent, orderBy = Absent }
+
+        optionalArgs =
+            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int, Argument.optional "excludeFirst" filledInOptionals.excludeFirst Encode.bool, Argument.optional "excludePopular" filledInOptionals.excludePopular Encode.bool, Argument.optional "orderBy" filledInOptionals.orderBy ElmGithub.InputObject.encodeContributionOrder ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "pullRequestContributions" optionalArgs object_ identity
+
+
+type alias PullRequestContributionsByRepositoryOptionalArguments =
+    { maxRepositories : OptionalArgument Int
+    , excludeFirst : OptionalArgument Bool
+    , excludePopular : OptionalArgument Bool
+    }
+
+
+{-| Pull request contributions made by the user, grouped by repository.
+
+  - maxRepositories - How many repositories should be included.
+  - excludeFirst - Should the user's first pull request ever be excluded from the result.
+  - excludePopular - Should the user's most commented pull request be excluded from the result.
+
+-}
+pullRequestContributionsByRepository : (PullRequestContributionsByRepositoryOptionalArguments -> PullRequestContributionsByRepositoryOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.PullRequestContributionsByRepository -> SelectionSet (List decodesTo) ElmGithub.Object.ContributionsCollection
+pullRequestContributionsByRepository fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { maxRepositories = Absent, excludeFirst = Absent, excludePopular = Absent }
+
+        optionalArgs =
+            [ Argument.optional "maxRepositories" filledInOptionals.maxRepositories Encode.int, Argument.optional "excludeFirst" filledInOptionals.excludeFirst Encode.bool, Argument.optional "excludePopular" filledInOptionals.excludePopular Encode.bool ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "pullRequestContributionsByRepository" optionalArgs object_ (identity >> Decode.list)
+
+
+type alias PullRequestReviewContributionsOptionalArguments =
+    { after : OptionalArgument String
+    , before : OptionalArgument String
+    , first : OptionalArgument Int
+    , last : OptionalArgument Int
+    , orderBy : OptionalArgument ElmGithub.InputObject.ContributionOrder
+    }
+
+
+{-| Pull request review contributions made by the user.
+
+  - after - Returns the elements in the list that come after the specified cursor.
+  - before - Returns the elements in the list that come before the specified cursor.
+  - first - Returns the first _n_ elements from the list.
+  - last - Returns the last _n_ elements from the list.
+  - orderBy - Ordering options for contributions returned from the connection.
+
+-}
+pullRequestReviewContributions : (PullRequestReviewContributionsOptionalArguments -> PullRequestReviewContributionsOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.CreatedPullRequestReviewContributionConnection -> SelectionSet decodesTo ElmGithub.Object.ContributionsCollection
+pullRequestReviewContributions fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent, orderBy = Absent }
+
+        optionalArgs =
+            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int, Argument.optional "orderBy" filledInOptionals.orderBy ElmGithub.InputObject.encodeContributionOrder ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "pullRequestReviewContributions" optionalArgs object_ identity
+
+
+type alias PullRequestReviewContributionsByRepositoryOptionalArguments =
+    { maxRepositories : OptionalArgument Int }
+
+
+{-| Pull request review contributions made by the user, grouped by repository.
+
+  - maxRepositories - How many repositories should be included.
+
+-}
+pullRequestReviewContributionsByRepository : (PullRequestReviewContributionsByRepositoryOptionalArguments -> PullRequestReviewContributionsByRepositoryOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.PullRequestReviewContributionsByRepository -> SelectionSet (List decodesTo) ElmGithub.Object.ContributionsCollection
+pullRequestReviewContributionsByRepository fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { maxRepositories = Absent }
+
+        optionalArgs =
+            [ Argument.optional "maxRepositories" filledInOptionals.maxRepositories Encode.int ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "pullRequestReviewContributionsByRepository" optionalArgs object_ (identity >> Decode.list)
+
+
+type alias RepositoryContributionsOptionalArguments =
+    { after : OptionalArgument String
+    , before : OptionalArgument String
+    , first : OptionalArgument Int
+    , last : OptionalArgument Int
+    , excludeFirst : OptionalArgument Bool
+    , orderBy : OptionalArgument ElmGithub.InputObject.ContributionOrder
+    }
+
+
+{-| A list of repositories owned by the user that the user created in this time range.
+
+  - after - Returns the elements in the list that come after the specified cursor.
+  - before - Returns the elements in the list that come before the specified cursor.
+  - first - Returns the first _n_ elements from the list.
+  - last - Returns the last _n_ elements from the list.
+  - excludeFirst - Should the user's first repository ever be excluded from the result.
+  - orderBy - Ordering options for contributions returned from the connection.
+
+-}
+repositoryContributions : (RepositoryContributionsOptionalArguments -> RepositoryContributionsOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.CreatedRepositoryContributionConnection -> SelectionSet decodesTo ElmGithub.Object.ContributionsCollection
+repositoryContributions fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent, excludeFirst = Absent, orderBy = Absent }
+
+        optionalArgs =
+            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int, Argument.optional "excludeFirst" filledInOptionals.excludeFirst Encode.bool, Argument.optional "orderBy" filledInOptionals.orderBy ElmGithub.InputObject.encodeContributionOrder ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "repositoryContributions" optionalArgs object_ identity
 
 
 {-| A count of contributions made by the user that the viewer cannot access. Only

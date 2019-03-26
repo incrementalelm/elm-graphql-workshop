@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Object exposing (AcceptTopicSuggestionPayload(..), AddCommentPayload(..), AddProjectCardPayload(..), AddProjectColumnPayload(..), AddPullRequestReviewCommentPayload(..), AddPullRequestReviewPayload(..), AddReactionPayload(..), AddStarPayload(..), AddedToProjectEvent(..), App(..), AppEdge(..), AssignedEvent(..), Author(..), BaseRefChangedEvent(..), BaseRefForcePushedEvent(..), Blame(..), BlameRange(..), Blob(..), Bot(..), BranchProtectionRule(..), BranchProtectionRuleConflict(..), BranchProtectionRuleConflictConnection(..), BranchProtectionRuleConflictEdge(..), BranchProtectionRuleConnection(..), BranchProtectionRuleEdge(..), ChangeUserStatusPayload(..), ClosedEvent(..), CodeOfConduct(..), CommentDeletedEvent(..), Commit(..), CommitComment(..), CommitCommentConnection(..), CommitCommentEdge(..), CommitCommentThread(..), CommitConnection(..), CommitEdge(..), CommitHistoryConnection(..), ContentAttachment(..), ContentReference(..), ContributionCalendar(..), ContributionCalendarDay(..), ContributionCalendarMonth(..), ContributionCalendarWeek(..), ContributionsCollection(..), ConvertedNoteToIssueEvent(..), CreateBranchProtectionRulePayload(..), CreateProjectPayload(..), CreatedIssueContribution(..), CreatedIssueContributionConnection(..), CreatedIssueContributionEdge(..), CreatedPullRequestContribution(..), CreatedPullRequestContributionConnection(..), CreatedPullRequestContributionEdge(..), CrossReferencedEvent(..), DeclineTopicSuggestionPayload(..), DeleteBranchProtectionRulePayload(..), DeleteProjectCardPayload(..), DeleteProjectColumnPayload(..), DeleteProjectPayload(..), DeletePullRequestReviewPayload(..), DemilestonedEvent(..), DeployKey(..), DeployKeyConnection(..), DeployKeyEdge(..), DeployedEvent(..), Deployment(..), DeploymentConnection(..), DeploymentEdge(..), DeploymentEnvironmentChangedEvent(..), DeploymentStatus(..), DeploymentStatusConnection(..), DeploymentStatusEdge(..), DismissPullRequestReviewPayload(..), ExternalIdentity(..), ExternalIdentityConnection(..), ExternalIdentityEdge(..), ExternalIdentitySamlAttributes(..), ExternalIdentityScimAttributes(..), FollowerConnection(..), FollowingConnection(..), Gist(..), GistComment(..), GistCommentConnection(..), GistCommentEdge(..), GistConnection(..), GistEdge(..), GitActor(..), GitHubMetadata(..), GpgSignature(..), HeadRefDeletedEvent(..), HeadRefForcePushedEvent(..), HeadRefRestoredEvent(..), Issue(..), IssueComment(..), IssueCommentConnection(..), IssueCommentEdge(..), IssueConnection(..), IssueEdge(..), IssueTimelineConnection(..), IssueTimelineItemEdge(..), IssueTimelineItemsEdge(..), JoinedGitHubContribution(..), Label(..), LabelConnection(..), LabelEdge(..), LabeledEvent(..), Language(..), LanguageConnection(..), LanguageEdge(..), License(..), LicenseRule(..), LockLockablePayload(..), LockedEvent(..), MarketplaceCategory(..), MarketplaceListing(..), MarketplaceListingConnection(..), MarketplaceListingEdge(..), MentionedEvent(..), MergedEvent(..), Milestone(..), MilestoneConnection(..), MilestoneEdge(..), MilestonedEvent(..), MoveProjectCardPayload(..), MoveProjectColumnPayload(..), MovedColumnsInProjectEvent(..), Organization(..), OrganizationConnection(..), OrganizationEdge(..), OrganizationIdentityProvider(..), OrganizationInvitation(..), OrganizationInvitationConnection(..), OrganizationInvitationEdge(..), OrganizationMemberConnection(..), OrganizationMemberEdge(..), Package(..), PageInfo(..), PinnedEvent(..), Project(..), ProjectCard(..), ProjectCardConnection(..), ProjectCardEdge(..), ProjectColumn(..), ProjectColumnConnection(..), ProjectColumnEdge(..), ProjectConnection(..), ProjectEdge(..), ProtectedBranch(..), ProtectedBranchConnection(..), ProtectedBranchEdge(..), PublicKey(..), PublicKeyConnection(..), PublicKeyEdge(..), PullRequest(..), PullRequestCommit(..), PullRequestCommitConnection(..), PullRequestCommitEdge(..), PullRequestConnection(..), PullRequestEdge(..), PullRequestReview(..), PullRequestReviewComment(..), PullRequestReviewCommentConnection(..), PullRequestReviewCommentEdge(..), PullRequestReviewConnection(..), PullRequestReviewEdge(..), PullRequestReviewThread(..), PullRequestReviewThreadEdge(..), PullRequestTimelineConnection(..), PullRequestTimelineItemEdge(..), PullRequestTimelineItemsEdge(..), PushAllowance(..), PushAllowanceConnection(..), PushAllowanceEdge(..), RateLimit(..), ReactingUserConnection(..), ReactingUserEdge(..), Reaction(..), ReactionConnection(..), ReactionEdge(..), ReactionGroup(..), Ref(..), RefConnection(..), RefEdge(..), ReferencedEvent(..), Release(..), ReleaseAsset(..), ReleaseAssetConnection(..), ReleaseAssetEdge(..), ReleaseConnection(..), ReleaseEdge(..), RemoveOutsideCollaboratorPayload(..), RemoveReactionPayload(..), RemoveStarPayload(..), RemovedFromProjectEvent(..), RenamedTitleEvent(..), ReopenedEvent(..), Repository(..), RepositoryCollaboratorConnection(..), RepositoryCollaboratorEdge(..), RepositoryConnection(..), RepositoryEdge(..), RepositoryInvitation(..), RepositoryInvitationEdge(..), RepositoryTopic(..), RepositoryTopicConnection(..), RepositoryTopicEdge(..), RequestReviewsPayload(..), RestrictedContribution(..), ReviewDismissalAllowance(..), ReviewDismissalAllowanceConnection(..), ReviewDismissalAllowanceEdge(..), ReviewDismissedEvent(..), ReviewRequest(..), ReviewRequestConnection(..), ReviewRequestEdge(..), ReviewRequestRemovedEvent(..), ReviewRequestedEvent(..), SearchResultItemConnection(..), SearchResultItemEdge(..), SecurityAdvisory(..), SecurityAdvisoryConnection(..), SecurityAdvisoryEdge(..), SecurityAdvisoryIdentifier(..), SecurityAdvisoryPackage(..), SecurityAdvisoryPackageVersion(..), SecurityAdvisoryReference(..), SecurityVulnerability(..), SecurityVulnerabilityConnection(..), SecurityVulnerabilityEdge(..), SmimeSignature(..), StargazerConnection(..), StargazerEdge(..), StarredRepositoryConnection(..), StarredRepositoryEdge(..), Status(..), StatusContext(..), SubmitPullRequestReviewPayload(..), SubscribedEvent(..), SuggestedReviewer(..), Tag(..), Team(..), TeamConnection(..), TeamEdge(..), TeamMemberConnection(..), TeamMemberEdge(..), TeamRepositoryConnection(..), TeamRepositoryEdge(..), TextMatch(..), TextMatchHighlight(..), Topic(..), TopicConnection(..), TopicEdge(..), TransferredEvent(..), Tree(..), TreeEntry(..), UnassignedEvent(..), UnknownSignature(..), UnlabeledEvent(..), UnlockLockablePayload(..), UnlockedEvent(..), UnpinnedEvent(..), UnsubscribedEvent(..), UpdateBranchProtectionRulePayload(..), UpdateProjectCardPayload(..), UpdateProjectColumnPayload(..), UpdateProjectPayload(..), UpdatePullRequestReviewCommentPayload(..), UpdatePullRequestReviewPayload(..), UpdateSubscriptionPayload(..), UpdateTopicsPayload(..), User(..), UserConnection(..), UserContentEdit(..), UserContentEditConnection(..), UserContentEditEdge(..), UserEdge(..), UserStatus(..), UserStatusConnection(..), UserStatusEdge(..))
+module ElmGithub.Object exposing (AcceptTopicSuggestionPayload(..), AddCommentPayload(..), AddProjectCardPayload(..), AddProjectColumnPayload(..), AddPullRequestReviewCommentPayload(..), AddPullRequestReviewPayload(..), AddReactionPayload(..), AddStarPayload(..), AddedToProjectEvent(..), App(..), AppEdge(..), AssignedEvent(..), Author(..), BaseRefChangedEvent(..), BaseRefForcePushedEvent(..), Blame(..), BlameRange(..), Blob(..), Bot(..), BranchProtectionRule(..), BranchProtectionRuleConflict(..), BranchProtectionRuleConflictConnection(..), BranchProtectionRuleConflictEdge(..), BranchProtectionRuleConnection(..), BranchProtectionRuleEdge(..), ChangeUserStatusPayload(..), ClosePullRequestPayload(..), ClosedEvent(..), CodeOfConduct(..), CommentDeletedEvent(..), Commit(..), CommitComment(..), CommitCommentConnection(..), CommitCommentEdge(..), CommitCommentThread(..), CommitConnection(..), CommitContributionsByRepository(..), CommitEdge(..), CommitHistoryConnection(..), ContentAttachment(..), ContentReference(..), ContributionCalendar(..), ContributionCalendarDay(..), ContributionCalendarMonth(..), ContributionCalendarWeek(..), ContributionsCollection(..), ConvertedNoteToIssueEvent(..), CreateBranchProtectionRulePayload(..), CreateProjectPayload(..), CreatePullRequestPayload(..), CreatedCommitContribution(..), CreatedCommitContributionConnection(..), CreatedCommitContributionEdge(..), CreatedIssueContribution(..), CreatedIssueContributionConnection(..), CreatedIssueContributionEdge(..), CreatedPullRequestContribution(..), CreatedPullRequestContributionConnection(..), CreatedPullRequestContributionEdge(..), CreatedPullRequestReviewContribution(..), CreatedPullRequestReviewContributionConnection(..), CreatedPullRequestReviewContributionEdge(..), CreatedRepositoryContribution(..), CreatedRepositoryContributionConnection(..), CreatedRepositoryContributionEdge(..), CrossReferencedEvent(..), DeclineTopicSuggestionPayload(..), DeleteBranchProtectionRulePayload(..), DeleteProjectCardPayload(..), DeleteProjectColumnPayload(..), DeleteProjectPayload(..), DeletePullRequestReviewCommentPayload(..), DeletePullRequestReviewPayload(..), DemilestonedEvent(..), DeployKey(..), DeployKeyConnection(..), DeployKeyEdge(..), DeployedEvent(..), Deployment(..), DeploymentConnection(..), DeploymentEdge(..), DeploymentEnvironmentChangedEvent(..), DeploymentStatus(..), DeploymentStatusConnection(..), DeploymentStatusEdge(..), DismissPullRequestReviewPayload(..), ExternalIdentity(..), ExternalIdentityConnection(..), ExternalIdentityEdge(..), ExternalIdentitySamlAttributes(..), ExternalIdentityScimAttributes(..), FollowerConnection(..), FollowingConnection(..), Gist(..), GistComment(..), GistCommentConnection(..), GistCommentEdge(..), GistConnection(..), GistEdge(..), GistFile(..), GitActor(..), GitHubMetadata(..), GpgSignature(..), HeadRefDeletedEvent(..), HeadRefForcePushedEvent(..), HeadRefRestoredEvent(..), Issue(..), IssueComment(..), IssueCommentConnection(..), IssueCommentEdge(..), IssueConnection(..), IssueContributionsByRepository(..), IssueEdge(..), IssueTimelineConnection(..), IssueTimelineItemEdge(..), IssueTimelineItemsEdge(..), JoinedGitHubContribution(..), Label(..), LabelConnection(..), LabelEdge(..), LabeledEvent(..), Language(..), LanguageConnection(..), LanguageEdge(..), License(..), LicenseRule(..), LockLockablePayload(..), LockedEvent(..), MarketplaceCategory(..), MarketplaceListing(..), MarketplaceListingConnection(..), MarketplaceListingEdge(..), MentionedEvent(..), MergePullRequestPayload(..), MergedEvent(..), Milestone(..), MilestoneConnection(..), MilestoneEdge(..), MilestonedEvent(..), MoveProjectCardPayload(..), MoveProjectColumnPayload(..), MovedColumnsInProjectEvent(..), Organization(..), OrganizationConnection(..), OrganizationEdge(..), OrganizationIdentityProvider(..), OrganizationInvitation(..), OrganizationInvitationConnection(..), OrganizationInvitationEdge(..), OrganizationMemberConnection(..), OrganizationMemberEdge(..), Package(..), PageInfo(..), PinnedEvent(..), Project(..), ProjectCard(..), ProjectCardConnection(..), ProjectCardEdge(..), ProjectColumn(..), ProjectColumnConnection(..), ProjectColumnEdge(..), ProjectConnection(..), ProjectEdge(..), ProtectedBranch(..), ProtectedBranchConnection(..), ProtectedBranchEdge(..), PublicKey(..), PublicKeyConnection(..), PublicKeyEdge(..), PullRequest(..), PullRequestChangedFile(..), PullRequestChangedFileConnection(..), PullRequestChangedFileEdge(..), PullRequestCommit(..), PullRequestCommitConnection(..), PullRequestCommitEdge(..), PullRequestConnection(..), PullRequestContributionsByRepository(..), PullRequestEdge(..), PullRequestReview(..), PullRequestReviewComment(..), PullRequestReviewCommentConnection(..), PullRequestReviewCommentEdge(..), PullRequestReviewConnection(..), PullRequestReviewContributionsByRepository(..), PullRequestReviewEdge(..), PullRequestReviewThread(..), PullRequestReviewThreadConnection(..), PullRequestReviewThreadEdge(..), PullRequestTimelineConnection(..), PullRequestTimelineItemEdge(..), PullRequestTimelineItemsEdge(..), PushAllowance(..), PushAllowanceConnection(..), PushAllowanceEdge(..), RateLimit(..), ReactingUserConnection(..), ReactingUserEdge(..), Reaction(..), ReactionConnection(..), ReactionEdge(..), ReactionGroup(..), Ref(..), RefConnection(..), RefEdge(..), ReferencedEvent(..), Release(..), ReleaseAsset(..), ReleaseAssetConnection(..), ReleaseAssetEdge(..), ReleaseConnection(..), ReleaseEdge(..), RemoveOutsideCollaboratorPayload(..), RemoveReactionPayload(..), RemoveStarPayload(..), RemovedFromProjectEvent(..), RenamedTitleEvent(..), ReopenPullRequestPayload(..), ReopenedEvent(..), Repository(..), RepositoryCollaboratorConnection(..), RepositoryCollaboratorEdge(..), RepositoryConnection(..), RepositoryEdge(..), RepositoryInvitation(..), RepositoryInvitationEdge(..), RepositoryTopic(..), RepositoryTopicConnection(..), RepositoryTopicEdge(..), RequestReviewsPayload(..), ResolveReviewThreadPayload(..), RestrictedContribution(..), ReviewDismissalAllowance(..), ReviewDismissalAllowanceConnection(..), ReviewDismissalAllowanceEdge(..), ReviewDismissedEvent(..), ReviewRequest(..), ReviewRequestConnection(..), ReviewRequestEdge(..), ReviewRequestRemovedEvent(..), ReviewRequestedEvent(..), SearchResultItemConnection(..), SearchResultItemEdge(..), SecurityAdvisory(..), SecurityAdvisoryConnection(..), SecurityAdvisoryEdge(..), SecurityAdvisoryIdentifier(..), SecurityAdvisoryPackage(..), SecurityAdvisoryPackageVersion(..), SecurityAdvisoryReference(..), SecurityVulnerability(..), SecurityVulnerabilityConnection(..), SecurityVulnerabilityEdge(..), SmimeSignature(..), StargazerConnection(..), StargazerEdge(..), StarredRepositoryConnection(..), StarredRepositoryEdge(..), Status(..), StatusContext(..), SubmitPullRequestReviewPayload(..), SubscribedEvent(..), SuggestedReviewer(..), Tag(..), Team(..), TeamConnection(..), TeamEdge(..), TeamMemberConnection(..), TeamMemberEdge(..), TeamRepositoryConnection(..), TeamRepositoryEdge(..), TextMatch(..), TextMatchHighlight(..), Topic(..), TopicConnection(..), TopicEdge(..), TransferredEvent(..), Tree(..), TreeEntry(..), UnassignedEvent(..), UnknownSignature(..), UnlabeledEvent(..), UnlockLockablePayload(..), UnlockedEvent(..), UnpinnedEvent(..), UnresolveReviewThreadPayload(..), UnsubscribedEvent(..), UpdateBranchProtectionRulePayload(..), UpdateProjectCardPayload(..), UpdateProjectColumnPayload(..), UpdateProjectPayload(..), UpdatePullRequestPayload(..), UpdatePullRequestReviewCommentPayload(..), UpdatePullRequestReviewPayload(..), UpdateSubscriptionPayload(..), UpdateTopicsPayload(..), User(..), UserConnection(..), UserContentEdit(..), UserContentEditConnection(..), UserContentEditEdge(..), UserEdge(..), UserStatus(..), UserStatusConnection(..), UserStatusEdge(..))
 
 
 type AcceptTopicSuggestionPayload
@@ -109,6 +109,10 @@ type ChangeUserStatusPayload
     = ChangeUserStatusPayload
 
 
+type ClosePullRequestPayload
+    = ClosePullRequestPayload
+
+
 type ClosedEvent
     = ClosedEvent
 
@@ -143,6 +147,10 @@ type CommitCommentThread
 
 type CommitConnection
     = CommitConnection
+
+
+type CommitContributionsByRepository
+    = CommitContributionsByRepository
 
 
 type CommitEdge
@@ -193,6 +201,22 @@ type CreateProjectPayload
     = CreateProjectPayload
 
 
+type CreatePullRequestPayload
+    = CreatePullRequestPayload
+
+
+type CreatedCommitContribution
+    = CreatedCommitContribution
+
+
+type CreatedCommitContributionConnection
+    = CreatedCommitContributionConnection
+
+
+type CreatedCommitContributionEdge
+    = CreatedCommitContributionEdge
+
+
 type CreatedIssueContribution
     = CreatedIssueContribution
 
@@ -217,6 +241,30 @@ type CreatedPullRequestContributionEdge
     = CreatedPullRequestContributionEdge
 
 
+type CreatedPullRequestReviewContribution
+    = CreatedPullRequestReviewContribution
+
+
+type CreatedPullRequestReviewContributionConnection
+    = CreatedPullRequestReviewContributionConnection
+
+
+type CreatedPullRequestReviewContributionEdge
+    = CreatedPullRequestReviewContributionEdge
+
+
+type CreatedRepositoryContribution
+    = CreatedRepositoryContribution
+
+
+type CreatedRepositoryContributionConnection
+    = CreatedRepositoryContributionConnection
+
+
+type CreatedRepositoryContributionEdge
+    = CreatedRepositoryContributionEdge
+
+
 type CrossReferencedEvent
     = CrossReferencedEvent
 
@@ -239,6 +287,10 @@ type DeleteProjectColumnPayload
 
 type DeleteProjectPayload
     = DeleteProjectPayload
+
+
+type DeletePullRequestReviewCommentPayload
+    = DeletePullRequestReviewCommentPayload
 
 
 type DeletePullRequestReviewPayload
@@ -349,6 +401,10 @@ type GistEdge
     = GistEdge
 
 
+type GistFile
+    = GistFile
+
+
 type GitActor
     = GitActor
 
@@ -391,6 +447,10 @@ type IssueCommentEdge
 
 type IssueConnection
     = IssueConnection
+
+
+type IssueContributionsByRepository
+    = IssueContributionsByRepository
 
 
 type IssueEdge
@@ -475,6 +535,10 @@ type MarketplaceListingEdge
 
 type MentionedEvent
     = MentionedEvent
+
+
+type MergePullRequestPayload
+    = MergePullRequestPayload
 
 
 type MergedEvent
@@ -621,6 +685,18 @@ type PullRequest
     = PullRequest
 
 
+type PullRequestChangedFile
+    = PullRequestChangedFile
+
+
+type PullRequestChangedFileConnection
+    = PullRequestChangedFileConnection
+
+
+type PullRequestChangedFileEdge
+    = PullRequestChangedFileEdge
+
+
 type PullRequestCommit
     = PullRequestCommit
 
@@ -635,6 +711,10 @@ type PullRequestCommitEdge
 
 type PullRequestConnection
     = PullRequestConnection
+
+
+type PullRequestContributionsByRepository
+    = PullRequestContributionsByRepository
 
 
 type PullRequestEdge
@@ -661,12 +741,20 @@ type PullRequestReviewConnection
     = PullRequestReviewConnection
 
 
+type PullRequestReviewContributionsByRepository
+    = PullRequestReviewContributionsByRepository
+
+
 type PullRequestReviewEdge
     = PullRequestReviewEdge
 
 
 type PullRequestReviewThread
     = PullRequestReviewThread
+
+
+type PullRequestReviewThreadConnection
+    = PullRequestReviewThreadConnection
 
 
 type PullRequestReviewThreadEdge
@@ -785,6 +873,10 @@ type RenamedTitleEvent
     = RenamedTitleEvent
 
 
+type ReopenPullRequestPayload
+    = ReopenPullRequestPayload
+
+
 type ReopenedEvent
     = ReopenedEvent
 
@@ -831,6 +923,10 @@ type RepositoryTopicEdge
 
 type RequestReviewsPayload
     = RequestReviewsPayload
+
+
+type ResolveReviewThreadPayload
+    = ResolveReviewThreadPayload
 
 
 type RestrictedContribution
@@ -1049,6 +1145,10 @@ type UnpinnedEvent
     = UnpinnedEvent
 
 
+type UnresolveReviewThreadPayload
+    = UnresolveReviewThreadPayload
+
+
 type UnsubscribedEvent
     = UnsubscribedEvent
 
@@ -1067,6 +1167,10 @@ type UpdateProjectColumnPayload
 
 type UpdateProjectPayload
     = UpdateProjectPayload
+
+
+type UpdatePullRequestPayload
+    = UpdatePullRequestPayload
 
 
 type UpdatePullRequestReviewCommentPayload

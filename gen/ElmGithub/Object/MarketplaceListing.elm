@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Object.MarketplaceListing exposing (LogoUrlOptionalArguments, app, companyUrl, configurationResourcePath, configurationUrl, documentationUrl, extendedDescription, extendedDescriptionHTML, fullDescription, fullDescriptionHTML, hasApprovalBeenRequested, hasPublishedFreeTrialPlans, hasTermsOfService, howItWorks, howItWorksHTML, id, installationUrl, installedForViewer, isApproved, isDelisted, isDraft, isPaid, isRejected, logoBackgroundColor, logoUrl, name, normalizedShortDescription, pricingUrl, primaryCategory, privacyPolicyUrl, resourcePath, screenshotUrls, secondaryCategory, shortDescription, slug, statusUrl, supportEmail, supportUrl, termsOfServiceUrl, url, viewerCanAddPlans, viewerCanApprove, viewerCanDelist, viewerCanEdit, viewerCanEditCategories, viewerCanEditPlans, viewerCanRedraft, viewerCanReject, viewerCanRequestApproval, viewerHasPurchased, viewerHasPurchasedForAllOrganizations, viewerIsListingAdmin)
+module ElmGithub.Object.MarketplaceListing exposing (LogoUrlOptionalArguments, app, companyUrl, configurationResourcePath, configurationUrl, documentationUrl, extendedDescription, extendedDescriptionHTML, fullDescription, fullDescriptionHTML, hasApprovalBeenRequested, hasPublishedFreeTrialPlans, hasTermsOfService, howItWorks, howItWorksHTML, id, installationUrl, installedForViewer, isApproved, isDelisted, isDraft, isPaid, isPublic, isRejected, isUnverified, isUnverifiedPending, isVerificationPendingFromDraft, isVerificationPendingFromUnverified, isVerified, logoBackgroundColor, logoUrl, name, normalizedShortDescription, pricingUrl, primaryCategory, privacyPolicyUrl, resourcePath, screenshotUrls, secondaryCategory, shortDescription, slug, statusUrl, supportEmail, supportUrl, termsOfServiceUrl, url, viewerCanAddPlans, viewerCanApprove, viewerCanDelist, viewerCanEdit, viewerCanEditCategories, viewerCanEditPlans, viewerCanRedraft, viewerCanReject, viewerCanRequestApproval, viewerHasPurchased, viewerHasPurchasedForAllOrganizations, viewerIsListingAdmin)
 
 import ElmGithub.InputObject
 import ElmGithub.Interface
@@ -166,11 +166,53 @@ isPaid =
     Object.selectionForField "Bool" "isPaid" [] Decode.bool
 
 
+{-| Whether this listing has been approved for display in the Marketplace.
+-}
+isPublic : SelectionSet Bool ElmGithub.Object.MarketplaceListing
+isPublic =
+    Object.selectionForField "Bool" "isPublic" [] Decode.bool
+
+
 {-| Whether this listing has been rejected by GitHub for display in the Marketplace.
 -}
 isRejected : SelectionSet Bool ElmGithub.Object.MarketplaceListing
 isRejected =
     Object.selectionForField "Bool" "isRejected" [] Decode.bool
+
+
+{-| Whether this listing has been approved for unverified display in the Marketplace.
+-}
+isUnverified : SelectionSet Bool ElmGithub.Object.MarketplaceListing
+isUnverified =
+    Object.selectionForField "Bool" "isUnverified" [] Decode.bool
+
+
+{-| Whether this draft listing has been submitted for review for approval to be unverified in the Marketplace.
+-}
+isUnverifiedPending : SelectionSet Bool ElmGithub.Object.MarketplaceListing
+isUnverifiedPending =
+    Object.selectionForField "Bool" "isUnverifiedPending" [] Decode.bool
+
+
+{-| Whether this draft listing has been submitted for review from GitHub for approval to be verified in the Marketplace.
+-}
+isVerificationPendingFromDraft : SelectionSet Bool ElmGithub.Object.MarketplaceListing
+isVerificationPendingFromDraft =
+    Object.selectionForField "Bool" "isVerificationPendingFromDraft" [] Decode.bool
+
+
+{-| Whether this unverified listing has been submitted for review from GitHub for approval to be verified in the Marketplace.
+-}
+isVerificationPendingFromUnverified : SelectionSet Bool ElmGithub.Object.MarketplaceListing
+isVerificationPendingFromUnverified =
+    Object.selectionForField "Bool" "isVerificationPendingFromUnverified" [] Decode.bool
+
+
+{-| Whether this listing has been approved for verified display in the Marketplace.
+-}
+isVerified : SelectionSet Bool ElmGithub.Object.MarketplaceListing
+isVerified =
+    Object.selectionForField "Bool" "isVerified" [] Decode.bool
 
 
 {-| The hex color code, without the leading '#', for the logo background.
@@ -367,7 +409,7 @@ viewerCanReject =
 
 
 {-| Can the current viewer request this listing be reviewed for display in
-the Marketplace.
+the Marketplace as verified.
 -}
 viewerCanRequestApproval : SelectionSet Bool ElmGithub.Object.MarketplaceListing
 viewerCanRequestApproval =

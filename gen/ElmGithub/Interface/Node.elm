@@ -30,11 +30,9 @@ type alias Fragments decodesTo =
     , onUserContentEdit : SelectionSet decodesTo ElmGithub.Object.UserContentEdit
     , onReaction : SelectionSet decodesTo ElmGithub.Object.Reaction
     , onCommit : SelectionSet decodesTo ElmGithub.Object.Commit
-    , onDeployment : SelectionSet decodesTo ElmGithub.Object.Deployment
-    , onDeploymentStatus : SelectionSet decodesTo ElmGithub.Object.DeploymentStatus
-    , onRef : SelectionSet decodesTo ElmGithub.Object.Ref
     , onPullRequest : SelectionSet decodesTo ElmGithub.Object.PullRequest
     , onLabel : SelectionSet decodesTo ElmGithub.Object.Label
+    , onRef : SelectionSet decodesTo ElmGithub.Object.Ref
     , onIssueComment : SelectionSet decodesTo ElmGithub.Object.IssueComment
     , onPullRequestCommit : SelectionSet decodesTo ElmGithub.Object.PullRequestCommit
     , onMilestone : SelectionSet decodesTo ElmGithub.Object.Milestone
@@ -45,10 +43,10 @@ type alias Fragments decodesTo =
     , onOrganizationIdentityProvider : SelectionSet decodesTo ElmGithub.Object.OrganizationIdentityProvider
     , onExternalIdentity : SelectionSet decodesTo ElmGithub.Object.ExternalIdentity
     , onOrganizationInvitation : SelectionSet decodesTo ElmGithub.Object.OrganizationInvitation
-    , onPullRequestReview : SelectionSet decodesTo ElmGithub.Object.PullRequestReview
-    , onPullRequestReviewComment : SelectionSet decodesTo ElmGithub.Object.PullRequestReviewComment
-    , onCommitCommentThread : SelectionSet decodesTo ElmGithub.Object.CommitCommentThread
     , onPullRequestReviewThread : SelectionSet decodesTo ElmGithub.Object.PullRequestReviewThread
+    , onPullRequestReviewComment : SelectionSet decodesTo ElmGithub.Object.PullRequestReviewComment
+    , onPullRequestReview : SelectionSet decodesTo ElmGithub.Object.PullRequestReview
+    , onCommitCommentThread : SelectionSet decodesTo ElmGithub.Object.CommitCommentThread
     , onClosedEvent : SelectionSet decodesTo ElmGithub.Object.ClosedEvent
     , onReopenedEvent : SelectionSet decodesTo ElmGithub.Object.ReopenedEvent
     , onSubscribedEvent : SelectionSet decodesTo ElmGithub.Object.SubscribedEvent
@@ -66,6 +64,8 @@ type alias Fragments decodesTo =
     , onLockedEvent : SelectionSet decodesTo ElmGithub.Object.LockedEvent
     , onUnlockedEvent : SelectionSet decodesTo ElmGithub.Object.UnlockedEvent
     , onDeployedEvent : SelectionSet decodesTo ElmGithub.Object.DeployedEvent
+    , onDeployment : SelectionSet decodesTo ElmGithub.Object.Deployment
+    , onDeploymentStatus : SelectionSet decodesTo ElmGithub.Object.DeploymentStatus
     , onDeploymentEnvironmentChangedEvent : SelectionSet decodesTo ElmGithub.Object.DeploymentEnvironmentChangedEvent
     , onHeadRefDeletedEvent : SelectionSet decodesTo ElmGithub.Object.HeadRefDeletedEvent
     , onHeadRefRestoredEvent : SelectionSet decodesTo ElmGithub.Object.HeadRefRestoredEvent
@@ -79,6 +79,7 @@ type alias Fragments decodesTo =
     , onTree : SelectionSet decodesTo ElmGithub.Object.Tree
     , onGist : SelectionSet decodesTo ElmGithub.Object.Gist
     , onGistComment : SelectionSet decodesTo ElmGithub.Object.GistComment
+    , onLanguage : SelectionSet decodesTo ElmGithub.Object.Language
     , onPublicKey : SelectionSet decodesTo ElmGithub.Object.PublicKey
     , onTransferredEvent : SelectionSet decodesTo ElmGithub.Object.TransferredEvent
     , onLicense : SelectionSet decodesTo ElmGithub.Object.License
@@ -87,7 +88,6 @@ type alias Fragments decodesTo =
     , onReviewDismissalAllowance : SelectionSet decodesTo ElmGithub.Object.ReviewDismissalAllowance
     , onCodeOfConduct : SelectionSet decodesTo ElmGithub.Object.CodeOfConduct
     , onDeployKey : SelectionSet decodesTo ElmGithub.Object.DeployKey
-    , onLanguage : SelectionSet decodesTo ElmGithub.Object.Language
     , onProtectedBranch : SelectionSet decodesTo ElmGithub.Object.ProtectedBranch
     , onRelease : SelectionSet decodesTo ElmGithub.Object.Release
     , onReleaseAsset : SelectionSet decodesTo ElmGithub.Object.ReleaseAsset
@@ -130,11 +130,9 @@ fragments selections =
         , Object.buildFragment "UserContentEdit" selections.onUserContentEdit
         , Object.buildFragment "Reaction" selections.onReaction
         , Object.buildFragment "Commit" selections.onCommit
-        , Object.buildFragment "Deployment" selections.onDeployment
-        , Object.buildFragment "DeploymentStatus" selections.onDeploymentStatus
-        , Object.buildFragment "Ref" selections.onRef
         , Object.buildFragment "PullRequest" selections.onPullRequest
         , Object.buildFragment "Label" selections.onLabel
+        , Object.buildFragment "Ref" selections.onRef
         , Object.buildFragment "IssueComment" selections.onIssueComment
         , Object.buildFragment "PullRequestCommit" selections.onPullRequestCommit
         , Object.buildFragment "Milestone" selections.onMilestone
@@ -145,10 +143,10 @@ fragments selections =
         , Object.buildFragment "OrganizationIdentityProvider" selections.onOrganizationIdentityProvider
         , Object.buildFragment "ExternalIdentity" selections.onExternalIdentity
         , Object.buildFragment "OrganizationInvitation" selections.onOrganizationInvitation
-        , Object.buildFragment "PullRequestReview" selections.onPullRequestReview
-        , Object.buildFragment "PullRequestReviewComment" selections.onPullRequestReviewComment
-        , Object.buildFragment "CommitCommentThread" selections.onCommitCommentThread
         , Object.buildFragment "PullRequestReviewThread" selections.onPullRequestReviewThread
+        , Object.buildFragment "PullRequestReviewComment" selections.onPullRequestReviewComment
+        , Object.buildFragment "PullRequestReview" selections.onPullRequestReview
+        , Object.buildFragment "CommitCommentThread" selections.onCommitCommentThread
         , Object.buildFragment "ClosedEvent" selections.onClosedEvent
         , Object.buildFragment "ReopenedEvent" selections.onReopenedEvent
         , Object.buildFragment "SubscribedEvent" selections.onSubscribedEvent
@@ -166,6 +164,8 @@ fragments selections =
         , Object.buildFragment "LockedEvent" selections.onLockedEvent
         , Object.buildFragment "UnlockedEvent" selections.onUnlockedEvent
         , Object.buildFragment "DeployedEvent" selections.onDeployedEvent
+        , Object.buildFragment "Deployment" selections.onDeployment
+        , Object.buildFragment "DeploymentStatus" selections.onDeploymentStatus
         , Object.buildFragment "DeploymentEnvironmentChangedEvent" selections.onDeploymentEnvironmentChangedEvent
         , Object.buildFragment "HeadRefDeletedEvent" selections.onHeadRefDeletedEvent
         , Object.buildFragment "HeadRefRestoredEvent" selections.onHeadRefRestoredEvent
@@ -179,6 +179,7 @@ fragments selections =
         , Object.buildFragment "Tree" selections.onTree
         , Object.buildFragment "Gist" selections.onGist
         , Object.buildFragment "GistComment" selections.onGistComment
+        , Object.buildFragment "Language" selections.onLanguage
         , Object.buildFragment "PublicKey" selections.onPublicKey
         , Object.buildFragment "TransferredEvent" selections.onTransferredEvent
         , Object.buildFragment "License" selections.onLicense
@@ -187,7 +188,6 @@ fragments selections =
         , Object.buildFragment "ReviewDismissalAllowance" selections.onReviewDismissalAllowance
         , Object.buildFragment "CodeOfConduct" selections.onCodeOfConduct
         , Object.buildFragment "DeployKey" selections.onDeployKey
-        , Object.buildFragment "Language" selections.onLanguage
         , Object.buildFragment "ProtectedBranch" selections.onProtectedBranch
         , Object.buildFragment "Release" selections.onRelease
         , Object.buildFragment "ReleaseAsset" selections.onReleaseAsset
@@ -228,11 +228,9 @@ maybeFragments =
     , onUserContentEdit = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onReaction = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onCommit = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onDeployment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onDeploymentStatus = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onRef = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onPullRequest = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onLabel = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onRef = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onIssueComment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onPullRequestCommit = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onMilestone = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
@@ -243,10 +241,10 @@ maybeFragments =
     , onOrganizationIdentityProvider = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onExternalIdentity = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onOrganizationInvitation = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onPullRequestReview = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onPullRequestReviewComment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onCommitCommentThread = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onPullRequestReviewThread = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onPullRequestReviewComment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onPullRequestReview = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onCommitCommentThread = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onClosedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onReopenedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onSubscribedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
@@ -264,6 +262,8 @@ maybeFragments =
     , onLockedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onUnlockedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onDeployedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onDeployment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onDeploymentStatus = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onDeploymentEnvironmentChangedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onHeadRefDeletedEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onHeadRefRestoredEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
@@ -277,6 +277,7 @@ maybeFragments =
     , onTree = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onGist = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onGistComment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onLanguage = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onPublicKey = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onTransferredEvent = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onLicense = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
@@ -285,7 +286,6 @@ maybeFragments =
     , onReviewDismissalAllowance = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onCodeOfConduct = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onDeployKey = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onLanguage = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onProtectedBranch = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onRelease = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onReleaseAsset = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)

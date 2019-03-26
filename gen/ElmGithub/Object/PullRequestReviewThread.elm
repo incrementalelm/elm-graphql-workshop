@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Object.PullRequestReviewThread exposing (CommentsOptionalArguments, comments, id, pullRequest, repository)
+module ElmGithub.Object.PullRequestReviewThread exposing (CommentsOptionalArguments, comments, id, isResolved, pullRequest, repository, resolvedBy, viewerCanResolve, viewerCanUnresolve)
 
 import ElmGithub.InputObject
 import ElmGithub.Interface
@@ -54,6 +54,13 @@ id =
     Object.selectionForField "ScalarCodecs.Id" "id" [] (ElmGithub.ScalarCodecs.codecs |> ElmGithub.Scalar.unwrapCodecs |> .codecId |> .decoder)
 
 
+{-| Whether this thread has been resolved
+-}
+isResolved : SelectionSet Bool ElmGithub.Object.PullRequestReviewThread
+isResolved =
+    Object.selectionForField "Bool" "isResolved" [] Decode.bool
+
+
 {-| Identifies the pull request associated with this thread.
 -}
 pullRequest : SelectionSet decodesTo ElmGithub.Object.PullRequest -> SelectionSet decodesTo ElmGithub.Object.PullRequestReviewThread
@@ -66,3 +73,24 @@ pullRequest object_ =
 repository : SelectionSet decodesTo ElmGithub.Object.Repository -> SelectionSet decodesTo ElmGithub.Object.PullRequestReviewThread
 repository object_ =
     Object.selectionForCompositeField "repository" [] object_ identity
+
+
+{-| The user who resolved this thread
+-}
+resolvedBy : SelectionSet decodesTo ElmGithub.Object.User -> SelectionSet (Maybe decodesTo) ElmGithub.Object.PullRequestReviewThread
+resolvedBy object_ =
+    Object.selectionForCompositeField "resolvedBy" [] object_ (identity >> Decode.nullable)
+
+
+{-| Whether or not the viewer can resolve this thread
+-}
+viewerCanResolve : SelectionSet Bool ElmGithub.Object.PullRequestReviewThread
+viewerCanResolve =
+    Object.selectionForField "Bool" "viewerCanResolve" [] Decode.bool
+
+
+{-| Whether or not the viewer can unresolve this thread
+-}
+viewerCanUnresolve : SelectionSet Bool ElmGithub.Object.PullRequestReviewThread
+viewerCanUnresolve =
+    Object.selectionForField "Bool" "viewerCanUnresolve" [] Decode.bool

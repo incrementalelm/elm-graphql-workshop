@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Object.Gist exposing (CommentsOptionalArguments, StargazersOptionalArguments, comments, createdAt, description, id, isPublic, name, owner, pushedAt, stargazers, updatedAt, viewerHasStarred)
+module ElmGithub.Object.Gist exposing (CommentsOptionalArguments, FilesOptionalArguments, StargazersOptionalArguments, comments, createdAt, description, files, id, isFork, isPublic, name, owner, pushedAt, stargazers, updatedAt, viewerHasStarred)
 
 import ElmGithub.InputObject
 import ElmGithub.Interface
@@ -62,10 +62,39 @@ description =
     Object.selectionForField "(Maybe String)" "description" [] (Decode.string |> Decode.nullable)
 
 
+type alias FilesOptionalArguments =
+    { limit : OptionalArgument Int }
+
+
+{-| The files in this gist.
+
+  - limit - The maximum number of files to return.
+
+-}
+files : (FilesOptionalArguments -> FilesOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.GistFile -> SelectionSet (Maybe (List (Maybe decodesTo))) ElmGithub.Object.Gist
+files fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { limit = Absent }
+
+        optionalArgs =
+            [ Argument.optional "limit" filledInOptionals.limit Encode.int ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "files" optionalArgs object_ (identity >> Decode.nullable >> Decode.list >> Decode.nullable)
+
+
 {-| -}
 id : SelectionSet ElmGithub.ScalarCodecs.Id ElmGithub.Object.Gist
 id =
     Object.selectionForField "ScalarCodecs.Id" "id" [] (ElmGithub.ScalarCodecs.codecs |> ElmGithub.Scalar.unwrapCodecs |> .codecId |> .decoder)
+
+
+{-| Identifies if the gist is a fork.
+-}
+isFork : SelectionSet Bool ElmGithub.Object.Gist
+isFork =
+    Object.selectionForField "Bool" "isFork" [] Decode.bool
 
 
 {-| Whether the gist is public or not.

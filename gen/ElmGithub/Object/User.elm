@@ -563,14 +563,14 @@ projects fillInOptionals object_ =
     Object.selectionForCompositeField "projects" optionalArgs object_ identity
 
 
-{-| The HTTP path listing owners projects
+{-| The HTTP path listing user's projects
 -}
 projectsResourcePath : SelectionSet ElmGithub.ScalarCodecs.Uri ElmGithub.Object.User
 projectsResourcePath =
     Object.selectionForField "ScalarCodecs.Uri" "projectsResourcePath" [] (ElmGithub.ScalarCodecs.codecs |> ElmGithub.Scalar.unwrapCodecs |> .codecUri |> .decoder)
 
 
-{-| The HTTP URL listing owners projects
+{-| The HTTP URL listing user's projects
 -}
 projectsUrl : SelectionSet ElmGithub.ScalarCodecs.Uri ElmGithub.Object.User
 projectsUrl =

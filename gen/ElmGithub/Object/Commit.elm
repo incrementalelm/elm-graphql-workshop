@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Object.Commit exposing (BlameRequiredArguments, CommentsOptionalArguments, DeploymentsOptionalArguments, HistoryOptionalArguments, ParentsOptionalArguments, abbreviatedOid, additions, author, authoredByCommitter, authoredDate, blame, changedFiles, comments, commitResourcePath, commitUrl, committedDate, committedViaWeb, committer, deletions, deployments, history, id, message, messageBody, messageBodyHTML, messageHeadline, messageHeadlineHTML, oid, parents, pushedDate, repository, resourcePath, signature, status, tarballUrl, tree, treeResourcePath, treeUrl, url, viewerCanSubscribe, viewerSubscription, zipballUrl)
+module ElmGithub.Object.Commit exposing (AssociatedPullRequestsOptionalArguments, BlameRequiredArguments, CommentsOptionalArguments, DeploymentsOptionalArguments, HistoryOptionalArguments, ParentsOptionalArguments, abbreviatedOid, additions, associatedPullRequests, author, authoredByCommitter, authoredDate, blame, changedFiles, comments, commitResourcePath, commitUrl, committedDate, committedViaWeb, committer, deletions, deployments, history, id, message, messageBody, messageBodyHTML, messageHeadline, messageHeadlineHTML, oid, parents, pushedDate, repository, resourcePath, signature, status, tarballUrl, tree, treeResourcePath, treeUrl, url, viewerCanSubscribe, viewerSubscription, zipballUrl)
 
 import ElmGithub.Enum.SubscriptionState
 import ElmGithub.InputObject
@@ -32,6 +32,37 @@ abbreviatedOid =
 additions : SelectionSet Int ElmGithub.Object.Commit
 additions =
     Object.selectionForField "Int" "additions" [] Decode.int
+
+
+type alias AssociatedPullRequestsOptionalArguments =
+    { after : OptionalArgument String
+    , before : OptionalArgument String
+    , first : OptionalArgument Int
+    , last : OptionalArgument Int
+    , orderBy : OptionalArgument ElmGithub.InputObject.PullRequestOrder
+    }
+
+
+{-| The pull requests associated with a commit
+
+  - after - Returns the elements in the list that come after the specified cursor.
+  - before - Returns the elements in the list that come before the specified cursor.
+  - first - Returns the first _n_ elements from the list.
+  - last - Returns the last _n_ elements from the list.
+  - orderBy - Ordering options for pull requests.
+
+-}
+associatedPullRequests : (AssociatedPullRequestsOptionalArguments -> AssociatedPullRequestsOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.PullRequestConnection -> SelectionSet (Maybe decodesTo) ElmGithub.Object.Commit
+associatedPullRequests fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent, orderBy = Absent }
+
+        optionalArgs =
+            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int, Argument.optional "orderBy" filledInOptionals.orderBy ElmGithub.InputObject.encodePullRequestOrder ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "associatedPullRequests" optionalArgs object_ (identity >> Decode.nullable)
 
 
 {-| Authorship details of the commit.

@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Query exposing (FindPackageRequiredArguments, PackagesByAuthorRequiredArguments, RepositoryRequiredArguments, allPackages, favoritePackages, findPackage, packagesByAuthor, repository)
+module ElmGithub.Query exposing (FindPackageRequiredArguments, FindPackagesByNameRequiredArguments, PackagesByAuthorRequiredArguments, RepositoryRequiredArguments, allPackages, favoritePackages, findPackage, findPackagesByName, packagesByAuthor, repository)
 
 import ElmGithub.InputObject
 import ElmGithub.Interface
@@ -59,6 +59,15 @@ type alias FindPackageRequiredArguments =
 findPackage : FindPackageRequiredArguments -> SelectionSet decodesTo ElmGithub.Object.Package -> SelectionSet (Maybe decodesTo) RootQuery
 findPackage requiredArgs object_ =
     Object.selectionForCompositeField "findPackage" [ Argument.required "author" requiredArgs.author Encode.string, Argument.required "name" requiredArgs.name Encode.string ] object_ (identity >> Decode.nullable)
+
+
+type alias FindPackagesByNameRequiredArguments =
+    { name : String }
+
+
+findPackagesByName : FindPackagesByNameRequiredArguments -> SelectionSet decodesTo ElmGithub.Object.Package -> SelectionSet (List decodesTo) RootQuery
+findPackagesByName requiredArgs object_ =
+    Object.selectionForCompositeField "findPackagesByName" [ Argument.required "name" requiredArgs.name Encode.string ] object_ (identity >> Decode.list)
 
 
 favoritePackages : SelectionSet decodesTo ElmGithub.Object.Package -> SelectionSet (List decodesTo) RootQuery

@@ -27,11 +27,11 @@ cursor =
     Object.selectionForField "String" "cursor" [] Decode.string
 
 
-{-| Whether the organization member has two factor enabled or not.
+{-| Whether the organization member has two factor enabled or not. Returns null if information is not available to viewer.
 -}
-hasTwoFactorEnabled : SelectionSet Bool ElmGithub.Object.OrganizationMemberEdge
+hasTwoFactorEnabled : SelectionSet (Maybe Bool) ElmGithub.Object.OrganizationMemberEdge
 hasTwoFactorEnabled =
-    Object.selectionForField "Bool" "hasTwoFactorEnabled" [] Decode.bool
+    Object.selectionForField "(Maybe Bool)" "hasTwoFactorEnabled" [] (Decode.bool |> Decode.nullable)
 
 
 {-| The item at the end of the edge.

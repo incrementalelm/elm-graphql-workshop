@@ -20,10 +20,13 @@ import Json.Decode as Decode
 
 
 type alias Fragments decodesTo =
-    { onCreatedIssueContribution : SelectionSet decodesTo ElmGithub.Object.CreatedIssueContribution
+    { onCreatedCommitContribution : SelectionSet decodesTo ElmGithub.Object.CreatedCommitContribution
+    , onCreatedIssueContribution : SelectionSet decodesTo ElmGithub.Object.CreatedIssueContribution
     , onRestrictedContribution : SelectionSet decodesTo ElmGithub.Object.RestrictedContribution
     , onCreatedPullRequestContribution : SelectionSet decodesTo ElmGithub.Object.CreatedPullRequestContribution
+    , onCreatedRepositoryContribution : SelectionSet decodesTo ElmGithub.Object.CreatedRepositoryContribution
     , onJoinedGitHubContribution : SelectionSet decodesTo ElmGithub.Object.JoinedGitHubContribution
+    , onCreatedPullRequestReviewContribution : SelectionSet decodesTo ElmGithub.Object.CreatedPullRequestReviewContribution
     }
 
 
@@ -34,10 +37,13 @@ fragments :
     -> SelectionSet decodesTo ElmGithub.Interface.Contribution
 fragments selections =
     Object.exhuastiveFragmentSelection
-        [ Object.buildFragment "CreatedIssueContribution" selections.onCreatedIssueContribution
+        [ Object.buildFragment "CreatedCommitContribution" selections.onCreatedCommitContribution
+        , Object.buildFragment "CreatedIssueContribution" selections.onCreatedIssueContribution
         , Object.buildFragment "RestrictedContribution" selections.onRestrictedContribution
         , Object.buildFragment "CreatedPullRequestContribution" selections.onCreatedPullRequestContribution
+        , Object.buildFragment "CreatedRepositoryContribution" selections.onCreatedRepositoryContribution
         , Object.buildFragment "JoinedGitHubContribution" selections.onJoinedGitHubContribution
+        , Object.buildFragment "CreatedPullRequestReviewContribution" selections.onCreatedPullRequestReviewContribution
         ]
 
 
@@ -46,10 +52,13 @@ update syntax to add `SelectionSet`s for the types you want to handle.
 -}
 maybeFragments : Fragments (Maybe decodesTo)
 maybeFragments =
-    { onCreatedIssueContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    { onCreatedCommitContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onCreatedIssueContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onRestrictedContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onCreatedPullRequestContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onCreatedRepositoryContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onJoinedGitHubContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onCreatedPullRequestReviewContribution = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     }
 
 

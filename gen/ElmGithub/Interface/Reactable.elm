@@ -25,8 +25,8 @@ type alias Fragments decodesTo =
     , onCommitComment : SelectionSet decodesTo ElmGithub.Object.CommitComment
     , onPullRequest : SelectionSet decodesTo ElmGithub.Object.PullRequest
     , onIssueComment : SelectionSet decodesTo ElmGithub.Object.IssueComment
-    , onPullRequestReview : SelectionSet decodesTo ElmGithub.Object.PullRequestReview
     , onPullRequestReviewComment : SelectionSet decodesTo ElmGithub.Object.PullRequestReviewComment
+    , onPullRequestReview : SelectionSet decodesTo ElmGithub.Object.PullRequestReview
     }
 
 
@@ -41,8 +41,8 @@ fragments selections =
         , Object.buildFragment "CommitComment" selections.onCommitComment
         , Object.buildFragment "PullRequest" selections.onPullRequest
         , Object.buildFragment "IssueComment" selections.onIssueComment
-        , Object.buildFragment "PullRequestReview" selections.onPullRequestReview
         , Object.buildFragment "PullRequestReviewComment" selections.onPullRequestReviewComment
+        , Object.buildFragment "PullRequestReview" selections.onPullRequestReview
         ]
 
 
@@ -55,8 +55,8 @@ maybeFragments =
     , onCommitComment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onPullRequest = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onIssueComment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
-    , onPullRequestReview = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     , onPullRequestReviewComment = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
+    , onPullRequestReview = Graphql.SelectionSet.empty |> Graphql.SelectionSet.map (\_ -> Nothing)
     }
 
 

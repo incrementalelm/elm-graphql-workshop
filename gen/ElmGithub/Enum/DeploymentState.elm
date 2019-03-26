@@ -16,6 +16,8 @@ import Json.Decode as Decode exposing (Decoder)
   - Failure - The deployment has failed.
   - Inactive - The deployment is inactive.
   - Pending - The deployment is pending.
+  - Queued - The deployment has queued
+  - InProgress - The deployment is in progress.
 
 -}
 type DeploymentState
@@ -26,11 +28,13 @@ type DeploymentState
     | Failure
     | Inactive
     | Pending
+    | Queued
+    | InProgress
 
 
 list : List DeploymentState
 list =
-    [ Abandoned, Active, Destroyed, Error, Failure, Inactive, Pending ]
+    [ Abandoned, Active, Destroyed, Error, Failure, Inactive, Pending, Queued, InProgress ]
 
 
 decoder : Decoder DeploymentState
@@ -59,6 +63,12 @@ decoder =
 
                     "PENDING" ->
                         Decode.succeed Pending
+
+                    "QUEUED" ->
+                        Decode.succeed Queued
+
+                    "IN_PROGRESS" ->
+                        Decode.succeed InProgress
 
                     _ ->
                         Decode.fail ("Invalid DeploymentState type, " ++ string ++ " try re-running the @dillonkearns/elm-graphql CLI ")
@@ -90,3 +100,9 @@ toString enum =
 
         Pending ->
             "PENDING"
+
+        Queued ->
+            "QUEUED"
+
+        InProgress ->
+            "IN_PROGRESS"

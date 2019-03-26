@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Object.PullRequest exposing (AssigneesOptionalArguments, CommentsOptionalArguments, CommitsOptionalArguments, LabelsOptionalArguments, ParticipantsOptionalArguments, ProjectCardsOptionalArguments, ReactionsOptionalArguments, ReviewRequestsOptionalArguments, ReviewsOptionalArguments, TimelineOptionalArguments, UserContentEditsOptionalArguments, activeLockReason, additions, assignees, author, authorAssociation, baseRef, baseRefName, baseRefOid, body, bodyHTML, bodyText, changedFiles, closed, closedAt, comments, commits, createdAt, createdViaEmail, databaseId, deletions, editor, headRef, headRefName, headRefOid, headRepository, headRepositoryOwner, id, includesCreatedEdit, isCrossRepository, labels, lastEditedAt, locked, maintainerCanModify, mergeCommit, mergeable, merged, mergedAt, mergedBy, milestone, number, participants, permalink, potentialMergeCommit, projectCards, publishedAt, reactionGroups, reactions, repository, resourcePath, revertResourcePath, revertUrl, reviewRequests, reviews, state, suggestedReviewers, timeline, title, updatedAt, url, userContentEdits, viewerCanApplySuggestion, viewerCanReact, viewerCanSubscribe, viewerCanUpdate, viewerCannotUpdateReasons, viewerDidAuthor, viewerSubscription)
+module ElmGithub.Object.PullRequest exposing (AssigneesOptionalArguments, CommentsOptionalArguments, CommitsOptionalArguments, FilesOptionalArguments, LabelsOptionalArguments, ParticipantsOptionalArguments, ProjectCardsOptionalArguments, ReactionsOptionalArguments, ReviewRequestsOptionalArguments, ReviewThreadsOptionalArguments, ReviewsOptionalArguments, TimelineOptionalArguments, UserContentEditsOptionalArguments, activeLockReason, additions, assignees, author, authorAssociation, baseRef, baseRefName, baseRefOid, baseRepository, body, bodyHTML, bodyText, changedFiles, closed, closedAt, comments, commits, createdAt, createdViaEmail, databaseId, deletions, editor, files, headRef, headRefName, headRefOid, headRepository, headRepositoryOwner, id, includesCreatedEdit, isCrossRepository, labels, lastEditedAt, locked, maintainerCanModify, mergeCommit, mergeable, merged, mergedAt, mergedBy, milestone, number, participants, permalink, potentialMergeCommit, projectCards, publishedAt, reactionGroups, reactions, repository, resourcePath, revertResourcePath, revertUrl, reviewRequests, reviewThreads, reviews, state, suggestedReviewers, timeline, title, updatedAt, url, userContentEdits, viewerCanApplySuggestion, viewerCanReact, viewerCanSubscribe, viewerCanUpdate, viewerCannotUpdateReasons, viewerDidAuthor, viewerSubscription)
 
 import ElmGithub.Enum.CommentAuthorAssociation
 import ElmGithub.Enum.CommentCannotUpdateReason
@@ -104,6 +104,13 @@ baseRefName =
 baseRefOid : SelectionSet ElmGithub.ScalarCodecs.GitObjectID ElmGithub.Object.PullRequest
 baseRefOid =
     Object.selectionForField "ScalarCodecs.GitObjectID" "baseRefOid" [] (ElmGithub.ScalarCodecs.codecs |> ElmGithub.Scalar.unwrapCodecs |> .codecGitObjectID |> .decoder)
+
+
+{-| The repository associated with this pull request's base Ref.
+-}
+baseRepository : SelectionSet decodesTo ElmGithub.Object.Repository -> SelectionSet (Maybe decodesTo) ElmGithub.Object.PullRequest
+baseRepository object_ =
+    Object.selectionForCompositeField "baseRepository" [] object_ (identity >> Decode.nullable)
 
 
 {-| The body as Markdown.
@@ -239,6 +246,35 @@ deletions =
 editor : SelectionSet decodesTo ElmGithub.Interface.Actor -> SelectionSet (Maybe decodesTo) ElmGithub.Object.PullRequest
 editor object_ =
     Object.selectionForCompositeField "editor" [] object_ (identity >> Decode.nullable)
+
+
+type alias FilesOptionalArguments =
+    { after : OptionalArgument String
+    , before : OptionalArgument String
+    , first : OptionalArgument Int
+    , last : OptionalArgument Int
+    }
+
+
+{-| Lists the files changed within this pull request.
+
+  - after - Returns the elements in the list that come after the specified cursor.
+  - before - Returns the elements in the list that come before the specified cursor.
+  - first - Returns the first _n_ elements from the list.
+  - last - Returns the last _n_ elements from the list.
+
+-}
+files : (FilesOptionalArguments -> FilesOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.PullRequestChangedFileConnection -> SelectionSet (Maybe decodesTo) ElmGithub.Object.PullRequest
+files fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent }
+
+        optionalArgs =
+            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "files" optionalArgs object_ (identity >> Decode.nullable)
 
 
 {-| Identifies the head Ref associated with the pull request.
@@ -574,6 +610,35 @@ reviewRequests fillInOptionals object_ =
                 |> List.filterMap identity
     in
     Object.selectionForCompositeField "reviewRequests" optionalArgs object_ (identity >> Decode.nullable)
+
+
+type alias ReviewThreadsOptionalArguments =
+    { after : OptionalArgument String
+    , before : OptionalArgument String
+    , first : OptionalArgument Int
+    , last : OptionalArgument Int
+    }
+
+
+{-| The list of all review threads for this pull request.
+
+  - after - Returns the elements in the list that come after the specified cursor.
+  - before - Returns the elements in the list that come before the specified cursor.
+  - first - Returns the first _n_ elements from the list.
+  - last - Returns the last _n_ elements from the list.
+
+-}
+reviewThreads : (ReviewThreadsOptionalArguments -> ReviewThreadsOptionalArguments) -> SelectionSet decodesTo ElmGithub.Object.PullRequestReviewThreadConnection -> SelectionSet decodesTo ElmGithub.Object.PullRequest
+reviewThreads fillInOptionals object_ =
+    let
+        filledInOptionals =
+            fillInOptionals { after = Absent, before = Absent, first = Absent, last = Absent }
+
+        optionalArgs =
+            [ Argument.optional "after" filledInOptionals.after Encode.string, Argument.optional "before" filledInOptionals.before Encode.string, Argument.optional "first" filledInOptionals.first Encode.int, Argument.optional "last" filledInOptionals.last Encode.int ]
+                |> List.filterMap identity
+    in
+    Object.selectionForCompositeField "reviewThreads" optionalArgs object_ identity
 
 
 type alias ReviewsOptionalArguments =

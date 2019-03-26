@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module ElmGithub.Union exposing (Closer(..), CollectionItemContent(..), CreatedIssueOrRestrictedContribution(..), CreatedPullRequestOrRestrictedContribution(..), IssueOrPullRequest(..), IssueTimelineItem(..), IssueTimelineItems(..), MilestoneItem(..), ProjectCardItem(..), PullRequestTimelineItem(..), PullRequestTimelineItems(..), PushAllowanceActor(..), ReferencedSubject(..), RenamedTitleSubject(..), RequestedReviewer(..), ReviewDismissalAllowanceActor(..), SearchResultItem(..))
+module ElmGithub.Union exposing (Closer(..), CollectionItemContent(..), CreatedIssueOrRestrictedContribution(..), CreatedPullRequestOrRestrictedContribution(..), CreatedRepositoryOrRestrictedContribution(..), IssueOrPullRequest(..), IssueTimelineItem(..), IssueTimelineItems(..), MilestoneItem(..), ProjectCardItem(..), PullRequestTimelineItem(..), PullRequestTimelineItems(..), PushAllowanceActor(..), ReferencedSubject(..), RenamedTitleSubject(..), RequestedReviewer(..), ReviewDismissalAllowanceActor(..), SearchResultItem(..))
 
 
 type Closer
@@ -19,6 +19,10 @@ type CreatedIssueOrRestrictedContribution
 
 type CreatedPullRequestOrRestrictedContribution
     = CreatedPullRequestOrRestrictedContribution
+
+
+type CreatedRepositoryOrRestrictedContribution
+    = CreatedRepositoryOrRestrictedContribution
 
 
 type IssueOrPullRequest
