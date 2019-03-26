@@ -31,6 +31,7 @@ const typeDefs = gql`
     allPackages: [Package!]!
     packagesByAuthor(author: String!): [Package!]!
     findPackage(author: String!, name: String!): Package
+    findPackagesByName(name: String!): [Package!]!
     favoritePackages: [Package!]!
   }
 
@@ -76,11 +77,22 @@ function findPackage(author, name) {
     }
   })[0];
 }
+function findPackagesByName(name) {
+  return packages.filter(package => {
+    if (package) {
+      return package.name.endsWith(`/${name}`);
+    } else {
+      return false;
+    }
+  });
+}
 const resolvers = {
   Query: {
     allPackages: () => packages,
     packagesByAuthor: (parent, args, context) => packagesByAuthor(args.author),
     findPackage: (parent, args, context) => findPackage(args.author, args.name),
+    findPackagesByName: (parent, args, context) =>
+      findPackagesByName(args.name),
     favoritePackages: () => {
       return [
         "mdgriffith/elm-ui",
