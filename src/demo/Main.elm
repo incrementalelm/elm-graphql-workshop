@@ -55,7 +55,7 @@ makeRequest : Cmd Msg
 makeRequest =
     query
         |> Graphql.Http.queryRequest "/api"
-        |> Graphql.Http.send (RemoteData.fromResult >> GotResponse)
+        |> Graphql.Http.send (\result -> result |> RemoteData.fromResult |> GotResponse)
 
 
 
