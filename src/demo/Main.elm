@@ -93,7 +93,7 @@ main =
         , update = update
         , queryString = Document.serializeQuery query
         , instructions =
-            { title = "elm-graphql"
+            { title = ""
             , body = """"""
             }
         }
