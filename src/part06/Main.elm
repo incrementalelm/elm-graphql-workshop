@@ -121,7 +121,6 @@ starts off with a constructor that takes {Code|n} arguments, followed by
 | List
     -> Cause an error in both the original and the duplicate by changing the types within your {Code|CurrentWeather} type alias definition. Try changing {Code|temperature: Float} to {Code|temperature: String}.
     (?) How do the messages themselves differ?
-    (?) Do the error messages point to different lines of code? If so, why?
 """
             }
         }
