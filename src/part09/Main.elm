@@ -122,7 +122,7 @@ The goal of this section is to get you comfortable with using type wrappers.
 
 | List
     -> Take a look at {Code|src//Temperature.elm}. It exposes an Opaque Type for representing {Code|Temperature}, which you can build with {Code|fromCelsius} or {Code|fromFahrenheit}.
-    -> Change this line {Code|worldRecordHighInCelsius : Float} to {Code|worldRecordHigh : Temperature}. We're wrapping the {Code|Float} primitive in a Semantic Type, and we're changing the constant's name to reflect that ({Code|InCelsius} doesn't make sense now that it's a temperature). Now use {Code|fromCelsius} and {Code|toCelsius} in the appropriate places to get the code compiling again.
+    -> Change this line {Code|worldRecordHighInCelsius : Float} to {Code|worldRecordHigh : Temperature}. We're wrapping the {Code|Float} primitive in a Semantic Type, and we're changing the constant's name to reflect that ({Code|InCelsius} doesn't make sense now that it's a temperature). Now use {Code|fromCelsius} and {Code|toCelsius} in the appropriate places to get the code compiling again. *Note*: we're not changing the type of any selection sets yet!
 
 
 | Header
