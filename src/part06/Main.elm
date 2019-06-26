@@ -99,17 +99,26 @@ main =
 | Header
     Method 2: Pipelines
 
+Let's compare the map<n> syntax to the pipeline syntax. The pipeline syntax
+starts off with a constructor that takes {Code|n} arguments, followed by
+{Code|n} fields adding using {Code|\\|> with }.
+
+| Monospace
+    SelectionSet.succeed CurrentWeather
+        |> with CurrentWeather.temperature
+        -- ...
+
+
 | List
-    -> Convert the current {Code|map6} into a pipeline.
-    -> Add one more field to the pipeline.
+    -> Copy the {Code|map6} you just wrote into a new top-level value called {Code|weatherSelectionPipeline}. Then convert it into pipeline syntax.
+    -> Choose another field and add it to both {Code|weatherSelection} and {Code|weatherSelectionPipeline}.
+    (?) How do the two versions compare?
 
 
 | Header
     Error Messages
 
 | List
-    -> Duplicate the {Code|weatherSelection} under a different name. Change the copied code to use a {Code|map6} so you can see them side-by-side.
-    (?) How do the two versions compare?
     -> Cause an error in both the original and the duplicate by changing the types within your {Code|CurrentWeather} type alias definition. Try changing {Code|temperature: Float} to {Code|temperature: String}.
     (?) How do the messages themselves differ?
     (?) Do the error messages point to different lines of code? If so, why?
