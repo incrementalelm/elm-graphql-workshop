@@ -112,7 +112,7 @@ starts off with a constructor that takes {Code|n} arguments, followed by
 | List
     -> Copy the {Code|map6} you just wrote into a new top-level value called {Code|weatherSelectionPipeline}. Then convert it into pipeline syntax.
     -> Choose another field and add it to both {Code|weatherSelection} and {Code|weatherSelectionPipeline}.
-    (?) How do the two versions compare?
+    (?) How does adding to the two versions compare?
 
 
 | Header
