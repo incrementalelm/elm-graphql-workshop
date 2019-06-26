@@ -117,6 +117,8 @@ For example, you could have {Code|type Currency = Currency Int} where the {Code|
 Let's try using one! Instead of a {Code|Currency} type, we'll be using an Opaque Type called {Code|Temperature}.
 
 *Don't worry about the bug quite yet*. We'll get to that in the next section.
+The goal of this section is to get you comfortable with using type wrappers.
+
 
 | List
     -> Take a look at {Code|src//Temperature.elm}. It exposes an Opaque Type for representing {Code|Temperature}, which you can build with {Code|fromCelsius} or {Code|fromFahrenheit}.
