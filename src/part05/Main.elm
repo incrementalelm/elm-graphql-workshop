@@ -113,7 +113,7 @@ There are two contexts in Elm: Types and Values. You can't use a Type as a Value
     4KmQTYjGnHLa1
 
 | List
-    -> Try doing the Ellie again with `type alias Person = String Int`. Does it compile? Which Types and Values does Elm define in this case?
+    -> Try doing the Ellie again with `type Person = Person String Int`. Does it compile? Which Types and Values does Elm define in this case?
 """
             }
         }
