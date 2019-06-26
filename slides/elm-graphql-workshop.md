@@ -12,6 +12,11 @@ slide-dividers: #
 
 github.com/IncrementalElm/elm-graphql-workshop
 
+```shell
+npm install
+./run.sh src/hello
+```
+
 # Defining Success
 
 - Introduce yourself
